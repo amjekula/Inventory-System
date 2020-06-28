@@ -23,6 +23,7 @@ public class LoginTest {
 
     @Test
     public void getPassword() {
-
+        assertEquals(1546,log.getPassword());
+        System.out.println(" equal information");
     }
 }
