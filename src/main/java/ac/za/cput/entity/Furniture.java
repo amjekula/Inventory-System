@@ -4,9 +4,6 @@ public class Furniture {
 
     private int furniture_Id,furniture_type_Id;
 
-
-
-
     private Furniture (FurnitureBuilder builder) {
         this.furniture_Id = builder.furniture_Id;
         this.furniture_type_Id = builder.furniture_type_Id;
