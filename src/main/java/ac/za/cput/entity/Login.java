@@ -5,7 +5,7 @@ public class Login {
     private int password;
 
 
-    private Login (Builder builder){
+    protected Login(Builder builder){
         this.email_address= builder.email_address;
         this.password= builder.password;
 
@@ -25,12 +25,12 @@ public class Login {
             return this;
         }
 
-        public Builder copy(ac.za.cput.entity.Login login){
+        public Builder copy(Login login){
             this.email_address= login.email_address;
             this.password= login.password;
             return this;
         }
-        public ac.za.cput.entity.Login build() {
+        public Login build() {
             return new ac.za.cput.entity.Login(this);
         }
 
