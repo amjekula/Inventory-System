@@ -2,77 +2,77 @@ package ac.za.cput.entity;
 
 public class FurnitureType {
 
-    private final int furnitureId;
-    private final String furnitureDesc;
-    private final double furnitureSize;
-    private final String furnitureColor;
+    private final int furnitureTypeId;
+    private final String furnitureDescription;
+    private final double size;
+    private final String color;
 
 
     private FurnitureType(Builder builder){
 
-        this.furnitureId = builder.furnitureId;
-        this.furnitureDesc = builder.furnitureDesc;
-        this.furnitureSize = builder.furnitureSize;
-        this.furnitureColor = builder.furnitureColor;
+        this.furnitureTypeId = builder.furnitureTypeId;
+        this.furnitureDescription = builder.furnitureDescription;
+        this.size = builder.size;
+        this.color = builder.color;
 
 
     }
 
-    public int getFurnitureId(){
+    public int getFurnitureTypeId(){
 
-        return furnitureId;
-
-    }
-
-    public String getFurnitureDesc(){
-
-        return furnitureDesc;
+        return furnitureTypeId;
 
     }
 
-    public double getFurnitureSize(){
+    public String getFurnitureDescription(){
 
-        return furnitureSize;
+        return furnitureDescription;
 
     }
 
-    public String getfurnitureColor(){
+    public double getSize(){
+
+        return size;
+
+    }
+
+    public String getColor(){
 
 
-        return furnitureColor;
+        return color;
 
     }
 
     public static class Builder{
 
-        private int furnitureId;
-        private String furnitureDesc;
-        private double furnitureSize;
-        private String furnitureColor;
+        private int furnitureTypeId;
+        private String furnitureDescription;
+        private double size;
+        private String color;
 
-        public Builder setFurnitureId( final int furnitureId){
+        public Builder setFurnitureTypeId( final int furnitureTypeId){
 
-            this.furnitureId = furnitureId;
+            this.furnitureTypeId = furnitureTypeId;
             return this;
         }
 
-        public Builder setFurnitureDesc( final String furnitureDesc){
+        public Builder setFurnitureDescription( final String furnitureDescription){
 
-            this.furnitureDesc = furnitureDesc;
+            this.furnitureDescription = furnitureDescription;
             return this;
         }
 
-        public Builder setFurnitureSize(final double furnitureSize){
+        public Builder setSize(final double size){
 
-            this.furnitureSize = furnitureSize;
+            this.size =size;
             return this;
 
         }
 
 
-        public Builder setFurnitureColor(final String furnitureColor){
+        public Builder setColor(final String color){
 
-            this.furnitureColor = furnitureColor;
+            this.color = color;
             return this;
 
         }
@@ -80,10 +80,10 @@ public class FurnitureType {
 
         public Builder type(FurnitureType furnitureType){
 
-            this.furnitureId = furnitureType.furnitureId;
-            this.furnitureDesc = furnitureType.furnitureDesc;
-            this.furnitureSize = furnitureType.furnitureSize;
-            this.furnitureColor = furnitureType.furnitureColor;
+            this.furnitureTypeId = furnitureType.furnitureTypeId;
+            this.furnitureDescription= furnitureType.furnitureDescription;
+            this.size = furnitureType.size;
+            this.color = furnitureType.color;
 
             return this;
 
@@ -101,10 +101,10 @@ public class FurnitureType {
     @Override
     public String toString() {
         return "Furniture_Type{"+
-                ", furnitureId=" + furnitureId +
-                ", furnitureDesc=" + furnitureDesc +
-                ", furnitureSize=" + furnitureSize +
-                ", furnitureColor=" + furnitureColor +
+                ", furnitureTypeId=" + furnitureTypeId +
+                ", furnitureDescription=" + furnitureDescription +
+                ", size=" + size +
+                ", color=" + color +
 
                 '}';
     }

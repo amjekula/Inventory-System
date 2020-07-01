@@ -3,74 +3,74 @@ package ac.za.cput.entity;
 public class DeviceType {
 
 
-    private final int deviceId;
-    private final String deviceDesc;
-    private final double deviceSize;
-    private final String deviceColor;
+    private final int deviceTypeId;
+    private final String deviceDescription;
+    private final double size;
+    private final String color;
 
 
     private DeviceType(Builder builder){
 
-        this.deviceId = builder.deviceId;
-        this.deviceDesc = builder.deviceDesc;
-        this.deviceSize = builder.deviceSize;
-        this.deviceColor = builder.deviceColor;
+        this.deviceTypeId = builder.deviceTypeId;
+        this.deviceDescription = builder.deviceDescription;
+        this.size = builder.size;
+        this.color = builder.color;
 
 
     }
 
-    public int getDeviceId(){
+    public int getDeviceTypeId(){
 
-        return deviceId;
-
-    }
-
-    public String getDeviceDesc(){
-
-        return deviceDesc;
+        return deviceTypeId;
 
     }
 
-    public double getDeviceSize(){
+    public String getDeviceDescription(){
 
-        return deviceSize;
+        return deviceDescription;
 
     }
 
-    public String getDeviceColor(){
+    public double getSize(){
 
-        return deviceColor;
+        return size;
+
+    }
+
+    public String getColor(){
+
+        return color;
 
     }
 
     public static class Builder{
 
-        private int deviceId;
-        private String deviceDesc;
-        private double deviceSize;
-        private String deviceColor;
+        private int deviceTypeId;
+        private String deviceDescription;
+        private double size;
+        private String color;
 
 
-        public Builder setDeviceId(final int deviceId){
-
-            return this;
-
-        }
-
-        public Builder setDeviceDesc(final String deviceDesc){
+        public Builder setDeviceTypeId(final int deviceTypeId){
 
             return this;
 
         }
 
-        public Builder setDeviceSize(final double deviceSize){
+        public Builder setDeviceDescription(final String deviceDescription){
+
+            return this;
+
+        }
+
+        public Builder setSize(final double size){
 
             return this;
 
 
         }
 
-        public Builder setDeviceColor(final String deviceColor){
+        public Builder setColor(final String color){
 
             return this;
 
@@ -78,10 +78,10 @@ public class DeviceType {
 
         public Builder type(DeviceType deviceType){
 
-            this.deviceId = deviceType.deviceId;
-            this.deviceDesc = deviceType.deviceDesc;
-            this.deviceSize = deviceType.deviceSize;
-            this.deviceColor = deviceType.deviceColor;
+            this.deviceTypeId = deviceType.deviceTypeId;
+            this.deviceDescription = deviceType.deviceDescription;
+            this.size = deviceType.size;
+            this.color = deviceType.color;
 
             return this;
 
@@ -99,10 +99,10 @@ public class DeviceType {
     @Override
     public String toString() {
         return "DeviceType{"+
-                ", DeviceId=" + deviceId +
-                ", DeviceDesc=" + deviceDesc +
-                ", DeviceSize=" + deviceSize +
-                ", DeviceColor=" + deviceColor +
+                ", DeviceId=" + deviceTypeId +
+                ", DeviceDesc=" + deviceDescription +
+                ", DeviceSize=" + size +
+                ", DeviceColor=" + color +
 
                 '}';
     }

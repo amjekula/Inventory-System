@@ -6,37 +6,37 @@ import static org.junit.Assert.*;
 public class DeviceTypeTest {
 
 
-    DeviceType list = new DeviceType.Builder().setDeviceId(9).setDeviceDesc("Samsung").setDeviceSize(15).setDeviceColor("black").build();
+    DeviceType list = new DeviceType.Builder().setDeviceTypeId(9).setDeviceDescription("Samsung").setSize(15).setColor("black").build();
 
 
 
 
     @Test
-    public void getDeviceId()
+    public void getDeviceTypeId()
     {
-        assertEquals(9, list.getDeviceId());
+        assertEquals(9, list.getDeviceTypeId());
 
     }
 
 
     @Test
-    public void getDeviceDesc()
+    public void getDeviceDescription()
     {
-        assertEquals("Samsung", list.getDeviceDesc());
+        assertEquals("Samsung", list.getDeviceDescription());
 
     }
 
     @Test
-    public void getFurnitureSize()
+    public void getSize()
     {
-        assertEquals(15, list.getDeviceId());
+        assertEquals(15, list.getSize());
 
     }
 
 
-    public void getFurnitureColor()
+    public void getColor()
     {
-        assertEquals("black", list.getDeviceColor());
+        assertEquals("black", list.getColor());
 
     }
 
