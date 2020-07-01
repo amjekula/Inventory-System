@@ -100,7 +100,7 @@ public class FurnitureType {
 
     @Override
     public String toString() {
-        return "Furniture_Type{"+
+        return "FurnitureType{"+
                 ", furnitureTypeId=" + furnitureTypeId +
                 ", furnitureDescription=" + furnitureDescription +
                 ", size=" + size +
