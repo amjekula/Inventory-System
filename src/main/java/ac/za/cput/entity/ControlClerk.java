@@ -1,5 +1,9 @@
 package ac.za.cput.entity;
-
+/*
+ *@author @amjekula
+ * Description: Entity for Control Clerk
+ * Date: 28 June 2020
+ */
 public class ControlClerk {
     private String clerk_id, university_id, surname, firstName, phoneNum, email_address;
 
