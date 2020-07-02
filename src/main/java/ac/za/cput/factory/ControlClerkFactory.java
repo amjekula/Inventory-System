@@ -7,13 +7,18 @@ package ac.za.cput.factory;
  */
 
 import ac.za.cput.entity.ControlClerk;
+import ac.za.cput.util.GenericHelper;
 
 import javax.swing.*;
 
 public class ControlClerkFactory {
 
-    public static ControlClerk createControlClerk(String clerk_id, String university_id, String surname,
-                                                  String firstName, String phoneNum, String email_address){
+    public static ControlClerk createControlClerk(String surname, String firstName,
+                                                  String phoneNum, String email_address){
+
+        String clerk_id = GenericHelper.generateId();
+        String university_id = GenericHelper.generateId();
+
         ControlClerk controlClerk = null;
 
         if(surname.trim().equals("")){
@@ -32,8 +37,8 @@ public class ControlClerkFactory {
 
         }else{
             controlClerk = new ControlClerk.ControlClerkBuilder()
-                    .setClerk_id(clerk_id.trim())
-                    .setUniversity_id(university_id.trim())
+                    .setClerk_id(clerk_id)
+                    .setUniversity_id(university_id)
                     .setSurname(surname.trim())
                     .setFirstName(firstName.trim())
                     .setPhoneNum(phoneNum.trim())
