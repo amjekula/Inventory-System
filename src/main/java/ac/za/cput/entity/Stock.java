@@ -1,9 +1,14 @@
 package ac.za.cput.entity;
 
+/*
+ *  @author: Sherwin Adams
+ *  Desc: Entity for Stock
+ */
+
 public class Stock {
-    private final int stockId;
-    private final int furnitureId;
-    private final int deviceId;
+    private final String stockId;
+    private final String furnitureId;
+    private final String deviceId;
     private final int quantity;
     private final String date;
 
@@ -15,15 +20,15 @@ public class Stock {
         this.date = builder.date;
     }
 
-    public int getStockId() {
+    public String getStockId() {
         return stockId;
     }
 
-    public int getFurnitureId() {
+    public String getFurnitureId() {
         return furnitureId;
     }
 
-    public int getDeviceId() { return deviceId; }
+    public String getDeviceId() { return deviceId; }
 
     public int getQuantity() {
         return quantity;
@@ -34,23 +39,23 @@ public class Stock {
     }
 
     public static class Builder {
-        private int stockId;
-        private int furnitureId;
-        private int deviceId;
+        private String stockId;
+        private String furnitureId;
+        private String deviceId;
         private int quantity;
         private String date;
 
-        public Builder setStockId(final int stockId) {
+        public Builder setStockId(final String stockId) {
             this.stockId = stockId;
             return this;
         }
 
-        public Builder setFurnitureId(final int furnitureId) {
+        public Builder setFurnitureId(final String furnitureId) {
             this.furnitureId = furnitureId;
             return this;
         }
 
-        public Builder setDeviceId(final int deviceId) {
+        public Builder setDeviceId(final String deviceId) {
             this.deviceId = deviceId;
             return this;
         }
