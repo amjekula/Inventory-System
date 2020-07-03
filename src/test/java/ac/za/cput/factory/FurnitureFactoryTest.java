@@ -11,7 +11,7 @@ public class FurnitureFactoryTest {
     @Test
     public void createFurniture() {
         Furniture furniture = FurnitureFactory.getFurniture(3,4);
-        Assert.assertEquals(null ,furniture.getFurniture_Id());
+        Assert.assertEquals(3 ,furniture.getFurniture_Id());
 
 
 

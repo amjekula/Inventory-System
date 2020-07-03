@@ -11,7 +11,7 @@ public class DeviceFactoryTest {
     @Test
     public void getDevice() {
         Device device = DeviceFactory.getDevice(1,2);
-        Assert.assertEquals(null ,device.getDevice_id());
+        Assert.assertEquals(1 ,device.getDevice_id());
 
 
     }
