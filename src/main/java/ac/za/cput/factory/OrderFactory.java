@@ -1,0 +1,38 @@
+package ac.za.cput.factory;
+
+import ac.za.cput.entity.Order;
+
+import ac.za.cput.util.GenericHelper;
+
+public class OrderFactory
+{
+    public static Order createClerkOrder(String description, String date)
+    {
+        String clerkId = GenericHelper.generateId();
+        String OrderOrderId = GenericHelper.generateId();
+        Order order = new Order.Builder()
+                .setClerkId(clerkId)
+                .setOrderNum(OrderOrderId)
+                .setDescription(description)
+                .setDate(date)
+                .build();
+         return order;
+
+    }
+
+
+    public static Order createStockOrder(String description, String date)
+    {
+        String clerkId = GenericHelper.generateId();
+        String stockOrderId = GenericHelper.generateId();
+        Order stockOrder = new Order.Builder()
+                .setClerkId(clerkId)
+                .setStockId(stockOrderId)
+                .setDescription(description)
+                .setDate(date)
+                .build();
+         return stockOrder;
+
+    }
+
+}
