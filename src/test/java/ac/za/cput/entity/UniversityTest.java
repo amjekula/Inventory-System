@@ -4,14 +4,19 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/*
+ *  @author: Sherwin Adams
+ *  Desc: Tests for University Entity
+ */
+
 public class UniversityTest {
 
     // Create cput
-    University cput = new University.Builder().setUniversityId(1).setName("CPUT").setAddress("Hanover St, Zonnebloem, Cape Town, 7925").build();
+    University cput = new University.Builder().setUniversityId("1").setName("CPUT").setAddress("Hanover St, Zonnebloem, Cape Town, 7925").build();
 
     @Test
     public void getUniversityId() {
-        assertEquals(1,cput.getUniversityId());
+        assertEquals("1",cput.getUniversityId());
     }
 
     @Test

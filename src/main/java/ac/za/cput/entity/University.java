@@ -1,7 +1,12 @@
 package ac.za.cput.entity;
 
+/*
+ *  @author: Sherwin Adams
+ *  Desc: Entity for University
+ */
+
 public class University {
-    private final int universityId;
+    private final String universityId;
     private final String name;
     private final String address;
 
@@ -11,7 +16,7 @@ public class University {
         this.address = builder.address;
     }
 
-    public int getUniversityId() {
+    public String getUniversityId() {
         return universityId;
     }
 
@@ -24,11 +29,11 @@ public class University {
     }
 
     public static class Builder {
-        private int universityId;
+        private String universityId;
         private String name;
         private String address;
 
-        public Builder setUniversityId(final int universityId) {
+        public Builder setUniversityId(final String universityId) {
             this.universityId = universityId;
             return this;
         }
