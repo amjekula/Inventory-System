@@ -24,23 +24,27 @@ public class StockTest {
     }
 
     @Test
-    public void getFurnitureId() {
+    public void getFurnitureId()
+    {
         assertEquals("1001",table.getFurnitureId());
     }
 
     @Test
-    public void getDeviceId() {
+    public void getDeviceId()
+    {
         assertEquals("2001",computer.getDeviceId());
     }
 
     @Test
-    public void getQuantity() {
+    public void getQuantity()
+    {
         assertEquals(10,table.getQuantity());
         assertEquals(5,computer.getQuantity());
     }
 
     @Test
-    public void getDate() {
+    public void getDate()
+    {
         assertEquals("27-06-2020",table.getDate());
         assertEquals("30-05-2021",computer.getDate());
     }
