@@ -1,16 +1,20 @@
 package ac.za.cput.entity;
 
 public class Login {
+    private String login_id;
     private  String email_address;
     private int password;
 
 
     protected Login(Builder builder){
+        this.login_id= builder.login_id;
         this.email_address= builder.email_address;
         this.password= builder.password;
 
+
     }
     public static class Builder{
+        private String login_id;
         private String email_address;
         private int password;
 
@@ -24,10 +28,16 @@ public class Login {
             this.password= password;
             return this;
         }
+        public Builder setLogin_id(final String login_id)
+        {
+            this.login_id= login_id;
+            return this;
+        }
 
         public Builder copy(Login login){
             this.email_address= login.email_address;
             this.password= login.password;
+            this.login_id= login.login_id;
             return this;
         }
         public Login build() {
@@ -44,11 +54,17 @@ public class Login {
         return password;
     }
 
+    public String getLogin_id() {
+        return login_id;
+    }
+
+
     @Override
     public String toString() {
         return "Login{" +
                 "email_address='" + email_address + '\'' +
                 ", password=" + password +
+                ", login_id="+ login_id +
                 '}';
     }
 }
