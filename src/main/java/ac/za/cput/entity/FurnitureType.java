@@ -2,31 +2,31 @@ package ac.za.cput.entity;
 
 public class FurnitureType {
 
-    private final int furniture_Type_Id;
-    private final String furniture_Description;
+    private final String furnitureTypeId;
+    private final String furnitureDescription;
     private final double size;
     private final String color;
 
 
     private FurnitureType(Builder builder){
 
-        this.furniture_Type_Id = builder.furniture_Type_Id;
-        this.furniture_Description = builder.furniture_Description;
+        this.furnitureTypeId = builder.furnitureTypeId;
+        this.furnitureDescription = builder.furnitureDescription;
         this.size = builder.size;
         this.color = builder.color;
 
 
     }
 
-    public int getFurniture_Type_Id(){
+    public String getFurnitureTypeId(){
 
-        return furniture_Type_Id;
+        return furnitureTypeId;
 
     }
 
-    public String getFurniture_Description(){
+    public String getFurnitureDescription(){
 
-        return furniture_Description;
+        return furnitureDescription;
 
     }
 
@@ -45,20 +45,20 @@ public class FurnitureType {
 
     public static class Builder{
 
-        private int furniture_Type_Id;
-        private String furniture_Description;
+        private String furnitureTypeId;
+        private String furnitureDescription;
         private double size;
         private String color;
 
-        public Builder setFurniture_Type_Id( final int furniture_Type_Id){
+        public Builder setFurnitureTypeId( final String furnitureTypeId){
 
-            this.furniture_Type_Id = furniture_Type_Id;
+            this.furnitureTypeId = furnitureTypeId;
             return this;
         }
 
-        public Builder setFurniture_Description( final String furniture_Description){
+        public Builder setFurnitureDescription( final String furnitureDescription){
 
-            this.furniture_Description = furniture_Description;
+            this.furnitureDescription = furnitureDescription;
             return this;
         }
 
@@ -80,8 +80,8 @@ public class FurnitureType {
 
         public Builder type(FurnitureType furnitureType){
 
-            this.furniture_Type_Id = furnitureType.furniture_Type_Id;
-            this.furniture_Description= furnitureType.furniture_Description;
+            this.furnitureTypeId = furnitureType.furnitureTypeId;
+            this.furnitureDescription= furnitureType.furnitureDescription;
             this.size = furnitureType.size;
             this.color = furnitureType.color;
 
@@ -101,8 +101,8 @@ public class FurnitureType {
     @Override
     public String toString() {
         return "FurnitureType{"+
-                ", Furniture_Type_Id=" + furniture_Type_Id +
-                ", Furniture_Description=" + furniture_Description +
+                ", FurnitureTypeId=" + furnitureTypeId +
+                ", FurnitureDescription=" + furnitureDescription +
                 ", Size=" + size +
                 ", Color=" + color +
 
