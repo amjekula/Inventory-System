@@ -9,10 +9,10 @@ import ac.za.cput.util.GenericHelper;
 
 public class LoginFactory {
     public static Login createLogin(String emailAddress, int password){
-        String logId = GenericHelper.generateId();
+        String loginId = GenericHelper.generateId();
         Login log =new Login.Builder()
-                .setLoginId(logId)
-                .setEmail_address(emailAddress)
+                .setLoginId(loginId)
+                .setEmailAddress(emailAddress)
                 .setPassword(password)
                 .build();
         return log;
