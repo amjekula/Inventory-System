@@ -1,5 +1,9 @@
 package ac.za.cput.factory;
-
+/*
+ *@author @joselledina
+ * Description: Entity for LoginFactofry
+ * Date: 02 July 2020
+ */
 import ac.za.cput.entity.Login;
 import ac.za.cput.util.GenericHelper;
 

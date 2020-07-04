@@ -1,4 +1,9 @@
 package ac.za.cput.entity;
+/*
+ *@author @joselledina
+ * Description: Entity for  Login
+ * Date: 28 June 2020
+ */
 
 public class Login {
     private String login_id;
