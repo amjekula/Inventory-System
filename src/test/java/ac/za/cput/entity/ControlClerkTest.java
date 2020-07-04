@@ -1,5 +1,9 @@
 package ac.za.cput.entity;
-
+/*
+ *@author @amjekula
+ * Description: Test case for Control Clerk Entity
+ * Date: 28 June 2020
+ */
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,12 +14,17 @@ public class ControlClerkTest {
 
     @Before
     public void setUp() throws Exception {
-        controlClerk = new ControlClerk.ControlClerkBuilder().setClerk_id("566562").setFirstName("Athenkosi").build();
+        controlClerk = new ControlClerk.ControlClerkBuilder().setClerkId("566562").setFirstName("Athenkosi").build();
     }
 
     @Test
     public void testControlClerk(){
         System.out.println(controlClerk.toString());
+    }
+
+    @Test
+    public void testUniversityId(){
+        assertNull(controlClerk.getUniversityId(), null);
     }
 
 }

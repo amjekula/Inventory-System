@@ -6,15 +6,15 @@ import static org.junit.Assert.*;
 
 public class FurnitureTypeTest {
 
-    FurnitureType list = new FurnitureType.Builder().setFurniture_Type_Id(5).setFurniture_Description("table").setSize(15).setColor("black").build();
+    FurnitureType list = new FurnitureType.Builder().setFurnitureTypeId("5").setFurnitureDescription("table").setSize(15).setColor("black").build();
 
 
 
 
     @Test
-    public void getFurniture_Type_Id()
+    public void getFurnitureTypeId()
     {
-        assertEquals(5, list.getFurniture_Type_Id());
+        assertEquals(5, list.getFurnitureTypeId());
 
     }
 
@@ -22,7 +22,7 @@ public class FurnitureTypeTest {
     @Test
     public void getFurnitureDescription()
     {
-        assertEquals("table", list.getFurniture_Description());
+        assertEquals("table", list.getFurnitureDescription());
 
     }
 

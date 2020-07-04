@@ -3,31 +3,31 @@ package ac.za.cput.entity;
 public class DeviceType {
 
 
-    private final int device_Type_Id;
-    private final String device_Description;
+    private final String deviceTypeId;
+    private final String deviceDescription;
     private final double size;
     private final String color;
 
 
     private DeviceType(Builder builder){
 
-        this.device_Type_Id = builder.device_Type_Id;
-        this.device_Description = builder.device_Description;
+        this.deviceTypeId = builder.deviceTypeId;
+        this.deviceDescription = builder.deviceDescription;
         this.size = builder.size;
         this.color = builder.color;
 
 
     }
 
-    public int getDevice_Type_Id(){
+    public String getDeviceTypeId(){
 
-        return device_Type_Id;
+        return deviceTypeId;
 
     }
 
-    public String getDevice_Description(){
+    public String getDeviceDescription(){
 
-        return device_Description;
+        return deviceDescription;
 
     }
 
@@ -45,19 +45,19 @@ public class DeviceType {
 
     public static class Builder{
 
-        private int device_Type_Id;
-        private String device_Description;
+        private String deviceTypeId;
+        private String deviceDescription;
         private double size;
         private String color;
 
 
-        public Builder setDevice_Type_Id(final int device_Type_Id){
+        public Builder setDeviceTypeId(final String deviceTypeId){
 
             return this;
 
         }
 
-        public Builder setDevice_Description(final String device_Description){
+        public Builder setDeviceDescription(final String deviceDescription){
 
             return this;
 
@@ -78,8 +78,8 @@ public class DeviceType {
 
         public Builder type(DeviceType deviceType){
 
-            this.device_Type_Id = deviceType.device_Type_Id;
-            this.device_Description = deviceType.device_Description;
+            this.deviceTypeId = deviceType.deviceTypeId;
+            this.deviceDescription = deviceType.deviceDescription;
             this.size = deviceType.size;
             this.color = deviceType.color;
 
@@ -99,8 +99,8 @@ public class DeviceType {
     @Override
     public String toString() {
         return "DeviceType{"+
-                ", Device_Type_Id=" + device_Type_Id +
-                ", Device_Description=" + device_Description +
+                ", DeviceTypeId=" + deviceTypeId +
+                ", DeviceDescription=" + deviceDescription +
                 ", Size=" + size +
                 ", Color=" + color +
 
