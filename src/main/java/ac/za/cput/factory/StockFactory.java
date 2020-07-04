@@ -8,8 +8,10 @@ package ac.za.cput.factory;
 import ac.za.cput.entity.Stock;
 import ac.za.cput.util.GenericHelper;
 
-public class StockFactory {
-    public static Stock createFurnitureStock(int quantity, String date) {
+public class StockFactory
+{
+    public static Stock createFurnitureStock(int quantity, String date)
+    {
         String stockId = GenericHelper.generateId();
         String furnitureStockId = GenericHelper.generateId();
         Stock furnitureStock = new Stock.Builder()
@@ -21,7 +23,8 @@ public class StockFactory {
         return furnitureStock;
     }
 
-    public static Stock createDeviceStock(int quantity, String date) {
+    public static Stock createDeviceStock(int quantity, String date)
+    {
         String stockId = GenericHelper.generateId();
         String deviceStockId = GenericHelper.generateId();
         Stock deviceStock = new Stock.Builder()
