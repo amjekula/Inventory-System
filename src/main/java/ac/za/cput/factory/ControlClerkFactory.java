@@ -17,11 +17,12 @@ public class ControlClerkFactory {
     public static ControlClerk createControlClerk(String surname, String firstName,
                                                   String phoneNum, String emailAddress){
 
+        //Getting the Primary keys
         String clerkId = GenericHelper.generateId();
-        ControlClerk controlClerk = null;
+        String universityId = GenericHelper.generateId();
+        //String universityId = String.valueOf(new University.Builder().build().getUniversityId());
 
-        //Getting the foreign key of University Id
-        String universityId = String.valueOf(new University.Builder().build().getUniversityId());
+        ControlClerk controlClerk = null;
 
         if(surname.trim().equals("")){
             JOptionPane.showMessageDialog(null, "Please Enter Your Surname",

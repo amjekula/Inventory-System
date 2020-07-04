@@ -15,7 +15,7 @@ public class ControlClerkFactoryTest {
     //When all required arguments have been provided
     @Test
     public void testCreateControlClerk(){
-        controlClerk = ControlClerkFactory.createControlClerk("Athebkosi ", "Athenkosi",
+        controlClerk = ControlClerkFactory.createControlClerk("Mjekula ", "Athenkosi",
                 "0792250655", " ");
         assertNotNull(controlClerk);
 
