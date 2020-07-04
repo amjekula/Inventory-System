@@ -2,14 +2,14 @@ package ac.za.cput.entity;
 
 public class Order
 {
-    private final int orderNum;
-    private final int clerkId;
-    private final int stockId;
+    private final String orderNum;
+    private final String clerkId;
+    private final String stockId;
     private final String description;
     private final String date;
 
 
-    public Order(Builder builder)
+    private Order(Builder builder)
     {
         this.orderNum = builder.orderNum;
         this.clerkId = builder.clerkId;
@@ -19,17 +19,17 @@ public class Order
     }
 
 
-    public int getOrderNum()
+    public String getOrderNum()
     {
         return orderNum;
     }
 
-    public int getClerkId()
+    public String getClerkId()
     {
         return clerkId;
     }
 
-    public int getStockId()
+    public String getStockId()
     {
         return stockId;
     }
@@ -47,26 +47,26 @@ public class Order
 
     public static class Builder
     {
-        private int orderNum;
-        private int clerkId;
-        private int stockId;
+        private String orderNum;
+        private String clerkId;
+        private String stockId;
         private String description;
         private String date;
 
 
-        public Builder setOrderNum(final int orderNum)
+        public Builder setOrderNum(final String orderNum)
         {
             this.orderNum = orderNum;
             return this;
         }
 
-        public Builder setClerkId(final int clerkId)
+        public Builder setClerkId(final String clerkId)
         {
             this.clerkId = clerkId;
             return this;
         }
 
-        public Builder setStockId( final int stockId)
+        public Builder setStockId( final String stockId)
         {
             this.stockId = stockId;
             return this;
@@ -92,7 +92,6 @@ public class Order
 
 
     }
-
 
     @Override
     public String toString()
