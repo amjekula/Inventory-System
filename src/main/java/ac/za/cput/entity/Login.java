@@ -6,26 +6,26 @@ package ac.za.cput.entity;
  */
 
 public class Login {
-    private String login_id;
-    private  String email_address;
+    private String loginId;
+    private  String emailAddress;
     private int password;
 
 
     protected Login(Builder builder){
-        this.login_id= builder.login_id;
-        this.email_address= builder.email_address;
+        this.loginId= builder.loginId;
+        this.emailAddress= builder.emailAddress;
         this.password= builder.password;
 
 
     }
     public static class Builder{
-        private String login_id;
-        private String email_address;
+        private String loginId;
+        private String emailAddress;
         private int password;
 
-        public Builder setEmail_address(final String email_address)
+        public Builder setEmailAddress(final String emailAddress)
         {
-            this.email_address= email_address;
+            this.emailAddress= emailAddress;
             return this;
         }
         public Builder setPassword(final int password)
@@ -33,16 +33,16 @@ public class Login {
             this.password= password;
             return this;
         }
-        public Builder setLogin_id(final String login_id)
+        public Builder setLoginId(final String loginId)
         {
-            this.login_id= login_id;
+            this.loginId= loginId;
             return this;
         }
 
         public Builder copy(Login login){
-            this.email_address= login.email_address;
+            this.emailAddress= login.emailAddress;
             this.password= login.password;
-            this.login_id= login.login_id;
+            this.loginId= login.loginId;
             return this;
         }
         public Login build() {
@@ -51,8 +51,8 @@ public class Login {
 
     }
 
-    public String getEmail_address() {
-        return email_address;
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
     public int getPassword() {
@@ -60,16 +60,16 @@ public class Login {
     }
 
     public String getLogin_id() {
-        return login_id;
+        return loginId;
     }
 
 
     @Override
     public String toString() {
         return "Login{" +
-                "email_address='" + email_address + '\'' +
+                "email_address='" + emailAddress + '\'' +
                 ", password=" + password +
-                ", login_id="+ login_id +
+                ", login_id="+ loginId +
                 '}';
     }
 }
