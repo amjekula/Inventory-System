@@ -5,14 +5,16 @@ package ac.za.cput.entity;
  *  Desc: Entity for Stock
  */
 
-public class Stock {
+public class Stock
+{
     private final String stockId;
     private final String furnitureId;
     private final String deviceId;
     private final int quantity;
     private final String date;
 
-    private Stock(Builder builder) {
+    private Stock(Builder builder)
+    {
         this.stockId = builder.stockId;
         this.furnitureId = builder.furnitureId;
         this.deviceId = builder.deviceId;
@@ -20,25 +22,30 @@ public class Stock {
         this.date = builder.date;
     }
 
-    public String getStockId() {
+    public String getStockId()
+    {
         return stockId;
     }
 
-    public String getFurnitureId() {
+    public String getFurnitureId()
+    {
         return furnitureId;
     }
 
     public String getDeviceId() { return deviceId; }
 
-    public int getQuantity() {
+    public int getQuantity()
+    {
         return quantity;
     }
 
-    public String getDate() {
+    public String getDate()
+    {
         return date;
     }
 
-    public static class Builder {
+    public static class Builder
+    {
         private String stockId;
         private String furnitureId;
         private String deviceId;
@@ -79,7 +86,8 @@ public class Stock {
             return this;
         }
 
-        public Stock build() {
+        public Stock build()
+        {
             return new Stock(this);
         }
     }
