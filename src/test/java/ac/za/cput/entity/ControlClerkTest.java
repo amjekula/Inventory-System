@@ -14,7 +14,7 @@ public class ControlClerkTest {
 
     @Before
     public void setUp() throws Exception {
-        controlClerk = new ControlClerk.ControlClerkBuilder().setClerk_id("566562").setFirstName("Athenkosi").build();
+        controlClerk = new ControlClerk.ControlClerkBuilder().setClerkId("566562").setFirstName("Athenkosi").build();
     }
 
     @Test
@@ -24,7 +24,7 @@ public class ControlClerkTest {
 
     @Test
     public void testUniversityId(){
-        assertNull(controlClerk.getUniversity_id(), null);
+        assertNull(controlClerk.getUniversityId(), null);
     }
 
 }

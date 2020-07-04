@@ -7,6 +7,7 @@ package ac.za.cput.factory;
  */
 
 import ac.za.cput.entity.ControlClerk;
+import ac.za.cput.entity.University;
 import ac.za.cput.util.GenericHelper;
 
 import javax.swing.*;
@@ -14,12 +15,13 @@ import javax.swing.*;
 public class ControlClerkFactory {
 
     public static ControlClerk createControlClerk(String surname, String firstName,
-                                                  String phoneNum, String email_address){
+                                                  String phoneNum, String emailAddress){
 
-        String clerk_id = GenericHelper.generateId();
-        String university_id = GenericHelper.generateId();
-
+        String clerkId = GenericHelper.generateId();
         ControlClerk controlClerk = null;
+
+        //Getting the foreign key of University Id
+        String universityId = String.valueOf(new University.Builder().build().getUniversityId());
 
         if(surname.trim().equals("")){
             JOptionPane.showMessageDialog(null, "Please Enter Your Surname",
@@ -30,22 +32,21 @@ public class ControlClerkFactory {
                     "Name Can't Be Empty", JOptionPane.WARNING_MESSAGE);
 
         }else if(phoneNum.trim().equals("") || phoneNum.trim().length() < 10 || phoneNum.trim().length() > 10
-                && email_address.trim().equals("")){
+                && emailAddress.trim().equals("")){
 
             JOptionPane.showMessageDialog(null, "Please Enter Your Phone Number or Email",
                     "Phone Number or Email doesn't exist", JOptionPane.WARNING_MESSAGE);
 
         }else{
             controlClerk = new ControlClerk.ControlClerkBuilder()
-                    .setClerk_id(clerk_id)
-                    .setUniversity_id(university_id)
+                    .setClerkId(clerkId)
+                    .setUniversityId(universityId)
                     .setSurname(surname.trim())
                     .setFirstName(firstName.trim())
                     .setPhoneNum(phoneNum.trim())
-                    .setEmail_address(email_address.trim())
+                    .setEmailAddress(emailAddress.trim())
                     .build();
         }
-
         return controlClerk;
     }
 }
