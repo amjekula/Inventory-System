@@ -6,7 +6,8 @@ import java.util.UUID;
 
 public class GenericHelper {
 
-    public static String generateId(){
+    public static String generateId()
+    {
         return UUID.randomUUID().toString();
     }
 }
