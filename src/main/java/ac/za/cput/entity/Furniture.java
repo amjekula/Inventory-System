@@ -48,7 +48,7 @@ public class Furniture {
 
         @Override
         public String toString() {
-            return "Furniture{" +
+            return "Furnitur{" +
                     "furniture_Id=" + furniture_Id +
                     ", furniture_type_Id=" + furniture_type_Id +
                     '}';
