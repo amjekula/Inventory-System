@@ -13,5 +13,7 @@ public class DeviceFactory {
                     .setDeviceTypeId(deviceTypeId)
                     .build();
             return device;
+
+
         }
 }

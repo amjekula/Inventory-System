@@ -17,6 +17,7 @@ public class Furniture {
         private String furnitureId;
         private String furnitureTypeId;
 
+
         public Builder setFurnitureId(String furnitureId) {
             this.furnitureId = furnitureId;
             return this;
