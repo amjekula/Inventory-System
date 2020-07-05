@@ -59,7 +59,7 @@ public class Login {
         return password;
     }
 
-    public String getLogin_id() {
+    public String getLoginId() {
         return loginId;
     }
 

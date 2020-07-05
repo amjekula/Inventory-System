@@ -12,7 +12,7 @@ public class LoginTest {
 
     @Before
     public void setUp() throws Exception {
-         log = new Login.Builder().setEmailAddress("dinos@gmail.com").setPassword(1546).build();
+         log = new Login.Builder().setLoginId("1256").setEmailAddress("dinos@gmail.com").setPassword(1546).build();
     }
 
     @Test
@@ -24,6 +24,12 @@ public class LoginTest {
     @Test
     public void getPassword() {
         assertEquals(1546,log.getPassword());
+        System.out.println(" equal information");
+    }
+
+    @Test
+    public void getLoginId() {
+        assertEquals("1256",log.getLoginId());
         System.out.println(" equal information");
     }
 }
