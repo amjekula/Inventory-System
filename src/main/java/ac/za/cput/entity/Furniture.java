@@ -2,38 +2,47 @@ package ac.za.cput.entity;
 
 public class Furniture //start of the class
 {
-    private int furniture_Id, furniture_type_Id;
+    private String furnitureId, furnitureTypeId;
 
-    private Furniture(){}// defaut constructor
-
-    public int getFurniture_Id() {
-        return furniture_Id;
+    //getters
+    public String getFurnitureId() {
+        return furnitureId;
     }
 
-    public int getFurniture_type_Id() {
-        return furniture_type_Id;
+    public String getFurnitureTypeId() {
+        return furnitureTypeId;
     }
 
 
     public Furniture(Builder builder){ //this is the builder constructor
 
-        this.furniture_Id = builder.furniture_Id;
-        this.furniture_type_Id = builder.furniture_type_Id;
+        this.furnitureId = builder.furnitureId;
+        this.furnitureTypeId = builder.furnitureTypeId;
 
     }
 
     public static class Builder{ // the builder class start here now
-        private int furniture_Id, furniture_type_Id;
+        private String furnitureId;
+        private String furnitureTypeId;
 
-        public Builder furniture_Id(int furniture_Id){
-            this.furniture_Id = furniture_Id;
+        //setters
+
+        public Builder setFurnitureId(String furnitureId){
+            this.furnitureId = furnitureId;
             return this;
         }
 
-        public Builder furniture_type_Id(int furniture_type_Id){
-            this.furniture_type_Id = furniture_type_Id;
+        public Builder setFurnitureTypeId(String furnitureTypeId){
+            this.furnitureTypeId = furnitureTypeId;
             return this;
         }
+
+        public Furniture.Builder copy (Furniture furniture){
+            this.furnitureId= furniture.furnitureId;
+            this.furnitureTypeId= furniture.furnitureTypeId;
+            return this;
+        }
+
 
         public Furniture build(){
             return new Furniture(this);
@@ -44,7 +53,8 @@ public class Furniture //start of the class
 
     @Override
     public String toString() {
-        return "Furniture{" + "furniture_Id=" + furniture_Id + ", furniture_type_Id=" + furniture_type_Id + '}';
+        return "Furniture{" + "FurnitureId=" + furnitureId + ", " +
+                "FurnitureTypeId=" + furnitureTypeId + '}';
     }
 
 }// end of the entire class

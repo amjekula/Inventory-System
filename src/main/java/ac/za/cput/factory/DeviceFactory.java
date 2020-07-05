@@ -5,12 +5,16 @@ import ac.za.cput.util.GenericHelper;
 
 public class DeviceFactory {
 
-    public static Device getDevice (int Device_id,int Device_Type_id) {
-
-        return new Device.Builder()
-                .Device_id(Device_id)
-                .Device_type_id(Device_Type_id)
+    public static Device createDevice (String deviceTypeId) {
+        String  deviceId = GenericHelper.generateId();
+        Device device = new Device.Builder()
+                .setDeviceId(deviceId)
+                .setDeviceTypeId(deviceTypeId)
                 .build();
+        return device;
+
+
+
 
     }
 }
