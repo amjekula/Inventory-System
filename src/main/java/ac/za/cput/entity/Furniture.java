@@ -1,72 +1,61 @@
 package ac.za.cput.entity;
 
 public class Furniture {
-
-    private int furniture_Id,furniture_type_Id;
-
-    private Furniture (FurnitureBuilder builder) {
-        this.furniture_Id = builder.furniture_Id;
-        this.furniture_type_Id = builder.furniture_type_Id;
+    private String furnitureId;
+    private String furnitureTypeId;
 
 
-    }//Constructor Builder
-
-    public static class FurnitureBuilder {
-        private  int furniture_Id;
-        private  int furniture_type_Id;
 
 
-        public int getFurniture_Id() {
-            return furniture_Id;
-        }// getter Furniture_Id
 
-        public int getFurniture_type_Id() {
-            return furniture_type_Id;
-        }// getter Furniture_type_Id
+    public Furniture(Builder builder){
+        this.furnitureId = builder.furnitureId;
+        this.furnitureTypeId = builder.furnitureTypeId;
+    }
 
-        private FurnitureBuilder (int furniture_Id, int furniture_type_Id) {
-            this.furniture_Id = furniture_Id;
-            this.furniture_type_Id=furniture_type_Id;
+    public static class Builder {
+        private String furnitureId;
+        private String furnitureTypeId;
 
-        }// F2
-
-        public FurnitureBuilder setFurniture_Id (int Furniture_Id) {
-            this.furniture_Id = furniture_Id;
+        public Builder setFurnitureId(String furnitureId) {
+            this.furnitureId = furnitureId;
             return this;
-        }// setter Furniture ID
+        }// Setter
 
-        public FurnitureBuilder setFurniture_type_Id (int Furniture_tye_Id) {
-            this.furniture_type_Id = furniture_type_Id;
+        public Builder setFurnitureTypeId(String furnitureTypeId) {
+            this.furnitureTypeId = furnitureTypeId;
             return this;
-        } // Setter Type ID
+        } // Setter
 
-
-        public  Furniture build () {
-            return new Furniture(this);
-
-        }//Build
-
-        @Override
-        public String toString() {
-            return "Furnitur{" +
-                    "furniture_Id=" + furniture_Id +
-                    ", furniture_type_Id=" + furniture_type_Id +
-                    '}';
+        public Builder copy(Furniture furniture) {
+            this.furnitureId = furniture.furnitureId;
+            this.furnitureTypeId = furniture.furnitureTypeId;
+            return this;
         }
 
+        public Furniture build() {
+            return new Furniture(this);
+
+        }
+    }
+    public String getFurnitureId() {
+        return furnitureId;
+    }
+
+    public String getFurnitureTypeId() {
+        return furnitureTypeId;
+    }
+
+    @Override
+    public String toString() {
+        return "Furniture{" +
+                "furnitureId=" + furnitureId +
+                ", furnitureTypeId=" + furnitureTypeId +
+                '}';
+    }
 
 
 
 
-    } // builder
 
-} //Main
-
-
-
-
-
-
-
-
-
+} // Main
