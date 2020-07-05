@@ -4,6 +4,11 @@ import ac.za.cput.entity.Order;
 
 import ac.za.cput.util.GenericHelper;
 
+/*
+ *  @author: Lance Johnson
+ *  Desc: Factory for Order Factory
+ */
+
 public class OrderFactory
 {
     public static Order createClerkOrder(String description, String date)
