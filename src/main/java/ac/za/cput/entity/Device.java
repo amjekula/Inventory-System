@@ -11,6 +11,7 @@ public class Device {
     public Device(Builder builder){
         this.deviceId = builder.deviceId;
         this.deviceTypeId = builder.deviceTypeId;
+
     }
 
     public static class Builder {

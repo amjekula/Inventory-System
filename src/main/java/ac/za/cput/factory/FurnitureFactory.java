@@ -13,5 +13,7 @@ public class FurnitureFactory {
                 .setFurnitureTypeId(furnitureTypeId)
                 .build();
         return furniture;
+
+
     }
 }

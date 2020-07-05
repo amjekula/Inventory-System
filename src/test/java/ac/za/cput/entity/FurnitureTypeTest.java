@@ -16,6 +16,7 @@ public class FurnitureTypeTest {
     {
         assertEquals(5, list.getFurnitureTypeId());
 
+
     }
 
 

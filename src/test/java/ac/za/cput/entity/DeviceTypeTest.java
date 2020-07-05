@@ -16,6 +16,7 @@ public class DeviceTypeTest {
     {
         assertEquals(9, list.getDeviceTypeId());
 
+
     }
 
 
