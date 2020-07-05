@@ -1,67 +1,61 @@
 package ac.za.cput.entity;
 
 public class Device {
-    private int Device_id;
-    private int Device_type_id;
+    private String deviceId;
+    private String deviceTypeId;
 
 
 
 
 
-    private Device(Builder builder){
-        this.Device_id = builder.device_id;
-        this.Device_type_id = builder.device_type_id;
+    public Device(Builder builder){
+        this.deviceId = builder.deviceId;
+        this.deviceTypeId = builder.deviceTypeId;
+
     }
 
     public static class Builder {
-        private int device_id;
-        private int device_type_id;
+        private String deviceId;
+        private String deviceTypeId;
 
-        public void setDevice_id(int device_id) {
-            this.device_id = device_id;
+        public Builder setDeviceId(String deviceId) {
+            this.deviceId = deviceId;
+            return this;
         }// Setter
 
-        public void setDevice_type_id(int device_type_id) {
-            this.device_type_id = device_type_id;
+        public Builder setDeviceTypeId(String deviceTypeId) {
+            this.deviceTypeId = deviceTypeId;
+            return this;
         } // Setter
 
-
-        public int getDevice_id() {
-            return device_id;
+        public Builder copy(Device device) {
+            this.deviceId = device.deviceId;
+            this.deviceTypeId = device.deviceTypeId;
+            return this;
         }
 
-        public int getDevice_type_id() {
-            return device_type_id;
-        }
-
-        private Builder(int device_id,int device_type_id) {
-            this.device_id = device_id;
-            this.device_type_id = device_type_id;
-        }
-
-        public Device build () {
+        public Device build() {
             return new Device(this);
 
         }
+    }
+        public String getDeviceId() {
+            return deviceId;
+        }
 
-        public Builder copy(Device device) {
-            this.device_id = device.Device_id;
-            this.device_type_id = device.Device_type_id;
-
-
-
-            return this;
+        public String getDeviceTypeId() {
+            return deviceTypeId;
         }
 
         @Override
         public String toString() {
             return "Device{" +
-                    "device_id=" + device_id +
-                    ", device_type_id=" + device_type_id +
+                    "device_id=" + deviceId +
+                    ", device_type_id=" + deviceTypeId +
                     '}';
         }
 
-    }//Our Builder
+
 
 
 
