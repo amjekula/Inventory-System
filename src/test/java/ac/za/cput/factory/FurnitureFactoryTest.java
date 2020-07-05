@@ -8,9 +8,9 @@ import static org.junit.Assert.*;
 public class FurnitureFactoryTest {
 
     @Test
-    public void CreateFurniture() {
+    public void createFurniture() {
 
-        Furniture furniture = FurnitureFactory.CreateFurniture("45");
+        Furniture furniture = FurnitureFactory.createFurniture("45");
         System.out.println(furniture);
 
 

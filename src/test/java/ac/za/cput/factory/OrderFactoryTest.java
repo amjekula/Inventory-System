@@ -4,6 +4,10 @@ import ac.za.cput.entity.Order;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+/*
+ *  @author: Lance Johnson
+ *  Desc: Tests for Order Factory
+ */
 
 public class OrderFactoryTest
 {

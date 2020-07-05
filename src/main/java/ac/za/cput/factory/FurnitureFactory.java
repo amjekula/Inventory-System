@@ -6,7 +6,7 @@ import ac.za.cput.util.GenericHelper;
 
 public class FurnitureFactory // start of the class
 {
-    public static Furniture CreateFurniture(String furnitureTypeId){ //calling or creating a method to action
+    public static Furniture createFurniture(String furnitureTypeId){ //calling or creating a method to action
 
         String  furnitureId = GenericHelper.generateId();
         Furniture furniture = new Furniture.Builder()

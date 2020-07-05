@@ -4,27 +4,32 @@ public class Device {
     private String deviceId;
     private String deviceTypeId;
 
+
     //getters
     public String getDeviceId() {
         return deviceId;
-
     }
+
+
 
     public String getDeviceTypeId() {
         return deviceTypeId;
-
     }
 
 
-    public Device (Builder builder){
 
-    this.deviceId = builder.deviceId;
-    this.deviceTypeId = builder.deviceTypeId;
 
-    }//Builder constructor
+    public Device (Builder builder) {
 
-    public static  class Builder {
+        this.deviceId = builder.deviceId;
+        this.deviceTypeId = builder.deviceTypeId;
+    }
 
+
+
+
+
+    public static class Builder{
         private String deviceId;
         private String deviceTypeId;
 
@@ -39,7 +44,11 @@ public class Device {
         public Builder setDeviceTypeId(String deviceTypeId) {
             this.deviceTypeId = deviceTypeId;
             return this;
+
         }
+
+
+
 
 
         public Device.Builder copy (Device device){
@@ -48,10 +57,10 @@ public class Device {
             return this;
         }
         public Device build () {
-
             return new Device(this);
 
         }
+
 
 
 
@@ -59,10 +68,11 @@ public class Device {
         public String toString() {
             return "Builder{" +
                     "DeviceId=" + deviceId +
-                    ", DeviceTypeId=" + deviceTypeId +
-                    '}';
+                    ", DeviceTypeId=" + deviceTypeId + "}";
+
         }
-    }
+
+    }//Our Builder
 
 
 
