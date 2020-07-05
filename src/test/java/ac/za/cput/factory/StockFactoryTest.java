@@ -10,16 +10,19 @@ import static org.junit.Assert.*;
  *  Desc: Tests for Stock Factory
  */
 
-public class StockFactoryTest {
+public class StockFactoryTest
+{
 
     @Test
-    public void createFurnitureStock() {
+    public void createFurnitureStock()
+    {
         Stock furniture = StockFactory.createFurnitureStock(20, "02-06-2020");
         System.out.println(furniture);
     }
 
     @Test
-    public void createDeviceStock() {
+    public void createDeviceStock()
+    {
         Stock device = StockFactory.createDeviceStock(10,"02-07-2020");
         System.out.println(device);
 
