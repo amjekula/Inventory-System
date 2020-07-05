@@ -1,6 +1,7 @@
 package ac.za.cput.factory;
 
 import ac.za.cput.entity.Device;
+import ac.za.cput.util.GenericHelper;
 
 public class DeviceFactory {
 
