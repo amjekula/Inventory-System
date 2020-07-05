@@ -1,75 +1,64 @@
 package ac.za.cput.entity;
 
 public class Device {
-    private String deviceId;
-    private String deviceTypeId;
+    private int Device_id;
+    private int Device_type_id;
 
 
-    //getters
-    public String getDeviceId() {
-        return deviceId;
+
+
+
+    private Device(Builder builder){
+        this.Device_id = builder.device_id;
+        this.Device_type_id = builder.device_type_id;
     }
 
+    public static class Builder {
+        private int device_id;
+        private int device_type_id;
+
+        public void setDevice_id(int device_id) {
+            this.device_id = device_id;
+        }// Setter
+
+        public void setDevice_type_id(int device_type_id) {
+            this.device_type_id = device_type_id;
+        } // Setter
 
 
-    public String getDeviceTypeId() {
-        return deviceTypeId;
-    }
-
-
-
-
-    public Device (Builder builder) {
-
-        this.deviceId = builder.deviceId;
-        this.deviceTypeId = builder.deviceTypeId;
-    }
-
-
-
-
-
-    public static class Builder{
-        private String deviceId;
-        private String deviceTypeId;
-
-        // setters
-        public Builder setDeviceId(String deviceId) {
-            this.deviceId=  deviceId;
-            return this;
+        public int getDevice_id() {
+            return device_id;
         }
 
-
-
-        public Builder setDeviceTypeId(String deviceTypeId) {
-            this.deviceTypeId = deviceTypeId;
-            return this;
-
+        public int getDevice_type_id() {
+            return device_type_id;
         }
 
-
-
-
-
-        public Device.Builder copy (Device device){
-            this.deviceId= device.deviceId;
-            this.deviceTypeId= device.deviceTypeId;
-            return this;
+        private Builder(int device_id,int device_type_id) {
+            this.device_id = device_id;
+            this.device_type_id = device_type_id;
         }
+
         public Device build () {
             return new Device(this);
 
         }
 
+        public Builder copy(Device device) {
+            this.device_id = device.Device_id;
+            this.device_type_id = device.Device_type_id;
 
 
+
+            return this;
+        }
 
         @Override
         public String toString() {
-            return "Builder{" +
-                    "DeviceId=" + deviceId +
-                    ", DeviceTypeId=" + deviceTypeId + "}";
-
+            return "Device{" +
+                    "device_id=" + device_id +
+                    ", device_type_id=" + device_type_id +
+                    '}';
         }
 
     }//Our Builder

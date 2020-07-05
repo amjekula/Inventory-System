@@ -1,79 +1,72 @@
 package ac.za.cput.entity;
 
 public class Furniture {
-    private String furnitureId;
-    private String furnitureTypeId;
+
+    private int furniture_Id,furniture_type_Id;
+
+    private Furniture (FurnitureBuilder builder) {
+        this.furniture_Id = builder.furniture_Id;
+        this.furniture_type_Id = builder.furniture_type_Id;
 
 
-    //getters
-    public String getFurnitureId() {
-        return furnitureId;
-    }
+    }//Constructor Builder
+
+    public static class FurnitureBuilder {
+        private  int furniture_Id;
+        private  int furniture_type_Id;
 
 
+        public int getFurniture_Id() {
+            return furniture_Id;
+        }// getter Furniture_Id
 
-    public String getFurnitureTypeId() {
-        return furnitureTypeId;
-    }
+        public int getFurniture_type_Id() {
+            return furniture_type_Id;
+        }// getter Furniture_type_Id
 
+        private FurnitureBuilder (int furniture_Id, int furniture_type_Id) {
+            this.furniture_Id = furniture_Id;
+            this.furniture_type_Id=furniture_type_Id;
 
+        }// F2
 
-
-    public Furniture(Builder builder) {
-
-        this.furnitureId = builder.furnitureId;
-        this.furnitureTypeId = builder.furnitureTypeId;
-    }
-
-
-
-
-
-    public static class Builder{
-        private String furnitureId;
-        private String furnitureTypeId;
-
-        // setters
-        public Builder setFurnitureId(String furnitureId) {
-            this.furnitureId = furnitureId;
+        public FurnitureBuilder setFurniture_Id (int Furniture_Id) {
+            this.furniture_Id = furniture_Id;
             return this;
-        }
+        }// setter Furniture ID
 
-
-
-        public Builder setFurnitureTypeId(String furnitureTypeId) {
-            this.furnitureTypeId = furnitureTypeId;
+        public FurnitureBuilder setFurniture_type_Id (int Furniture_tye_Id) {
+            this.furniture_type_Id = furniture_type_Id;
             return this;
-
-        }
-
+        } // Setter Type ID
 
 
-
-
-        public Builder copy (Furniture furniture){
-            this.furnitureId = furniture.furnitureId;
-            this.furnitureTypeId = furniture.furnitureTypeId;
-            return this;
-        }
-        public Furniture build () {
+        public  Furniture build () {
             return new Furniture(this);
 
-        }
-
-
-
+        }//Build
 
         @Override
         public String toString() {
             return "Furniture{" +
-                    "FurnitureId=" + furnitureId +
-                    ", FurnitureTypeId=" + furnitureTypeId + "}";
-
+                    "furniture_Id=" + furniture_Id +
+                    ", furniture_type_Id=" + furniture_type_Id +
+                    '}';
         }
 
-    }//Our Builder
 
 
 
-} // Main
+
+    } // builder
+
+} //Main
+
+
+
+
+
+
+
+
+
