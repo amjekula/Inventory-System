@@ -8,8 +8,8 @@ import org.junit.Test;
  *  Desc: Tests for Stock Factory
  */
 
-public class StockFactoryTest {
-
+public class StockFactoryTest
+{
     @Test
     public void createStock() {
         Stock stock = StockFactory.createStock(20, "02-06-2020");
