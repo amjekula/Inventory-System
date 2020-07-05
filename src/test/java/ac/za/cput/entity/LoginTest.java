@@ -12,12 +12,12 @@ public class LoginTest {
 
     @Before
     public void setUp() throws Exception {
-         log = new Login.Builder().setEmail_address("dinos@gmail.com").setPassword(1546).build();
+         log = new Login.Builder().setEmailAddress("dinos@gmail.com").setPassword(1546).build();
     }
 
     @Test
     public void getEmail_address() {
-        assertNotEquals("dinana@gmail.com",log.getEmail_address());
+        assertNotEquals("dinana@gmail.com",log.getEmailAddress());
         System.out.println("not equal information");
     }
 
