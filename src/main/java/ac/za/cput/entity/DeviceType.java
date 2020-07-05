@@ -1,5 +1,5 @@
 package ac.za.cput.entity;
-
+//JodiSmit
 public class DeviceType {
 
 
