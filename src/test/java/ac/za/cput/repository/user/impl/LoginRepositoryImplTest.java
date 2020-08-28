@@ -50,8 +50,8 @@ public class LoginRepositoryImplTest {
 
     @Test
     public void d_getAll() {
-        Set<Login> loginSet = repository.getAll();
-        assertEquals(1, loginSet.size());
+        Set<Login> logins = repository.getAll();
+        assertEquals(1, logins.size());
         System.out.print("All login details:" + "  " +repository.getAll()+"\n");
 
     }
