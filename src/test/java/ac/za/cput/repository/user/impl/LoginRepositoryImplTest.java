@@ -18,7 +18,7 @@ public class LoginRepositoryImplTest {
     public void a_create() {
         Login created = repository.create(login);
         assertEquals(login.getLoginId(), created.getLoginId());
-        System.out.print(" Created Login Detail:" + " " + created);
+        System.out.print(" Created Login Detail:" + " " + created + "\n");
         System.out.print("\n");
     }
 
@@ -43,8 +43,10 @@ public class LoginRepositoryImplTest {
 
     @Test
     public void e_delete() {
+
         repository.delete(login.getLoginId());
-        System.out.print("\n");
+        assertNotNull(login);
+        System.out.print("\n" + "Removed Id:" + "  " + login.getLoginId() + "\n");
 
     }
 
