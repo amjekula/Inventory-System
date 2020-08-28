@@ -32,7 +32,7 @@ public class LoginRepositoryImpl implements LoginRepository<Login, String> {
     public Login update(Login login) {
         Login oldlogin =read(login.getLoginId());
         if(oldlogin != null){
-            this.loginDB.remove(login);
+            this.loginDB.remove(oldlogin);
             this.loginDB.add(login);
         }
         return login;
