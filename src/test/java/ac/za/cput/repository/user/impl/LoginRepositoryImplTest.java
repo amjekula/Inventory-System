@@ -14,9 +14,11 @@ import static org.junit.Assert.*;
 public class LoginRepositoryImplTest {
     private static LoginRepository repository = new LoginRepositoryImpl();
     private static Login login = LoginFactory.createLogin("joselle@gmail.com", 20202021);
+    private static Login login1 = LoginFactory.createLogin("joselle@gmail.com", 20202021);
+    Set<Login> logins = repository.getAll();
     @Test
     public void a_create() {
-        Login created = repository.create(login);
+        Login created = (Login) repository.create(login);
         assertEquals(login.getLoginId(), created.getLoginId());
         System.out.print(" Created Login Detail:" + " " + created + "\n");
         System.out.print("\n");
@@ -24,7 +26,7 @@ public class LoginRepositoryImplTest {
 
     @Test
     public void b_read() {
-        Login read = repository.read(login.getLoginId());
+        Login read = (Login) repository.read(login.getLoginId());
         assertEquals(login.getLoginId(), read.getLoginId());
         System.out.print(" Reading Login Detail:" + " " +read);
         System.out.print("\n");
@@ -33,7 +35,7 @@ public class LoginRepositoryImplTest {
     @Test
     public void c_update() {
         Login updated = new Login.Builder().copy(login).setEmailAddress("joselledina@gmail.com").setPassword(204785).build();
-        updated = repository.update(updated);
+        updated = (Login) repository.update(updated);
         assertEquals(login.getLoginId(), updated.getLoginId());
         assertNotEquals(login.getEmailAddress(), updated.getEmailAddress());
         assertNotEquals(login.getPassword(), updated.getPassword());
@@ -48,11 +50,13 @@ public class LoginRepositoryImplTest {
         assertNotNull(login);
         System.out.print("\n" + "Removed Id:" + "  " + login.getLoginId() + "\n");
 
+        System.out.print("\n" + repository.getAll());
+
     }
 
     @Test
     public void d_getAll() {
-        Set<Login> logins = repository.getAll();
+
         assertEquals(1, logins.size());
         System.out.print("All login details:" + "  " +repository.getAll()+"\n");
 
