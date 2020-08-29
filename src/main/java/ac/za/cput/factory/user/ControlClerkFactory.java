@@ -24,18 +24,14 @@ public class ControlClerkFactory {
         ControlClerk controlClerk = null;
 
         if(surname.trim().equals("")){
-            JOptionPane.showMessageDialog(null, "Please Enter Your Surname",
-                    "Surname Can't Be Empty", JOptionPane.WARNING_MESSAGE);
+            System.out.println("Surname Can't Be Empty");
 
         }else if(firstName.trim().equals("")){
-            JOptionPane.showMessageDialog(null, "Please Enter Your Name",
-                    "Name Can't Be Empty", JOptionPane.WARNING_MESSAGE);
+            System.out.println("Name Can't Be Empty");
 
         }else if(phoneNum.trim().equals("") || phoneNum.trim().length() < 10 || phoneNum.trim().length() > 10
                 && emailAddress.trim().equals("")){
-
-            JOptionPane.showMessageDialog(null, "Please Enter Your Phone Number or Email",
-                    "Phone Number or Email doesn't exist", JOptionPane.WARNING_MESSAGE);
+            System.out.println("Phone Number or Email doesn't exist");
 
         }else{
             controlClerk = new ControlClerk.ControlClerkBuilder()
