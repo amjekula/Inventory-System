@@ -1,13 +1,12 @@
 package ac.za.cput.repository.equipment.Impl;
+/*Jodi Smit */
 
-import ac.za.cput.entity.equipment.DeviceType;
 import ac.za.cput.entity.equipment.FurnitureType;
-import ac.za.cput.factory.equipment.DeviceTypeFactory;
 import ac.za.cput.factory.equipment.FurnitureTypeFactory;
-import ac.za.cput.repository.equipment.DeviceTypeRepository;
 import ac.za.cput.repository.equipment.FurnitureTypeRepository;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
+
 import org.junit.runners.MethodSorters;
 
 import java.util.Set;

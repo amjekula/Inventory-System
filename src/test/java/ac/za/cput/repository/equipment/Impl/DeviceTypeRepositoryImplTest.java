@@ -1,7 +1,6 @@
 package ac.za.cput.repository.equipment.Impl;
-
+/*Jodi Smit */
 import ac.za.cput.entity.equipment.DeviceType;
-import ac.za.cput.entity.user.Login;
 import ac.za.cput.factory.equipment.DeviceTypeFactory;
 import ac.za.cput.repository.equipment.DeviceTypeRepository;
 import org.junit.FixMethodOrder;
