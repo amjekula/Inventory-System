@@ -6,7 +6,7 @@ import ac.za.cput.repository.IRepository;
 import java.util.HashSet;
 import java.util.Set;
 
-public class FurnitureRepositoryImpl implements FurnitureRepository<Furniture, String>
+public class FurnitureRepositoryImpl implements ac.za.cput.repository.equipment.Impl.FurnitureRepository<Furniture, String>
 {
 
     private Set<Furniture> furnitureDB;
