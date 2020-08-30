@@ -1,6 +1,6 @@
 package ac.za.cput.factory.user;
 /*
- *@author @joselledina
+ * @author @joselledina
  * Description: Entity for LoginFactofry
  * Date: 02 July 2020
  */
