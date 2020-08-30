@@ -4,6 +4,11 @@ import ac.za.cput.entity.user.Login;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+/*
+ *@author @joselledina
+ * Description: Test Cases for Login
+ * Date: 28 June 2020
+ */
 
 public class LoginTest {
     Login log;

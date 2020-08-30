@@ -1,5 +1,6 @@
 package ac.za.cput.repository.user.impl;
 
+import ac.za.cput.entity.user.ControlClerk;
 import ac.za.cput.entity.user.Login;
 import ac.za.cput.repository.user.LoginRepository;
 
@@ -9,9 +10,11 @@ import java.util.Set;
 public class LoginRepositoryImpl implements LoginRepository<Login, String> {
     private Set<Login> loginDB;
 
-    public LoginRepositoryImpl() {
+
+    LoginRepositoryImpl() {
         this.loginDB = new HashSet<>();
     }
+
 
 
     @Override
@@ -22,17 +25,26 @@ public class LoginRepositoryImpl implements LoginRepository<Login, String> {
 
     @Override
     public Login read(String loginId) {
-        Login login = this.loginDB.stream().filter(l -> l.getLoginId().equalsIgnoreCase(loginId))
-                          .findAny()
-                          .orElse(null);
+        Login login = null;
+        for (Login log : this.loginDB) {
+            if (log.getLoginId().equalsIgnoreCase(loginId)) {
+                login = log;
+                break;
+            }
+        }
         return login;
     }
+//        Login login = this.loginDB.stream().filter(l -> l.getLoginId().equalsIgnoreCase(loginId))
+//                          .findAny()
+//                          .orElse(null);
+//        return login;
+//    }
 
     @Override
     public Login update(Login login) {
         Login oldlogin =read(login.getLoginId());
         if(oldlogin != null){
-            this.loginDB.remove(login);
+            this.loginDB.remove(oldlogin);
             this.loginDB.add(login);
         }
         return login;
