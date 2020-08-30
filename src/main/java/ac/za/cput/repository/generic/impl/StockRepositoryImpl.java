@@ -6,6 +6,11 @@ import ac.za.cput.repository.generic.StockRepository;
 import java.util.HashSet;
 import java.util.Set;
 
+/*
+ *  @author: Sherwin Adams (216177499)
+ *  Desc: Implementation for stock repository
+ */
+
 public class StockRepositoryImpl implements StockRepository {
     private static StockRepository repository = null;
     private Set<Stock> stockDB;

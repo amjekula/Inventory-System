@@ -9,6 +9,11 @@ import org.junit.runners.MethodSorters;
 
 import static org.junit.Assert.*;
 
+/*
+ *  @author: Sherwin Adams (216177499)
+ *  Desc: test implementation for university repository
+ */
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class UniversityRepositoryImplTest {
 
