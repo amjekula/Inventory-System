@@ -84,12 +84,21 @@ public class Order
             return this;
         }
 
+        public Builder copy(Order order)
+        {
+            this.orderNum = order.orderNum;
+            this.clerkId = order.clerkId;
+            this.stockId = order.stockId;
+            this.description = order.description;
+            this.date = order.date;
+            return this;
+        }
+
 
         public Order build()
         {
             return new Order(this);
         }
-
 
     }
 
