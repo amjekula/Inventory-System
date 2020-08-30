@@ -1,11 +1,15 @@
 package ac.za.cput.repository.generic.impl;
 
 import ac.za.cput.entity.generic.University;
-import ac.za.cput.entity.user.Login;
 import ac.za.cput.repository.generic.UniversityRepository;
 
 import java.util.HashSet;
 import java.util.Set;
+
+/*
+ *  @author: Sherwin Adams (216177499)
+ *  Desc: Implementation for university repository
+ */
 
 public class UniversityRepositoryImpl implements UniversityRepository {
     private static UniversityRepository repository = null;

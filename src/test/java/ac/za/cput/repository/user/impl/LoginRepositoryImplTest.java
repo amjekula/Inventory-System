@@ -8,13 +8,11 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import java.util.Set;
-
 import static org.junit.Assert.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class LoginRepositoryImplTest {
     private static LoginRepository repository = new LoginRepositoryImpl();
     private static Login login = LoginFactory.createLogin("joselle@gmail.com", 20202021);
-    private static Login login1 = LoginFactory.createLogin("joselle@gmail.com", 20202021);
     Set<Login> logins = repository.getAll();
     @Test
     public void a_create() {
@@ -47,7 +45,8 @@ public class LoginRepositoryImplTest {
     public void e_delete() {
 
         repository.delete(login.getLoginId());
-        assertNotNull(login);
+
+        assertEquals(0, repository.getAll().size());
         System.out.print("\n" + "Removed Id:" + "  " + login.getLoginId() + "\n");
 
         System.out.print("\n" + repository.getAll());
