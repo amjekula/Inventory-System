@@ -5,6 +5,11 @@ import ac.za.cput.repository.IRepository;
 
 import java.util.Set;
 
+/*
+ *  @author: Sherwin Adams (216177499)
+ *  Desc: University repository
+ */
+
 public interface UniversityRepository extends IRepository<University,String> {
     Set<University> getAll();
 }

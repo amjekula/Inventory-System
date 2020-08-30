@@ -10,6 +10,11 @@ import org.junit.runners.MethodSorters;
 
 import static org.junit.Assert.*;
 
+/*
+ *  @author: Sherwin Adams (216177499)
+ *  Desc: test implementation for stock repository
+ */
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class StockRepositoryImplTest {
 
