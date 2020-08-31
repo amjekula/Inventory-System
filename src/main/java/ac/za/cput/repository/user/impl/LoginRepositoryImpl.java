@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class LoginRepositoryImpl implements LoginRepository<Login, String> {
+    private static LoginRepository repository = null;
     private Set<Login> loginDB;
 
 
@@ -15,7 +16,10 @@ public class LoginRepositoryImpl implements LoginRepository<Login, String> {
         this.loginDB = new HashSet<>();
     }
 
-
+    public static LoginRepository getLoginRepository(){
+        if(repository == null) repository = new LoginRepositoryImpl();
+        return repository;
+    }
 
     @Override
     public Login create(Login login) {
