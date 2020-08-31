@@ -11,7 +11,7 @@ import java.util.Set;
 import static org.junit.Assert.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class LoginRepositoryImplTest {
-    private static LoginRepository repository = new LoginRepositoryImpl();
+    private static LoginRepository repository = new LoginRepositoryImpl().getLoginRepository();
     private static Login login = LoginFactory.createLogin("joselle@gmail.com", 20202021);
     Set<Login> logins = repository.getAll();
     @Test
