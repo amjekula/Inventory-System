@@ -1,7 +1,7 @@
 package ac.za.cput.service.user.impl;
 /*
  *@author @amjekula
- * Description: Implementation for Control Clerk Repository
+ * Description: Implementation for Control Clerk Service
  * Date: 05 September 2020
  */
 import ac.za.cput.entity.user.ControlClerk;
