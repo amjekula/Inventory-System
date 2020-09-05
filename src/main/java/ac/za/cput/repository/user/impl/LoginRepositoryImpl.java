@@ -17,7 +17,7 @@ public class LoginRepositoryImpl implements LoginRepository<Login, String> {
     }
 
     public static LoginRepository getLoginRepository(){
-        if(repository == null) repository = new LoginRepositoryImpl();
+        if(repository == null) {repository = new LoginRepositoryImpl();}
         return repository;
     }
 
