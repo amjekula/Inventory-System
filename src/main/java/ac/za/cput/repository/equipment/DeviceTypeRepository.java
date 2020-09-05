@@ -5,7 +5,7 @@ import ac.za.cput.repository.IRepository;
 
 import java.util.Set;
 
-public interface DeviceTypeRepository <D, S> extends IRepository<DeviceType, String> {
+public interface DeviceTypeRepository extends IRepository<DeviceType, String> {
     Set<DeviceType> getAll();
 
 }
