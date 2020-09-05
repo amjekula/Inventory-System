@@ -17,7 +17,7 @@ public class OrderRepositoryImplTest {
     @Test
     public void a_create()
     {
-        Order created = (Order) repository.create(order);
+        Order created =  repository.create(order);
         assertEquals(order.getStockId(), created.getStockId());
         System.out.print("created order: " + " " + created + "\n");
         System.out.print("\n");
@@ -26,7 +26,7 @@ public class OrderRepositoryImplTest {
     @Test
     public void b_read()
     {
-        Order read = (Order) repository.read(order.getStockId());
+        Order read =  repository.read(order.getStockId());
         assertEquals(order.getStockId(), read.getStockId());
         System.out.print("reading order: " + " " +read);
         System.out.print("\n");
@@ -36,7 +36,7 @@ public class OrderRepositoryImplTest {
     public void c_update()
     {
         Order updated = new Order.Builder().copy(order).setDescription("test2").setOrderNum("123456").build();
-        updated = (Order) repository.update(updated);
+        updated =  repository.update(updated);
         assertEquals(order.getStockId(), updated.getStockId());
         assertNotEquals(order.getDescription(), updated.getDescription());
         assertNotEquals(order.getOrderNum(), updated.getOrderNum());
