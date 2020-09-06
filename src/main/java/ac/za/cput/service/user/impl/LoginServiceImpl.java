@@ -34,17 +34,17 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public Login create(Login login) {
-        return (Login) repository.create(login);
+        return repository.create(login);
     }
 
     @Override
     public Login read(String loginId) {
-        return (Login) repository.read(loginId);
+        return repository.read(loginId);
     }
 
     @Override
     public Login update(Login login) {
-        return (Login) repository.update(login);
+        return repository.update(login);
     }
 
     @Override
