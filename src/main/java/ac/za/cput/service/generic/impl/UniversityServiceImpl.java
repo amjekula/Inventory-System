@@ -7,6 +7,11 @@ import ac.za.cput.service.generic.UniversityService;
 
 import java.util.Set;
 
+/*
+ *  @author: Sherwin Adams (216177499)
+ *  Desc: Implementation for university service
+ */
+
 public class UniversityServiceImpl implements UniversityService {
 
     private static UniversityService service = null;

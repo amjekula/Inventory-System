@@ -11,6 +11,11 @@ import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 
+/*
+ *  @author: Sherwin Adams (216177499)
+ *  Desc: Tests for stock service implementation
+ */
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 public class StockServiceImplTest {
