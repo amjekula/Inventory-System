@@ -7,6 +7,11 @@ import ac.za.cput.service.generic.StockService;
 
 import java.util.Set;
 
+/*
+ *  @author: Sherwin Adams (216177499)
+ *  Desc: Implementation for Stock Service
+ */
+
 public class StockServiceImpl implements StockService {
 
     private static StockService service = null;
