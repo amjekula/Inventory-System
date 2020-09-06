@@ -7,10 +7,7 @@ package ac.za.cput.service.user.impl;
 
 import ac.za.cput.entity.user.ControlClerk;
 import ac.za.cput.factory.user.ControlClerkFactory;
-import ac.za.cput.repository.user.ControlClerkRepository;
-import ac.za.cput.repository.user.impl.ControlClerkRepositoryImpl;
 import ac.za.cput.service.user.ControlClerkService;
-import javafx.scene.effect.SepiaTone;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;

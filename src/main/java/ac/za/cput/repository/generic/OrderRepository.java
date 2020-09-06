@@ -5,7 +5,7 @@ import ac.za.cput.repository.IRepository;
 
 import java.util.Set;
 
-public interface OrderRepository<O, S> extends IRepository<Order, String>
+public interface OrderRepository extends IRepository<Order,String>
 {
     Set<Order> getAll();
 }
