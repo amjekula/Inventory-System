@@ -15,6 +15,13 @@ public class FurnitureServiceImpl implements FurnitureService
     {
         this.repository = FurnitureRepositoryImpl.getRepository();
     }
+
+    public static FurnitureService getService() {
+
+        if(service == null) {service = new FurnitureServiceImpl();}
+        return service;
+    }
+
     @Override
     public Set<Furniture> getAll() {
         return this.repository.getAll();
