@@ -16,7 +16,7 @@ public class LoginRepositoryImplTest {
     Set<Login> logins = repository.getAll();
     @Test
     public void a_create() {
-        Login created = (Login) repository.create(login);
+        Login created = repository.create(login);
         assertEquals(login.getLoginId(), created.getLoginId());
         System.out.print(" Created Login Detail:" + " " + created + "\n");
         System.out.print("\n");
@@ -24,7 +24,7 @@ public class LoginRepositoryImplTest {
 
     @Test
     public void b_read() {
-        Login read = (Login) repository.read(login.getLoginId());
+        Login read =  repository.read(login.getLoginId());
         assertEquals(login.getLoginId(), read.getLoginId());
         System.out.print(" Reading Login Detail:" + " " +read);
         System.out.print("\n");
@@ -33,7 +33,7 @@ public class LoginRepositoryImplTest {
     @Test
     public void c_update() {
         Login updated = new Login.Builder().copy(login).setEmailAddress("joselledina@gmail.com").setPassword(204785).build();
-        updated = (Login) repository.update(updated);
+        updated = repository.update(updated);
         assertEquals(login.getLoginId(), updated.getLoginId());
         assertNotEquals(login.getEmailAddress(), updated.getEmailAddress());
         assertNotEquals(login.getPassword(), updated.getPassword());
