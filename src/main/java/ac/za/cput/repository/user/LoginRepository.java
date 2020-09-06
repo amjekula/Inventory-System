@@ -10,6 +10,8 @@ import java.util.Set;
  * Date: 25 August 2020
  */
 
-public interface LoginRepository<L, S> extends IRepository<Login, String> {
+public interface LoginRepository extends IRepository<Login, String> {
 Set<Login> getAll();
+
+
 }

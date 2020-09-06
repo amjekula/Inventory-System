@@ -6,8 +6,9 @@ import ac.za.cput.repository.generic.OrderRepository;
 import java.util.HashSet;
 import java.util.Set;
 
-public class OrderRepositoryImpl implements OrderRepository<Order, String>
+public class OrderRepositoryImpl implements OrderRepository
 {
+    private static OrderRepository repository = null;
     private Set<Order> orderDB;
 
     public OrderRepositoryImpl()
@@ -15,6 +16,11 @@ public class OrderRepositoryImpl implements OrderRepository<Order, String>
         this.orderDB = new HashSet<>();
     }
 
+    public static OrderRepository getOrderRepository()
+    {
+        if(repository == null) repository = new OrderRepositoryImpl();
+        return repository;
+    }
 
     @Override
     public Order create(Order order)
