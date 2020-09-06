@@ -1,4 +1,4 @@
-package ac.za.cput.service.user.impl.generic;
+package ac.za.cput.service.generic.impl;
 
 
 import ac.za.cput.entity.generic.Order;
