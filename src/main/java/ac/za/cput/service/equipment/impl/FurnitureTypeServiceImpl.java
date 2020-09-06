@@ -52,7 +52,7 @@ public class FurnitureTypeServiceImpl implements FurnitureTypeService {
     @Override
     public void delete(String s) {
 
-        return;
+        this.repository.delete(s);
 
     }
 }

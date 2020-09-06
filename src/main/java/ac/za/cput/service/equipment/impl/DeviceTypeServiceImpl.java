@@ -49,6 +49,6 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
     @Override
     public void delete(String s) {
 
-      return;
+      this.repository.delete(s);
     }
 }
