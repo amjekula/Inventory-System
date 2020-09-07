@@ -1,18 +1,28 @@
 package ac.za.cput.repository.equipment.Impl;
 
 import ac.za.cput.entity.equipment.Device;
-
+import ac.za.cput.repository.equipment.DeviceRepository;
 import java.util.HashSet;
 import java.util.Set;
 
-public class DeviceRepositoryImpl implements ac.za.cput.repository.equipment.Impl.DeviceRepository <Device, String>
+public class DeviceRepositoryImpl implements DeviceRepository
 {
+    private static DeviceRepository deviceRepository = null;
     private Set<Device> deviceDB;
 
-    public DeviceRepositoryImpl()
-    {
+    private DeviceRepositoryImpl(){
 
         this.deviceDB = new HashSet<>();
+
+    }
+
+    public static DeviceRepository getDeviceRepository(){
+
+        if(deviceRepository == null){
+
+            deviceRepository = new DeviceRepositoryImpl();
+        }
+        return deviceRepository;
 
     }
 
@@ -39,9 +49,9 @@ public class DeviceRepositoryImpl implements ac.za.cput.repository.equipment.Imp
 
     @Override
     public Device update(Device device) {
-        Device device1 =read(device.getDeviceId());
-        if(device1 != null){
-            this.deviceDB.remove(device);
+        Device oldDevice =read(device.getDeviceId());
+        if(oldDevice != null){
+            this.deviceDB.remove(oldDevice);
             this.deviceDB.add(device);
         }
         return device;

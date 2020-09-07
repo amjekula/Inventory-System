@@ -1,6 +1,7 @@
 package ac.za.cput.service.equipment.impl;
 
 import ac.za.cput.entity.equipment.Furniture;
+import ac.za.cput.repository.equipment.FurnitureRepository;
 import ac.za.cput.repository.equipment.Impl.FurnitureRepositoryImpl;
 import ac.za.cput.service.equipment.FurnitureService;
 
@@ -8,12 +9,12 @@ import java.util.Set;
 
 public class FurnitureServiceImpl implements FurnitureService
 {
-    private static FurnitureServiceImpl service = null;
-    private FurnitureRepositoryImpl repository;
+    private static FurnitureService service = null;
+    private FurnitureRepository repository;
 
     private FurnitureServiceImpl()
     {
-        this.repository = FurnitureRepositoryImpl.getRepository();
+        this.repository = FurnitureRepositoryImpl.getFurnitureRepository();
     }
 
     public static FurnitureService getService() {

@@ -13,15 +13,15 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import java.util.Set;
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DeviceServiceImplTest {
     private  static DeviceService service = DeviceServiceImpl.getService ();
     private static Device deviceBuilder = DeviceFactory.createDevice("762");
 
     @Test
-    public void a_getAll() {
+    public void d_getAll() {
         Set<Device> devices = service.getAll();
-        assertEquals(2,devices.size());
+        assertEquals(1,devices.size());
         System.out.println("All:" + devices);
     }
 
@@ -42,8 +42,10 @@ public class DeviceServiceImplTest {
 
     @Test
     public void c_update() {
-        Device update = new Device.Builder().setDeviceId("634").build();
+        Device update = new Device.Builder().copy(deviceBuilder).setDeviceTypeId("634").build();
         update = service.update(update);
+        assertNotEquals(deviceBuilder.getDeviceTypeId(), update.getDeviceTypeId());
+
         System.out.println("Update:" + update);
     }
 
