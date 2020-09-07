@@ -20,16 +20,14 @@ import java.util.Set;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FurnitureServiceImplTest {
 
-
-
     private  static FurnitureService service = FurnitureServiceImpl.getService ();
     private static Furniture furnitureBuilder = FurnitureFactory.createFurniture("234");
 
 
     @Test
-    public void a_getAll() {
+    public void d_getAll() {
         Set<Furniture> furnitures = service.getAll();
-        assertEquals(2,furnitures.size());
+        assertEquals(1,furnitures.size());
         System.out.println("All:" + furnitures);
     }
 
@@ -50,7 +48,7 @@ public class FurnitureServiceImplTest {
 
     @Test
     public void c_update() {
-        Furniture update = new Furniture.Builder().setFurnitureId("123").build();
+        Furniture update = new Furniture.Builder().copy(furnitureBuilder).setFurnitureId("123").build();
         update = service.update(update);
         System.out.println("Update:" + update);
     }
