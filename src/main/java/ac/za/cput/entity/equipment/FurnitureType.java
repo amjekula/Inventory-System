@@ -18,30 +18,13 @@ public class FurnitureType {
 
     }
 
-    public String getFurnitureTypeId(){
+    public String getFurnitureTypeId(){ return furnitureTypeId; }
 
-        return furnitureTypeId;
+    public String getFurnitureDescription(){ return furnitureDescription; }
 
-    }
+    public double getSize(){ return size; }
 
-    public String getFurnitureDescription(){
-
-        return furnitureDescription;
-
-    }
-
-    public double getSize(){
-
-        return size;
-
-    }
-
-    public String getColor(){
-
-
-        return color;
-
-    }
+    public String getColor(){ return color; }
 
     public static class Builder{
 
@@ -78,7 +61,7 @@ public class FurnitureType {
         }
 
 
-        public Builder type(FurnitureType furnitureType){
+        public Builder copy(FurnitureType furnitureType){
 
             this.furnitureTypeId = furnitureType.furnitureTypeId;
             this.furnitureDescription= furnitureType.furnitureDescription;
