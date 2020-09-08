@@ -45,7 +45,7 @@ public class DeviceTypeServiceImplTest {
 
     @Test
     public void c_update() {
-        DeviceType update = new DeviceType.Builder().setDeviceDescription("Acer").setColor("Black").setSize(8).build();
+        DeviceType update = new DeviceType.Builder().copy(deviceTypeBuilder).setDeviceDescription("Acer").setColor("Black").setSize(8).build();
         update = service.update(update);
         System.out.println("Update:" + update);
 

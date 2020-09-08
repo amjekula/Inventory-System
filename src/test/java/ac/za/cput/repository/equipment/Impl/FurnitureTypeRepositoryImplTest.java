@@ -27,7 +27,7 @@ public class FurnitureTypeRepositoryImplTest {
 
 
     @Test
-    public void create() {
+    public void a_create() {
 
         FurnitureType createFurnitureType = furnitureTypeRepository.create(furnitureTypeBuilder);
         assertEquals(createFurnitureType.getFurnitureTypeId(), createFurnitureType.getFurnitureTypeId());
@@ -36,29 +36,29 @@ public class FurnitureTypeRepositoryImplTest {
     }
 
     @Test
-    public void read() {
+    public void b_read() {
         FurnitureType readFurnitureType = furnitureTypeRepository.read(furnitureTypeBuilder.getFurnitureTypeId());
         assertNotNull(readFurnitureType);
         System.out.println("Read:" + readFurnitureType);
     }
 
     @Test
-    public void update() {
+    public void c_update() {
 
-        FurnitureType updateFurnitureType = new FurnitureType.Builder().setFurnitureDescription("blackboard").setColor("Black").setSize(8).build();
+        FurnitureType updateFurnitureType = new FurnitureType.Builder().copy(furnitureTypeBuilder).setFurnitureDescription("blackboard").setColor("Black").setSize(8).build();
         updateFurnitureType = furnitureTypeRepository.update(updateFurnitureType);
         System.out.println("Update:" + updateFurnitureType);
     }
 
     @Test
-    public void delete() {
+    public void e_delete() {
         furnitureTypeRepository.delete(furnitureTypeBuilder.getFurnitureTypeId());
         assertEquals(furnitureTypeRepository.getAll().size(), 0);
         System.out.println(furnitureTypeRepository.getAll());
     }
 
     @Test
-    public void getAll() {
+    public void d_getAll() {
 
         Set <FurnitureType> furnitureTypeSet = furnitureTypeRepository.getAll();
         System.out.println(furnitureTypeRepository.getAll());
