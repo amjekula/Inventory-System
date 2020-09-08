@@ -50,7 +50,7 @@ public class FurnitureTypeServiceImplTest {
     @Test
     public void c_update() {
 
-        FurnitureType update = new FurnitureType.Builder().setFurnitureDescription("table").setColor("Black").setSize(8).build();
+        FurnitureType update = new FurnitureType.Builder().copy(furnitureTypeBuilder).setFurnitureDescription("table").setColor("Black").setSize(8).build();
         update = service.update(update);
         System.out.println("Update:" + update);
     }
