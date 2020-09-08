@@ -21,7 +21,7 @@ private static DeviceType deviceTypeBuilder = DeviceTypeFactory.createDeviceType
 
 
     @Test
-    public void create() {
+    public void a_create() {
       DeviceType createDeviceType = deviceTypeRepository.create(deviceTypeBuilder);
       assertEquals(createDeviceType.getDeviceTypeId(), createDeviceType.getDeviceTypeId());
       System.out.println("Create:" + createDeviceType );
@@ -29,7 +29,7 @@ private static DeviceType deviceTypeBuilder = DeviceTypeFactory.createDeviceType
     }
 
     @Test
-    public void read() {
+    public void b_read() {
 
         DeviceType readDeviceType = deviceTypeRepository.read(deviceTypeBuilder.getDeviceTypeId());
         assertNotNull(readDeviceType);
@@ -38,15 +38,15 @@ private static DeviceType deviceTypeBuilder = DeviceTypeFactory.createDeviceType
     }
 
     @Test
-    public void update() {
-      DeviceType updateDeviceType = new DeviceType.Builder().setDeviceDescription("Acer").setColor("Black").setSize(8).build();
+    public void c_update() {
+      DeviceType updateDeviceType = new DeviceType.Builder().copy(deviceTypeBuilder).setDeviceDescription("Acer").setColor("Black").setSize(8).build();
       updateDeviceType = deviceTypeRepository.update(updateDeviceType);
       System.out.println("Update:" + updateDeviceType);
 
     }
 
     @Test
-    public void delete() {
+    public void e_delete() {
        deviceTypeRepository.delete(deviceTypeBuilder.getDeviceTypeId());
        assertEquals(deviceTypeRepository.getAll().size(), 0);
        System.out.println(deviceTypeRepository.getAll());
@@ -54,7 +54,7 @@ private static DeviceType deviceTypeBuilder = DeviceTypeFactory.createDeviceType
     }
 
     @Test
-    public void getAll() {
+    public void d_getAll() {
 
         Set <DeviceType> deviceTypeSet = deviceTypeRepository.getAll();
         System.out.println(deviceTypeRepository.getAll());

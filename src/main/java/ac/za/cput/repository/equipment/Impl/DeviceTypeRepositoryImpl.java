@@ -11,17 +11,14 @@ public class DeviceTypeRepositoryImpl implements DeviceTypeRepository {
     private static DeviceTypeRepository deviceTypeRepository = null;
     private Set<DeviceType> deviceTypeDB;
 
-    private DeviceTypeRepositoryImpl(){
-
-        this.deviceTypeDB = new HashSet<>();
-
-    }
+    private DeviceTypeRepositoryImpl(){ this.deviceTypeDB = new HashSet<>();}
 
     public static DeviceTypeRepository getDeviceTypeRepository(){
 
         if(deviceTypeRepository == null){
 
             deviceTypeRepository = new DeviceTypeRepositoryImpl();
+
         }
         return deviceTypeRepository;
 

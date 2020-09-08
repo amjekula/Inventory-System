@@ -19,29 +19,13 @@ public class DeviceType {
 
     }
 
-    public String getDeviceTypeId(){
+    public String getDeviceTypeId(){ return deviceTypeId; }
 
-        return deviceTypeId;
+    public String getDeviceDescription(){ return deviceDescription; }
 
-    }
+    public double getSize(){ return size; }
 
-    public String getDeviceDescription(){
-
-        return deviceDescription;
-
-    }
-
-    public double getSize(){
-
-        return size;
-
-    }
-
-    public String getColor(){
-
-        return color;
-
-    }
+    public String getColor(){ return color; }
 
     public static class Builder{
 
@@ -52,31 +36,31 @@ public class DeviceType {
 
 
         public Builder setDeviceTypeId(final String deviceTypeId){
-
+            this.deviceTypeId = deviceTypeId;
             return this;
 
         }
 
         public Builder setDeviceDescription(final String deviceDescription){
-
+           this.deviceDescription = deviceDescription;
             return this;
 
         }
 
         public Builder setSize(final double size){
-
+             this.size = size;
             return this;
 
 
         }
 
         public Builder setColor(final String color){
-
+            this.color = color;
             return this;
 
         }
 
-        public Builder type(DeviceType deviceType){
+        public Builder copy(DeviceType deviceType){
 
             this.deviceTypeId = deviceType.deviceTypeId;
             this.deviceDescription = deviceType.deviceDescription;
