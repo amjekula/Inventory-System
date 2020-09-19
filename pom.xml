@@ -8,6 +8,13 @@
   <artifactId>Inventory-System</artifactId>
   <version>1.0-SNAPSHOT</version>
 
+  <parent>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <groupId>org.springframework.boot</groupId>
+    <version> 2.3.3.RELEASE</version>
+  </parent>
+
+
   <name>Inventory-System</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
@@ -24,6 +31,10 @@
       <artifactId>junit</artifactId>
       <version>4.11</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
   </dependencies>
 

@@ -48,7 +48,7 @@ public class FurnitureServiceImplTest {
 
     @Test
     public void c_update() {
-        Furniture update = new Furniture.Builder().copy(furnitureBuilder).setFurnitureId("123").build();
+        Furniture update = new Furniture.Builder().copy(furnitureBuilder).setFurnitureTypeId("123").build();
         update = service.update(update);
         System.out.println("Update:" + update);
     }
