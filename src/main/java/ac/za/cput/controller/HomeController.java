@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HomeController {
-    @RequestMapping({"/","/home"})
+    @RequestMapping({"/","/index/home"})
     String home(){
         return "Inventory System Application";
     }
