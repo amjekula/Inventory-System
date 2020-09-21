@@ -4,6 +4,7 @@ import ac.za.cput.entity.user.Login;
 import ac.za.cput.repository.user.LoginRepository;
 import ac.za.cput.repository.user.impl.LoginRepositoryImpl;
 import ac.za.cput.service.user.LoginService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 /*
@@ -12,6 +13,7 @@ import java.util.Set;
  * Date: 02 September 2020
  */
 
+@Service
 public class LoginServiceImpl implements LoginService {
 
     private static LoginService service = null;
