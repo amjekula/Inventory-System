@@ -5,13 +5,15 @@ package ac.za.cput.entity.user;
  * Date: 28 June 2020
  */
 
-public class Login {
+import java.io.Serializable;
+
+public class Login implements Serializable {
     private String loginId;
     private  String emailAddress;
     private int password;
 
-
-    protected Login(Builder builder){
+    private Login(){}
+    private Login(Builder builder){
         this.loginId= builder.loginId;
         this.emailAddress= builder.emailAddress;
         this.password= builder.password;
