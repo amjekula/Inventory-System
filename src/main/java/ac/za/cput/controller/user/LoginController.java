@@ -1,13 +1,14 @@
 package ac.za.cput.controller.user;
 
-
+/*
+ *@author @joselledina
+ * Description: create login controller
+ * Date: 20 September 2020
+ */
 import ac.za.cput.entity.user.Login;
 import ac.za.cput.factory.user.LoginFactory;
 import ac.za.cput.service.user.impl.LoginServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;

@@ -1,11 +1,12 @@
 package ac.za.cput.controller.user;
+/*
+ *@author @joselledina
+ * Description: login controller test
+ * Date: 20 September 2020
+ */
 
 import ac.za.cput.entity.user.Login;
 import ac.za.cput.factory.user.LoginFactory;
-import ac.za.cput.repository.user.LoginRepository;
-import ac.za.cput.repository.user.impl.LoginRepositoryImpl;
-import ac.za.cput.service.user.LoginService;
-import ac.za.cput.service.user.impl.LoginServiceImpl;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
