@@ -1,6 +1,7 @@
 package ac.za.cput.controller.generic;
 
 import ac.za.cput.entity.generic.University;
+import ac.za.cput.entity.user.Login;
 import ac.za.cput.factory.generic.UniversityFactory;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -27,16 +28,19 @@ public class UniversityControllerTest {
     @Autowired
     private TestRestTemplate restTemplate;
     private String baseURL = "http://localhost:8080/university";
+    University university = UniversityFactory.createUniversity("CPUT","123 Street");
 
     @Test
     public void a_create() {
-        University university = UniversityFactory.createUniversity("CPUT","123 Street");
         String url = baseURL + "/create";
         System.out.println(url);
-        ResponseEntity<University> postResponse = restTemplate.postForEntity(url, university,University.class);
+        ResponseEntity<University> postResponse = restTemplate.postForEntity(url, university, University.class);
         assertNotNull(postResponse);
-
+        assertNotNull(postResponse.getBody());
+        university = postResponse.getBody();
+        assertEquals(university.getUniversityId(), postResponse.getBody().getUniversityId());
         System.out.println(postResponse);
+        System.out.println(postResponse.getBody());
     }
 
     @Test
@@ -50,7 +54,6 @@ public class UniversityControllerTest {
 
     @Test
     public void b_read(){
-        University university = UniversityFactory.createUniversity("CPUT","123 Street");
         String url = baseURL + "/read/" + university.getUniversityId();
         System.out.println(url);
         ResponseEntity<University> responseEntity = restTemplate.getForEntity(url, University.class);
@@ -60,8 +63,6 @@ public class UniversityControllerTest {
 
     @Test
     public void c_update(){
-        University university = UniversityFactory.createUniversity("CPUT","123 Street");
-
         University updated = new University.Builder().copy(university).setName("UWC").setAddress("321 Seven Street").build();
         String url = baseURL + "/update";
         ResponseEntity<University> postResponse = restTemplate.postForEntity(url, updated, University.class);
@@ -74,7 +75,6 @@ public class UniversityControllerTest {
 
     @Test
     public void e_delete(){
-        University university = UniversityFactory.createUniversity("CPUT","123 Street");
         String url = baseURL + "/delete/" + university.getUniversityId();
         System.out.println("URL: " + url);
         ResponseEntity updateResponse = restTemplate.exchange(url, HttpMethod.DELETE, null, boolean.class);

@@ -30,17 +30,20 @@ public class StockControllerTest {
     private TestRestTemplate restTemplate;
     private String baseURL = "http://localhost:8080/stock";
 
+    Stock stock = StockFactory.createStock(10,"20 june 2020");
 
 
     @Test
     public void a_create() {
-        Stock stock = StockFactory.createStock(10,"20 june 2020");
         String url = baseURL + "/create";
         System.out.println(url);
-        ResponseEntity<Stock> postResponse = restTemplate.postForEntity(url, stock,Stock.class);
+        ResponseEntity<Stock> postResponse = restTemplate.postForEntity(url, stock , Stock.class);
         assertNotNull(postResponse);
-
+        assertNotNull(postResponse.getBody());
+        stock = postResponse.getBody();
+        assertEquals(stock.getStockId(), postResponse.getBody().getStockId());
         System.out.println(postResponse);
+        System.out.println(postResponse.getBody());
     }
 
     @Test
@@ -54,7 +57,6 @@ public class StockControllerTest {
 
     @Test
     public void b_read(){
-        Stock stock = StockFactory.createStock(10,"20 june 2020");
         String url = baseURL + "/read/" + stock.getStockId();
         System.out.println(url);
         ResponseEntity<Stock> responseEntity = restTemplate.getForEntity(url, Stock.class);
