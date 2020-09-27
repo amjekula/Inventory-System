@@ -5,9 +5,10 @@ import ac.za.cput.entity.generic.Order;
 import ac.za.cput.repository.generic.OrderRepository;
 import ac.za.cput.repository.generic.impl.OrderRepositoryImpl;
 import ac.za.cput.service.generic.OrderService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
-
+@Service
 public class OrderServiceImpl implements OrderService
 {
 
