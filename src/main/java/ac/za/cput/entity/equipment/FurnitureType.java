@@ -1,6 +1,9 @@
 package ac.za.cput.entity.equipment;
+
+import java.io.Serializable;
+
 //JodiSmit
-public class FurnitureType {
+public class FurnitureType implements Serializable {
 
     private final String furnitureTypeId;
     private final String furnitureDescription;

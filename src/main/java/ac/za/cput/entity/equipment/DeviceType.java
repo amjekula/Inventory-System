@@ -1,13 +1,15 @@
 package ac.za.cput.entity.equipment;
+
+import java.io.Serializable;
+
 //JodiSmit
-public class DeviceType {
+public class DeviceType implements Serializable {
 
 
     private final String deviceTypeId;
     private final String deviceDescription;
     private final double size;
     private final String color;
-
 
     private DeviceType(Builder builder){
 
