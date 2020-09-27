@@ -1,12 +1,10 @@
-package ac.za.cput.controller.user;
-/*
- *@author @joselledina
- * Description: login controller test
- * Date: 20 September 2020
- */
+package ac.za.cput.controller.equipment;
+//JodiSmit
+import static org.junit.Assert.*;
 
-import ac.za.cput.entity.user.Login;
-import ac.za.cput.factory.user.LoginFactory;
+import ac.za.cput.entity.equipment.DeviceType;
+import ac.za.cput.entity.equipment.FurnitureType;
+import ac.za.cput.factory.equipment.DeviceTypeFactory;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,53 +18,51 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
-
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class LoginControllerTest {
+public class DeviceTypeControllerTest {
 
-   private static Login login = LoginFactory.createLogin("josy@gmail.com", 25468);
-
+    private static DeviceType deviceType = DeviceTypeFactory.createDeviceType("Printer", 5, "black");
 
     @Autowired
     private TestRestTemplate restTemplate;
-    private String baseURL = "http://localhost:8080/login/";
+    private String baseURL = "http://localhost:8080/deviceType/";
+
 
     @Test
     public void a_create() {
         String url = baseURL + "create";
         System.out.println(url);
-        ResponseEntity<Login> postResponse = restTemplate.postForEntity(url, login, Login.class);
+        ResponseEntity<DeviceType> postResponse = restTemplate.postForEntity(url, deviceType, DeviceType.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
-        login = postResponse.getBody();
-        assertEquals(login.getLoginId(), postResponse.getBody().getLoginId());
-        System.out.print("Created login details:");
+        deviceType = postResponse.getBody();
+        assertEquals(deviceType.getDeviceTypeId(), postResponse.getBody().getDeviceTypeId());
         System.out.println(postResponse.getBody());
     }
 
     @Test
     public void b_read(){
-        String url = baseURL + "read/" + login.getLoginId();
+        String url = baseURL + "read/" + deviceType.getDeviceTypeId();
         System.out.println(url);
-        ResponseEntity<Login> responseEntity = restTemplate.getForEntity(url, Login.class);
-        assertEquals(login.getLoginId(), responseEntity.getBody().getLoginId());
-        System.out.print("reading using loginId:" + login.getLoginId() +"\n" );
+        ResponseEntity<DeviceType> responseEntity = restTemplate.getForEntity(url, DeviceType.class);
+        assertEquals(deviceType.getDeviceTypeId(), responseEntity.getBody().getDeviceTypeId());
         System.out.println(responseEntity.getBody());
     }
 
+
+
     @Test
     public void c_update(){
-        Login updated = new Login.Builder().copy(login).setEmailAddress("joselledina@gmail.com").setPassword(204785).build();
+        DeviceType updated = new DeviceType.Builder().copy(deviceType).setDeviceDescription("Tablet").setSize(8).setColor("Brown").build();
         String url = baseURL + "update";
         System.out.println(url);
-        ResponseEntity<Login> postResponse = restTemplate.postForEntity(url, updated, Login.class);
+        ResponseEntity<DeviceType> postResponse = restTemplate.postForEntity(url, updated, DeviceType.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
-        assertEquals(login.getLoginId(), postResponse.getBody().getLoginId());
-        System.out.print("Updated created login details:" + "\n");
+        assertEquals(deviceType.getDeviceTypeId(), postResponse.getBody().getDeviceTypeId());
+        System.out.println(postResponse);
         System.out.println(postResponse.getBody());
 
     }
@@ -79,21 +75,24 @@ public class LoginControllerTest {
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null, headers);
         ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
-        System.out.print("Show all login created details:"+ "\n");
         System.out.println(responseEntity.getBody());
     }
 
+
+
     @Test
     public void e_delete(){
-        String url = baseURL + "delete/"+ login.getLoginId();
+        String url = baseURL + "delete/"+ deviceType.getDeviceTypeId();
         System.out.println(url);
-        ResponseEntity<Login> responseEntity = restTemplate.getForEntity(url, Login.class);
-        assertNull(login.getLoginId(), responseEntity.getBody().getLoginId());
-        System.out.print("Deleted loginId:" + login.getLoginId() + "\n");
+        ResponseEntity<DeviceType> responseEntity = restTemplate.getForEntity(url, DeviceType.class);
+        assertNull(deviceType.getDeviceTypeId(), responseEntity.getBody().getDeviceTypeId());
+        System.out.println(responseEntity);
+        System.out.println(responseEntity.getBody());
         restTemplate.delete(url);
 
 
     }
+
 
 
 }

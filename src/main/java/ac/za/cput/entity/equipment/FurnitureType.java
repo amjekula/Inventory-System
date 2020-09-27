@@ -1,6 +1,9 @@
 package ac.za.cput.entity.equipment;
+
+import java.io.Serializable;
+
 //JodiSmit
-public class FurnitureType {
+public class FurnitureType implements Serializable {
 
     private final String furnitureTypeId;
     private final String furnitureDescription;
@@ -8,7 +11,8 @@ public class FurnitureType {
     private final String color;
 
 
-    private FurnitureType(Builder builder){
+
+    public FurnitureType(Builder builder){
 
         this.furnitureTypeId = builder.furnitureTypeId;
         this.furnitureDescription = builder.furnitureDescription;
