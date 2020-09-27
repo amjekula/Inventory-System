@@ -1,10 +1,6 @@
 package ac.za.cput.controller.user;
 
-/*
- *@author @joselledina
- * Description: create login controller
- * Date: 20 September 2020
- */
+
 import ac.za.cput.entity.user.Login;
 import ac.za.cput.factory.user.LoginFactory;
 import ac.za.cput.service.user.impl.LoginServiceImpl;

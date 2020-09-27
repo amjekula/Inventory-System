@@ -1,9 +1,5 @@
 package ac.za.cput;
-/*
- *@author @joselledina
- * Description: create spring boot app
- * Date: 20 September 2020
- */
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
