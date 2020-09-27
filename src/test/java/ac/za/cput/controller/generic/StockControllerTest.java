@@ -66,7 +66,6 @@ public class StockControllerTest {
 
     @Test
     public void c_update(){
-        Stock stock = StockFactory.createStock(10,"20 june 2020");
         Stock updated = new Stock.Builder().copy(stock).setQuantity(200).setDate("15 July 2020").build();
         String url = baseURL + "/update";
         ResponseEntity<Stock> postResponse = restTemplate.postForEntity(url, updated, Stock.class);
@@ -79,7 +78,6 @@ public class StockControllerTest {
 
     @Test
     public void e_delete(){
-        Stock stock = StockFactory.createStock(10,"20 june 2020");
         String url = baseURL + "/delete/" + stock.getStockId();
         System.out.println("URL: " + url);
         ResponseEntity updateResponse = restTemplate.exchange(url, HttpMethod.DELETE, null, boolean.class);
