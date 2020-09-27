@@ -11,7 +11,8 @@ public class DeviceType implements Serializable {
     private final double size;
     private final String color;
 
-    private DeviceType(Builder builder){
+
+    public DeviceType(Builder builder){
 
         this.deviceTypeId = builder.deviceTypeId;
         this.deviceDescription = builder.deviceDescription;

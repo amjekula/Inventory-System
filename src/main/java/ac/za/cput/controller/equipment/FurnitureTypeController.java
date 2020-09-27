@@ -23,7 +23,7 @@ public class FurnitureTypeController {
     private FurnitureTypeServiceImpl furnitureTypeService;
 
     @PostMapping("/create")
-    public FurnitureType create(@ReuestBody FurnitureType furnitureType){
+    public FurnitureType create(@ReuqestBody FurnitureType furnitureType){
 
 
         FurnitureType newFurnitureType = FurnitureTypeFactory.createFurnitureType(furnitureType.getFurnitureDescription(),furnitureType.getSize(),furnitureType.getColor());
@@ -47,6 +47,10 @@ public class FurnitureTypeController {
     }
 
 
-
+    @DeleteMapping("/delete/{furnitureTypeId}")
+    public void delete(@PathVariable String furnitureTypeId)
+    {
+        furnitureTypeService.delete(furnitureTypeId);
+    }
 
 }

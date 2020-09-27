@@ -11,7 +11,8 @@ public class FurnitureType implements Serializable {
     private final String color;
 
 
-    private FurnitureType(Builder builder){
+
+    public FurnitureType(Builder builder){
 
         this.furnitureTypeId = builder.furnitureTypeId;
         this.furnitureDescription = builder.furnitureDescription;

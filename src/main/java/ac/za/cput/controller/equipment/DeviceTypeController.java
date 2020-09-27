@@ -1,6 +1,7 @@
 package ac.za.cput.controller.equipment;
 
 import ac.za.cput.entity.equipment.DeviceType;
+import ac.za.cput.entity.user.Login;
 import ac.za.cput.factory.equipment.DeviceTypeFactory;
 import ac.za.cput.service.equipment.impl.DeviceTypeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class DeviceTypeController {
 
 
    @PostMapping("/create")
-    public DeviceType create(@ReuestBody DeviceType deviceType){
+    public DeviceType create(@ReuqestBody  DeviceType deviceType){
 
        DeviceType newDeviceType = DeviceTypeFactory.createDeviceType(deviceType.getDeviceDescription(),deviceType.getSize(),deviceType.getColor());
       return deviceTypeService.create(newDeviceType);
@@ -31,8 +32,8 @@ public class DeviceTypeController {
 
 
    @GetMapping("/read/{id}")
-    public DeviceType read(@PathVariable String id){
-       return deviceTypeService.read(id);
+    public DeviceType read(@PathVariable String deviceTypeId){
+       return deviceTypeService.read(deviceTypeId);
    }
 
 
@@ -46,11 +47,12 @@ public class DeviceTypeController {
         return deviceTypeService.getAll();
     }
 
-   /* @DeleteMapping("/delete/{id}")
-    public boolean delete(@PathVariable String id){
-        this.deviceTypeService.delete(id);
 
+    @DeleteMapping("/delete/{deviceTypeId}")
+    public void delete(@PathVariable String deviceTypeId)
+    {
+        deviceTypeService.delete(deviceTypeId);
     }
-*/
+
 
 }
