@@ -10,5 +10,5 @@ public interface DeviceService extends IService<Device, String>
 {
     Set<Device> getAll();
 
-    List<Device> readAll();
+
 }
