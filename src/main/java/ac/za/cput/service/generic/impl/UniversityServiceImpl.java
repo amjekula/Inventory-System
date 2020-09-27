@@ -4,6 +4,7 @@ import ac.za.cput.entity.generic.University;
 import ac.za.cput.repository.generic.UniversityRepository;
 import ac.za.cput.repository.generic.impl.UniversityRepositoryImpl;
 import ac.za.cput.service.generic.UniversityService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
@@ -12,6 +13,7 @@ import java.util.Set;
  *  Desc: Implementation for university service
  */
 
+@Service
 public class UniversityServiceImpl implements UniversityService {
 
     private static UniversityService service = null;
