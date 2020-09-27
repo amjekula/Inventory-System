@@ -1,13 +1,9 @@
 package ac.za.cput.controller.equipment;
 
 import ac.za.cput.entity.equipment.DeviceType;
-import ac.za.cput.entity.user.Login;
 import ac.za.cput.factory.equipment.DeviceTypeFactory;
 import ac.za.cput.service.equipment.impl.DeviceTypeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 //JodiSmit
@@ -22,7 +18,7 @@ public class DeviceTypeController {
 
 
    @PostMapping("/create")
-    public DeviceType create(@ReuqestBody  DeviceType deviceType){
+    public DeviceType create(@RequestBody DeviceType deviceType){
 
        DeviceType newDeviceType = DeviceTypeFactory.createDeviceType(deviceType.getDeviceDescription(),deviceType.getSize(),deviceType.getColor());
       return deviceTypeService.create(newDeviceType);

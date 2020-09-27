@@ -6,9 +6,6 @@ import ac.za.cput.entity.equipment.FurnitureType;
 import ac.za.cput.factory.equipment.FurnitureTypeFactory;
 import ac.za.cput.service.equipment.impl.FurnitureTypeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -23,7 +20,7 @@ public class FurnitureTypeController {
     private FurnitureTypeServiceImpl furnitureTypeService;
 
     @PostMapping("/create")
-    public FurnitureType create(@ReuqestBody FurnitureType furnitureType){
+    public FurnitureType create(FurnitureType furnitureType){
 
 
         FurnitureType newFurnitureType = FurnitureTypeFactory.createFurnitureType(furnitureType.getFurnitureDescription(),furnitureType.getSize(),furnitureType.getColor());

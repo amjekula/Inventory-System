@@ -1,10 +1,10 @@
 package ac.za.cput.controller.generic;
 
 import ac.za.cput.entity.generic.Stock;
+
 import ac.za.cput.entity.generic.University;
-import ac.za.cput.entity.user.Login;
+
 import ac.za.cput.factory.generic.StockFactory;
-import ac.za.cput.factory.generic.UniversityFactory;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +15,8 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /*
  *  @author: Sherwin Adams
