@@ -1,5 +1,6 @@
 package ac.za.cput.service.equipment.impl;
 
+import ac.za.cput.entity.equipment.Device;
 import ac.za.cput.entity.equipment.Furniture;
 import ac.za.cput.repository.equipment.FurnitureRepository;
 import ac.za.cput.repository.equipment.Impl.FurnitureRepositoryImpl;
@@ -44,9 +45,10 @@ public class FurnitureServiceImpl implements FurnitureService
     }
 
     @Override
-    public void delete(String furniture) {
+    public Device delete(String furniture) {
 
         this.repository.delete(furniture);
 
+        return null;
     }
 }

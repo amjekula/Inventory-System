@@ -1,5 +1,6 @@
 package ac.za.cput.service.generic.impl;
 
+import ac.za.cput.entity.equipment.Device;
 import ac.za.cput.entity.generic.University;
 import ac.za.cput.repository.generic.UniversityRepository;
 import ac.za.cput.repository.generic.impl.UniversityRepositoryImpl;
@@ -47,7 +48,8 @@ public class UniversityServiceImpl implements UniversityService {
     }
 
     @Override
-    public void delete(String s) {
+    public Device delete(String s) {
         this.repository.delete(s);
+        return null;
     }
 }

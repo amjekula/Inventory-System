@@ -1,6 +1,7 @@
 package ac.za.cput.service.generic.impl;
 
 
+import ac.za.cput.entity.equipment.Device;
 import ac.za.cput.entity.generic.Order;
 import ac.za.cput.repository.generic.OrderRepository;
 import ac.za.cput.repository.generic.impl.OrderRepositoryImpl;
@@ -54,8 +55,9 @@ public class OrderServiceImpl implements OrderService
     }
 
     @Override
-    public void delete(String clerkId)
+    public Device delete(String clerkId)
     {
         this.repository.delete(clerkId);
+        return null;
     }
 }
