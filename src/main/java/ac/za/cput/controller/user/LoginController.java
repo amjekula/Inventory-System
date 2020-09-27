@@ -18,7 +18,7 @@ public class LoginController {
     @Autowired
     private LoginServiceImpl loginService;
 
-//    @RequestMapping(value = "/create", method = RequestMethod.)
+    //    @RequestMapping(value = "/create", method = RequestMethod.)
     @PostMapping("/create")
     public Login create(@RequestBody Login login) {
 
