@@ -1,11 +1,11 @@
-package ac.za.cput.controller.user;
+package ac.za.cput.controller.user.generic;
 
-import ac.za.cput.entity.user.Login;
-import ac.za.cput.factory.user.LoginFactory;
-import ac.za.cput.repository.user.LoginRepository;
-import ac.za.cput.repository.user.impl.LoginRepositoryImpl;
-import ac.za.cput.service.user.LoginService;
-import ac.za.cput.service.user.impl.LoginServiceImpl;
+import ac.za.cput.entity.generic.Order;
+import ac.za.cput.factory.generic.OrderFactory;
+import ac.za.cput.repository.generic.OrderRepository;
+import ac.za.cput.repository.generic.impl.OrderRepositoryImpl;
+import ac.za.cput.service.generic.OrderService;
+import ac.za.cput.service.generic.impl.OrderServiceImpl;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,53 +24,58 @@ import static org.junit.Assert.*;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class LoginControllerTest {
 
-   private static Login login = LoginFactory.createLogin("josy@gmail.com", 25468);
+public class OrderControllerTest
+{
+
+    private static Order order = OrderFactory.createClerkOrder("test", "25/09/2020");
 
 
     @Autowired
     private TestRestTemplate restTemplate;
-    private String baseURL = "http://localhost:8080/login/";
+    private String baseURL = "http://localhost:8080/order/";
 
     @Test
-    public void a_create() {
+    public void a_create()
+    {
         String url = baseURL + "create";
         System.out.println(url);
-        ResponseEntity<Login> postResponse = restTemplate.postForEntity(url, login, Login.class);
+        ResponseEntity<Order> postResponse = restTemplate.postForEntity(url, order, Order.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
-        login = postResponse.getBody();
-        assertEquals(login.getLoginId(), postResponse.getBody().getLoginId());
+        order = postResponse.getBody();
+        assertNotEquals(order.getDescription(), postResponse.getBody().getDate());
         System.out.println(postResponse);
         System.out.println(postResponse.getBody());
     }
 
     @Test
-    public void b_read(){
-        String url = baseURL + "read/" + login.getLoginId();
+    public void b_read()
+    {
+        String url = baseURL + "read/" + order.getDescription();
         System.out.println(url);
-        ResponseEntity<Login> responseEntity = restTemplate.getForEntity(url, Login.class);
-        assertEquals(login.getLoginId(), responseEntity.getBody().getLoginId());
+        ResponseEntity<Order> responseEntity = restTemplate.getForEntity(url, Order.class);
+        assertNotEquals(order.getDescription(), responseEntity.getBody().getDate());
         System.out.println(responseEntity.getBody());
     }
 
     @Test
     public void c_update(){
-        Login updated = new Login.Builder().copy(login).setEmailAddress("joselledina@gmail.com").setPassword(204785).build();
+        Order updated = new Order.Builder().copy(order).setDescription("test2").setDate("26/09/2020").build();
         String url = baseURL + "update";
         System.out.println(url);
-        ResponseEntity<Login> postResponse = restTemplate.postForEntity(url, updated, Login.class);
+        ResponseEntity<Order> postResponse = restTemplate.postForEntity(url, updated, Order.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
-        assertEquals(login.getLoginId(), postResponse.getBody().getLoginId());
+        assertNotEquals(order.getClerkId(), postResponse.getBody().getClerkId());
         System.out.println(postResponse);
         System.out.println(postResponse.getBody());
 
     }
 
     @Test
-    public void d_getAll() {
+    public void d_getAll()
+    {
 
         String url = baseURL + "all";
         System.out.println(url);
@@ -82,11 +87,12 @@ public class LoginControllerTest {
     }
 
     @Test
-    public void e_delete(){
-        String url = baseURL + "delete/"+ login.getLoginId();
+    public void e_delete()
+    {
+        String url = baseURL + "delete/"+ order.getClerkId();
         System.out.println(url);
-        ResponseEntity<Login> responseEntity = restTemplate.getForEntity(url, Login.class);
-        assertNull(login.getLoginId(), responseEntity.getBody().getLoginId());
+        ResponseEntity<Order> responseEntity = restTemplate.getForEntity(url, Order.class);
+        assertNull(order.getClerkId(), responseEntity.getBody().getClerkId());
         System.out.println(responseEntity);
         System.out.println(responseEntity.getBody());
         restTemplate.delete(url);

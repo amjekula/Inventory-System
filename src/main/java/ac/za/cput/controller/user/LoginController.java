@@ -28,9 +28,22 @@ public class LoginController {
 
     @GetMapping("/all")
     public Set<Login> getAll(){
-
-
         return loginService.getAll();
     }
 
+    @DeleteMapping("/delete/{loginId}")
+    public void delete(@PathVariable String loginId)
+    {
+        loginService.delete(loginId);
+    }
+    @PostMapping("/update")
+    public Login update(@RequestBody Login login){
+        return loginService.update(login);
+    }
+
+    @GetMapping("/read/{loginId}")
+    public Login read(@PathVariable String loginId)
+    {
+        return loginService.read(loginId);
+    }
 }

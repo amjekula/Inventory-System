@@ -1,13 +1,18 @@
 package ac.za.cput.entity.generic;
 
-public class Order
-{
-    private final String orderNum;
-    private final String clerkId;
-    private final String stockId;
-    private final String description;
-    private final String date;
+import java.io.Serializable;
 
+public class Order implements Serializable
+{
+    private String orderNum;
+    private String clerkId;
+    private String stockId;
+    private String description;
+    private String date;
+
+    private Order()
+    {
+    }
 
     private Order(Builder builder)
     {
@@ -18,33 +23,6 @@ public class Order
         this.date = builder.date;
     }
 
-
-    public String getOrderNum()
-    {
-        return orderNum;
-    }
-
-    public String getClerkId()
-    {
-        return clerkId;
-    }
-
-    public String getStockId()
-    {
-        return stockId;
-    }
-
-    public String getDescription()
-    {
-        return description;
-    }
-
-    public String getDate()
-    {
-        return date;
-    }
-
-
     public static class Builder
     {
         private String orderNum;
@@ -52,7 +30,6 @@ public class Order
         private String stockId;
         private String description;
         private String date;
-
 
         public Builder setOrderNum(final String orderNum)
         {
@@ -94,12 +71,36 @@ public class Order
             return this;
         }
 
-
         public Order build()
         {
             return new Order(this);
         }
 
+    }
+
+    public String getOrderNum()
+    {
+        return orderNum;
+    }
+
+    public String getClerkId()
+    {
+        return clerkId;
+    }
+
+    public String getStockId()
+    {
+        return stockId;
+    }
+
+    public String getDescription()
+    {
+        return description;
+    }
+
+    public String getDate()
+    {
+        return date;
     }
 
     @Override
