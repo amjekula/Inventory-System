@@ -1,6 +1,9 @@
 package ac.za.cput.entity.equipment;
+
+import java.io.Serializable;
+
 //JodiSmit
-public class DeviceType {
+public class DeviceType implements Serializable {
 
 
     private final String deviceTypeId;
@@ -9,7 +12,7 @@ public class DeviceType {
     private final String color;
 
 
-    private DeviceType(Builder builder){
+    public DeviceType(Builder builder){
 
         this.deviceTypeId = builder.deviceTypeId;
         this.deviceDescription = builder.deviceDescription;

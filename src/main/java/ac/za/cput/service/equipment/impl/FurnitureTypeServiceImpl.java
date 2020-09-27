@@ -2,15 +2,14 @@ package ac.za.cput.service.equipment.impl;
 
 
 import ac.za.cput.entity.equipment.FurnitureType;
-
 import ac.za.cput.repository.equipment.FurnitureTypeRepository;
-
 import ac.za.cput.repository.equipment.Impl.FurnitureTypeRepositoryImpl;
-
 import ac.za.cput.service.equipment.FurnitureTypeService;
+import org.springframework.stereotype.Service;
 //JodiSmit
 import java.util.Set;
 
+@Service
 public class FurnitureTypeServiceImpl implements FurnitureTypeService {
 
     private static FurnitureTypeService service = null;
