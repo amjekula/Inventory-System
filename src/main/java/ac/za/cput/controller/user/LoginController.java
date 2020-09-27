@@ -5,9 +5,6 @@ import ac.za.cput.entity.user.Login;
 import ac.za.cput.factory.user.LoginFactory;
 import ac.za.cput.service.user.impl.LoginServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
@@ -18,7 +15,7 @@ public class LoginController {
     @Autowired
     private LoginServiceImpl loginService;
 
-//    @RequestMapping(value = "/create", method = RequestMethod.)
+    //    @RequestMapping(value = "/create", method = RequestMethod.)
     @PostMapping("/create")
     public Login create(@RequestBody Login login) {
 

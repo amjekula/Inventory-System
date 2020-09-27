@@ -18,6 +18,7 @@ public class OrderController
     @Autowired
     private OrderServiceImpl orderService;
 
+
     @PostMapping("/create")
     public Order create(@RequestBody Order order)
     {
@@ -30,5 +31,24 @@ public class OrderController
     {
         return orderService.getAll();
     }
+
+    @DeleteMapping("/delete/{clerkId}")
+    public void delete(@PathVariable String clerkId)
+    {
+        orderService.delete(clerkId);
+    }
+
+    @PostMapping("/update")
+    public Order update(@RequestBody Order order)
+    {
+        return orderService.update(order);
+    }
+
+    @GetMapping("/read/{clerkId}")
+    public Order read(@PathVariable String clerkId)
+    {
+        return orderService.read(clerkId);
+    }
+
 
 }

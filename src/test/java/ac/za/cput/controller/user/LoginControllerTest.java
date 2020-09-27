@@ -1,11 +1,12 @@
 package ac.za.cput.controller.user;
+/*
+ *@author @joselledina
+ * Description: login controller test
+ * Date: 20 September 2020
+ */
 
 import ac.za.cput.entity.user.Login;
 import ac.za.cput.factory.user.LoginFactory;
-import ac.za.cput.repository.user.LoginRepository;
-import ac.za.cput.repository.user.impl.LoginRepositoryImpl;
-import ac.za.cput.service.user.LoginService;
-import ac.za.cput.service.user.impl.LoginServiceImpl;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -42,7 +43,7 @@ public class LoginControllerTest {
         assertNotNull(postResponse.getBody());
         login = postResponse.getBody();
         assertEquals(login.getLoginId(), postResponse.getBody().getLoginId());
-        System.out.println(postResponse);
+        System.out.print("Created login details:");
         System.out.println(postResponse.getBody());
     }
 
@@ -52,6 +53,7 @@ public class LoginControllerTest {
         System.out.println(url);
         ResponseEntity<Login> responseEntity = restTemplate.getForEntity(url, Login.class);
         assertEquals(login.getLoginId(), responseEntity.getBody().getLoginId());
+        System.out.print("reading using loginId:" + login.getLoginId() +"\n" );
         System.out.println(responseEntity.getBody());
     }
 
@@ -64,7 +66,7 @@ public class LoginControllerTest {
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
         assertEquals(login.getLoginId(), postResponse.getBody().getLoginId());
-        System.out.println(postResponse);
+        System.out.print("Updated created login details:" + "\n");
         System.out.println(postResponse.getBody());
 
     }
@@ -77,7 +79,7 @@ public class LoginControllerTest {
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null, headers);
         ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
-        System.out.println(responseEntity);
+        System.out.print("Show all login created details:"+ "\n");
         System.out.println(responseEntity.getBody());
     }
 
@@ -87,8 +89,7 @@ public class LoginControllerTest {
         System.out.println(url);
         ResponseEntity<Login> responseEntity = restTemplate.getForEntity(url, Login.class);
         assertNull(login.getLoginId(), responseEntity.getBody().getLoginId());
-        System.out.println(responseEntity);
-        System.out.println(responseEntity.getBody());
+        System.out.print("Deleted loginId:" + login.getLoginId() + "\n");
         restTemplate.delete(url);
 
 

@@ -5,13 +5,17 @@ package ac.za.cput.entity.generic;
  *  Desc: Entity for Stock
  */
 
-public class Stock
+import java.io.Serializable;
+
+public class Stock implements Serializable
 {
-    private final String stockId;
-    private final String furnitureId;
-    private final String deviceId;
-    private final int quantity;
-    private final String date;
+    private String stockId;
+    private String furnitureId;
+    private String deviceId;
+    private int quantity;
+    private String date;
+
+    private Stock(){}
 
     private Stock(Builder builder)
     {

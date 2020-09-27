@@ -8,9 +8,10 @@ import ac.za.cput.entity.user.ControlClerk;
 import ac.za.cput.repository.user.ControlClerkRepository;
 import ac.za.cput.repository.user.impl.ControlClerkRepositoryImpl;
 import ac.za.cput.service.user.ControlClerkService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
-
+@Service
 public class ControlClerkServiceImpl implements ControlClerkService {
 
     private static ControlClerkService service = null;
