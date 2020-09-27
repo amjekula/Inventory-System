@@ -5,9 +5,11 @@ import ac.za.cput.entity.equipment.Furniture;
 import ac.za.cput.repository.equipment.FurnitureRepository;
 import ac.za.cput.repository.equipment.Impl.FurnitureRepositoryImpl;
 import ac.za.cput.service.equipment.FurnitureService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class FurnitureServiceImpl implements FurnitureService
 {
     private static FurnitureService service = null;

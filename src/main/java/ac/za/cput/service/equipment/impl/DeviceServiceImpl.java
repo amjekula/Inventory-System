@@ -4,8 +4,10 @@ import ac.za.cput.entity.equipment.Device;
 import ac.za.cput.repository.equipment.DeviceRepository;
 import ac.za.cput.repository.equipment.Impl.DeviceRepositoryImpl;
 import ac.za.cput.service.equipment.DeviceService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
+
 
 public class DeviceServiceImpl implements DeviceService
 {
