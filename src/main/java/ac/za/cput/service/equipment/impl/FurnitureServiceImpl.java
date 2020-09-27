@@ -47,10 +47,8 @@ public class FurnitureServiceImpl implements FurnitureService
     }
 
     @Override
-    public Device delete(String furniture) {
+    public void delete(String s) {
 
-        this.repository.delete(furniture);
-
-        return null;
+        this.repository.delete(s);
     }
 }

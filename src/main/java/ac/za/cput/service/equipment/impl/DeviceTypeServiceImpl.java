@@ -51,9 +51,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
     }
 
     @Override
-    public Device delete(String s) {
-
-      this.repository.delete(s);
-        return null;
+    public void delete(String deviceId) {
+        this.repository.delete(deviceId);
     }
 }
