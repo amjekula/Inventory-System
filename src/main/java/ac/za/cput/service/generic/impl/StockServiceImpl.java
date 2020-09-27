@@ -4,6 +4,7 @@ import ac.za.cput.entity.generic.Stock;
 import ac.za.cput.repository.generic.StockRepository;
 import ac.za.cput.repository.generic.impl.StockRepositoryImpl;
 import ac.za.cput.service.generic.StockService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
@@ -12,6 +13,7 @@ import java.util.Set;
  *  Desc: Implementation for Stock Service
  */
 
+@Service
 public class StockServiceImpl implements StockService {
 
     private static StockService service = null;

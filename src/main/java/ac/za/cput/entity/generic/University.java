@@ -5,10 +5,14 @@ package ac.za.cput.entity.generic;
  *  Desc: Entity for University
  */
 
-public class University {
-    private final String universityId;
-    private final String name;
-    private final String address;
+import java.io.Serializable;
+
+public class University implements Serializable {
+    private String universityId;
+    private String name;
+    private String address;
+
+    private University(){}
 
     private University(Builder builder) {
         this.universityId = builder.universityId;
