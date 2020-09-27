@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Set;
+import java.util.List;
 
-public class DeviceController implements IController <Device,String> {
+public class DeviceController implements IController<Device,String> {
 
     @Autowired
     DeviceService deviceService;
@@ -21,7 +21,7 @@ public class DeviceController implements IController <Device,String> {
     @PostMapping("create")
     @Override
     public Device create(@RequestBody Device device) {
-        Device device1 = DeviceFactory.createDevice(device.getDeviceTypeId());
+        Device device1 = DeviceFactory.createDevice(device.getDeviceTypeId(),device.getDeviceId());
 
         return deviceService.create(device1);
     }
@@ -46,6 +46,8 @@ public class DeviceController implements IController <Device,String> {
     }
 
     @GetMapping("reads")
-    public Set<Device> getAll() {  return deviceService.getAll();
+    @Override
+    public List<Device> readAll() {
+        return deviceService.readAll();
     }
 }

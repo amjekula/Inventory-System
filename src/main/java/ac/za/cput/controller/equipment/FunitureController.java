@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.Set;
+import java.util.List;
 
 import static org.graalvm.compiler.nodeinfo.Verbosity.Id;
 
@@ -20,7 +20,7 @@ public class FunitureController implements IController<Furniture,String> {
     @PostMapping("create")
     @Override
     public Furniture create(@RequestBody Furniture furniture) {
-        Furniture furniture1 = FurnitureFactory.createFurniture(furniture.getFurnitureTypeId());
+        Furniture furniture1 = FurnitureFactory.createFurniture(furniture.getFurnitureTypeId(),furniture.getFurnitureTypeId());
         return furnitureService.create(furniture1);
     }
     @PostMapping("delete")
@@ -39,7 +39,8 @@ public class FunitureController implements IController<Furniture,String> {
         return furnitureService.update(furniture);
     }
 
-    public Set<Furniture> getAll() {
+    @Override
+    public List<Furniture> getAll() {
         return furnitureService.getAll();
     }
 }
