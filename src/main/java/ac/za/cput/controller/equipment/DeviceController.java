@@ -4,6 +4,7 @@ import ac.za.cput.controller.IController;
 import ac.za.cput.entity.equipment.Device;
 import ac.za.cput.factory.equipment.DeviceFactory;
 import ac.za.cput.service.equipment.DeviceService;
+import ac.za.cput.service.equipment.impl.DeviceServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,13 +16,13 @@ import java.util.List;
 public class DeviceController implements IController<Device,String> {
 
     @Autowired
-    DeviceService deviceService;
+    DeviceServiceImpl deviceService;
 
 
     @PostMapping("create")
     @Override
     public Device create(@RequestBody Device device) {
-        Device device1 = DeviceFactory.createDevice(device.getDeviceTypeId(),device.getDeviceId());
+        Device device1 = DeviceFactory.createDevice(device.getDeviceTypeId());
 
         return deviceService.create(device1);
     }

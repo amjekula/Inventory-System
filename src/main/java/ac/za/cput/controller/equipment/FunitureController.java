@@ -3,44 +3,47 @@ import ac.za.cput.controller.IController;
 import ac.za.cput.entity.equipment.Furniture;
 import ac.za.cput.factory.equipment.FurnitureFactory;
 import ac.za.cput.service.equipment.FurnitureService;
+import ac.za.cput.service.equipment.impl.FurnitureServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Set;
 
-import static org.graalvm.compiler.nodeinfo.Verbosity.Id;
 
-public class FunitureController implements IController<Furniture,String> {
+@RestController
+@RequestMapping("/furniture")
+public class FunitureController  {
 
     @Autowired
-    FurnitureService furnitureService;
+    private FurnitureServiceImpl furnitureService;
 
     @PostMapping("create")
-    @Override
+
     public Furniture create(@RequestBody Furniture furniture) {
-        Furniture furniture1 = FurnitureFactory.createFurniture(furniture.getFurnitureTypeId(),furniture.getFurnitureTypeId());
+        Furniture furniture1 = FurnitureFactory.createFurniture(furniture.getFurnitureTypeId());
         return furnitureService.create(furniture1);
     }
-    @PostMapping("delete")
-    @Override
-    public Furniture delete(Furniture furniture) {
-        return furnitureService.delete(String.valueOf(furniture));
+    @DeleteMapping ("/delete/{furnitureId}")
+
+    public void  delete  ( @PathVariable String furnitureId) {
+
+        furnitureService.delete(furnitureId);
     }
     @GetMapping("read")
-    @Override
     public Furniture read(String id) {
+
         return furnitureService.read(id);
     }
 
-    @Override
+    @PostMapping("/Update")
     public Furniture update(Furniture furniture) {
+
         return furnitureService.update(furniture);
     }
 
-    @Override
-    public List<Furniture> getAll() {
+    @GetMapping("/all")
+    public Set<Furniture> getAll() {
+
         return furnitureService.getAll();
     }
 }
