@@ -1,8 +1,6 @@
 package ac.za.cput.controller.equipment;
-import ac.za.cput.controller.IController;
 import ac.za.cput.entity.equipment.Furniture;
 import ac.za.cput.factory.equipment.FurnitureFactory;
-import ac.za.cput.service.equipment.FurnitureService;
 import ac.za.cput.service.equipment.impl.FurnitureServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
