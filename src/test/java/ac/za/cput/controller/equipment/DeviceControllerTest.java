@@ -27,7 +27,7 @@ public class DeviceControllerTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
-    private String baseURL = "http://localhost:8080/deviceType/";
+    private String baseURL = "http://localhost:8080/device/";
 
 
     @Test

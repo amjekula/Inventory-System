@@ -28,7 +28,7 @@ public class FurnitureControllerTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
-    private String baseURL = "http://localhost:8080/deviceType/";
+    private String baseURL = "http://localhost:9000/furniture/";
 
 
     @Test
