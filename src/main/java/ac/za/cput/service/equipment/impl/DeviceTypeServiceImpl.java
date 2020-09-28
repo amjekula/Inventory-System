@@ -1,5 +1,6 @@
 package ac.za.cput.service.equipment.impl;
 
+import ac.za.cput.entity.equipment.Device;
 import ac.za.cput.entity.equipment.DeviceType;
 import ac.za.cput.repository.equipment.DeviceTypeRepository;
 import ac.za.cput.repository.equipment.Impl.DeviceTypeRepositoryImpl;
@@ -50,8 +51,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
     }
 
     @Override
-    public void delete(String s) {
-
-      this.repository.delete(s);
+    public void delete(String deviceId) {
+        this.repository.delete(deviceId);
     }
 }

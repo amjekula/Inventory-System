@@ -4,9 +4,8 @@ public class Furniture {
     private String furnitureId;
     private String furnitureTypeId;
 
-
-
-
+    private Furniture() {
+    }
 
     public Furniture(Builder builder){
         this.furnitureId = builder.furnitureId;
