@@ -1,14 +1,7 @@
 package ac.za.cput.controller.equipment;
-//JodiSmit
+
 import static org.junit.Assert.*;
 
-import ac.za.cput.entity.equipment.DeviceType;
-import ac.za.cput.entity.equipment.FurnitureType;
-import ac.za.cput.factory.equipment.DeviceTypeFactory;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -17,38 +10,44 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
+import ac.za.cput.entity.equipment.Device;
+import ac.za.cput.factory.equipment.DeviceFactory;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
-public class DeviceTypeControllerTest {
+public class DeviceControllerTest {
 
-    private static DeviceType deviceType = DeviceTypeFactory.createDeviceType("Printer", 5, "black");
+    private static Device device = DeviceFactory.createDevice("1234");
 
     @Autowired
     private TestRestTemplate restTemplate;
-    private String baseURL = "http://localhost:8080/deviceType/";
+    private String baseURL = "http://localhost:8080/device/";
 
 
     @Test
     public void a_create() {
         String url = baseURL + "create";
         System.out.println(url);
-        ResponseEntity<DeviceType> postResponse = restTemplate.postForEntity(url, deviceType, DeviceType.class);
+        ResponseEntity<Device> postResponse = restTemplate.postForEntity(url, device, Device.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
-        deviceType = postResponse.getBody();
-        assertEquals(deviceType.getDeviceTypeId(), postResponse.getBody().getDeviceTypeId());
+        device = postResponse.getBody();
+        assertEquals(device.getDeviceId(), postResponse.getBody().getDeviceId());
         System.out.println(postResponse.getBody());
     }
 
     @Test
     public void b_read(){
-        String url = baseURL + "read/" + deviceType.getDeviceTypeId();
+        String url = baseURL + "read/" + device.getDeviceId();
         System.out.println(url);
-        ResponseEntity<DeviceType> responseEntity = restTemplate.getForEntity(url, DeviceType.class);
-        assertEquals(deviceType.getDeviceTypeId(), responseEntity.getBody().getDeviceTypeId());
+        ResponseEntity<Device> responseEntity = restTemplate.getForEntity(url, Device.class);
+        assertEquals(device.getDeviceId(), responseEntity.getBody().getDeviceId());
         System.out.println(responseEntity.getBody());
     }
 
@@ -56,13 +55,13 @@ public class DeviceTypeControllerTest {
 
     @Test
     public void c_update(){
-        DeviceType updated = new DeviceType.Builder().copy(deviceType).setDeviceDescription("Tablet").setSize(8).setColor("Brown").build();
+        Device updated = new Device.Builder().copy(device).setDeviceId("12345").build();
         String url = baseURL + "update";
         System.out.println(url);
-        ResponseEntity<DeviceType> postResponse = restTemplate.postForEntity(url, updated, DeviceType.class);
+        ResponseEntity<Device> postResponse = restTemplate.postForEntity(url, updated, Device.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
-        assertEquals(deviceType.getDeviceTypeId(), postResponse.getBody().getDeviceTypeId());
+        assertEquals(device.getDeviceId(), postResponse.getBody().getDeviceId());
         System.out.println(postResponse);
         System.out.println(postResponse.getBody());
 
@@ -83,16 +82,20 @@ public class DeviceTypeControllerTest {
 
     @Test
     public void e_delete(){
-        String url = baseURL + "delete/"+ deviceType.getDeviceTypeId();
+        String url = baseURL + "delete/"+ device.getDeviceId();
         System.out.println(url);
-        ResponseEntity<DeviceType> responseEntity = restTemplate.getForEntity(url, DeviceType.class);
-        assertNull(deviceType.getDeviceTypeId(), responseEntity.getBody().getDeviceTypeId());
+        ResponseEntity<Device> responseEntity = restTemplate.getForEntity(url, Device.class);
+        assertNull(device.getDeviceId(), responseEntity.getBody().getDeviceId());
         System.out.println(responseEntity);
         System.out.println(responseEntity.getBody());
         restTemplate.delete(url);
 
 
     }
+
+
+
+
 
 
 

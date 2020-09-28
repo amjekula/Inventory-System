@@ -4,9 +4,11 @@ import ac.za.cput.entity.equipment.Device;
 import ac.za.cput.repository.equipment.DeviceRepository;
 import ac.za.cput.repository.equipment.Impl.DeviceRepositoryImpl;
 import ac.za.cput.service.equipment.DeviceService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class DeviceServiceImpl implements DeviceService
 {
 
@@ -47,6 +49,6 @@ public class DeviceServiceImpl implements DeviceService
 
     @Override
     public void delete(String deviceId) {
-     this.repository.delete(deviceId);
+        this.repository.delete(deviceId);
     }
 }
