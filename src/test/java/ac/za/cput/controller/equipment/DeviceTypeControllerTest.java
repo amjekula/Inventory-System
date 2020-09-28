@@ -1,11 +1,10 @@
-package ac.za.cput.controller.user.generic;
+package ac.za.cput.controller.equipment;
+//JodiSmit
+import static org.junit.Assert.*;
 
-import ac.za.cput.entity.generic.Order;
-import ac.za.cput.factory.generic.OrderFactory;
-import ac.za.cput.repository.generic.OrderRepository;
-import ac.za.cput.repository.generic.impl.OrderRepositoryImpl;
-import ac.za.cput.service.generic.OrderService;
-import ac.za.cput.service.generic.impl.OrderServiceImpl;
+import ac.za.cput.entity.equipment.DeviceType;
+import ac.za.cput.entity.equipment.FurnitureType;
+import ac.za.cput.factory.equipment.DeviceTypeFactory;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,86 +18,81 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
-
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class DeviceTypeControllerTest {
 
-public class OrderControllerTest
-{
-
-    private static Order order = OrderFactory.createClerkOrder("test", "25/09/2020");
-
+    private static DeviceType deviceType = DeviceTypeFactory.createDeviceType("Printer", 5, "black");
 
     @Autowired
     private TestRestTemplate restTemplate;
-    private String baseURL = "http://localhost:8080/order/";
+    private String baseURL = "http://localhost:8080/deviceType/";
+
 
     @Test
-    public void a_create()
-    {
+    public void a_create() {
         String url = baseURL + "create";
         System.out.println(url);
-        ResponseEntity<Order> postResponse = restTemplate.postForEntity(url, order, Order.class);
+        ResponseEntity<DeviceType> postResponse = restTemplate.postForEntity(url, deviceType, DeviceType.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
-        order = postResponse.getBody();
-        assertNotEquals(order.getDescription(), postResponse.getBody().getDate());
-        System.out.println(postResponse);
+        deviceType = postResponse.getBody();
+        assertEquals(deviceType.getDeviceTypeId(), postResponse.getBody().getDeviceTypeId());
         System.out.println(postResponse.getBody());
     }
 
     @Test
-    public void b_read()
-    {
-        String url = baseURL + "read/" + order.getDescription();
+    public void b_read(){
+        String url = baseURL + "read/" + deviceType.getDeviceTypeId();
         System.out.println(url);
-        ResponseEntity<Order> responseEntity = restTemplate.getForEntity(url, Order.class);
-        assertNotEquals(order.getDescription(), responseEntity.getBody().getDate());
+        ResponseEntity<DeviceType> responseEntity = restTemplate.getForEntity(url, DeviceType.class);
+        assertEquals(deviceType.getDeviceTypeId(), responseEntity.getBody().getDeviceTypeId());
         System.out.println(responseEntity.getBody());
     }
 
+
+
     @Test
     public void c_update(){
-        Order updated = new Order.Builder().copy(order).setDescription("test2").setDate("26/09/2020").build();
+        DeviceType updated = new DeviceType.Builder().copy(deviceType).setDeviceDescription("Tablet").setSize(8).setColor("Brown").build();
         String url = baseURL + "update";
         System.out.println(url);
-        ResponseEntity<Order> postResponse = restTemplate.postForEntity(url, updated, Order.class);
+        ResponseEntity<DeviceType> postResponse = restTemplate.postForEntity(url, updated, DeviceType.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
-        assertNotEquals(order.getClerkId(), postResponse.getBody().getClerkId());
+        assertEquals(deviceType.getDeviceTypeId(), postResponse.getBody().getDeviceTypeId());
         System.out.println(postResponse);
         System.out.println(postResponse.getBody());
 
     }
 
     @Test
-    public void d_getAll()
-    {
+    public void d_getAll() {
 
         String url = baseURL + "all";
         System.out.println(url);
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null, headers);
         ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
-        System.out.println(responseEntity);
         System.out.println(responseEntity.getBody());
     }
 
+
+
     @Test
-    public void e_delete()
-    {
-        String url = baseURL + "delete/"+ order.getClerkId();
+    public void e_delete(){
+        String url = baseURL + "delete/"+ deviceType.getDeviceTypeId();
         System.out.println(url);
-        ResponseEntity<Order> responseEntity = restTemplate.getForEntity(url, Order.class);
-        assertNull(order.getClerkId(), responseEntity.getBody().getClerkId());
+        ResponseEntity<DeviceType> responseEntity = restTemplate.getForEntity(url, DeviceType.class);
+        assertNull(deviceType.getDeviceTypeId(), responseEntity.getBody().getDeviceTypeId());
         System.out.println(responseEntity);
         System.out.println(responseEntity.getBody());
         restTemplate.delete(url);
 
 
     }
+
 
 
 }

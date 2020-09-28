@@ -1,11 +1,16 @@
 package ac.za.cput.entity.user;
+
+import java.io.Serializable;
+
 /*
  *@author @amjekula
  * Description: Entity for Control Clerk
  * Date: 28 June 2020
  */
-public class ControlClerk {
+public class ControlClerk implements Serializable {
     private String clerkId, universityId, surname, firstName, phoneNum, emailAddress;
+
+    private ControlClerk(){}
 
     private ControlClerk(ControlClerkBuilder controlClerkBuilder) {
         this.clerkId = controlClerkBuilder.clerkId;

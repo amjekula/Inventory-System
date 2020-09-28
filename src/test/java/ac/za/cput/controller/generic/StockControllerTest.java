@@ -1,12 +1,7 @@
-package ac.za.cput.controller.user;
-/*
- *@author @joselledina
- * Description: login controller test
- * Date: 20 September 2020
- */
+package ac.za.cput.controller.generic;
 
-import ac.za.cput.entity.user.Login;
-import ac.za.cput.factory.user.LoginFactory;
+import ac.za.cput.entity.generic.Stock;
+import ac.za.cput.factory.generic.StockFactory;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,78 +17,78 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.*;
 
+/*
+ *  @author: Sherwin Adams
+ *  Desc: Test of Stock controller
+ */
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class LoginControllerTest {
-
-   private static Login login = LoginFactory.createLogin("josy@gmail.com", 25468);
-
+public class StockControllerTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
-    private String baseURL = "http://localhost:8080/login/";
+    private String baseURL = "http://localhost:8080/stock/";
+
+    private static Stock stock = StockFactory.createStock(10,"20 june 2020");
+
 
     @Test
     public void a_create() {
+        System.out.println("Create");
         String url = baseURL + "create";
         System.out.println(url);
-        ResponseEntity<Login> postResponse = restTemplate.postForEntity(url, login, Login.class);
+        ResponseEntity<Stock> postResponse = restTemplate.postForEntity(url, stock, Stock.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
-        login = postResponse.getBody();
-        assertEquals(login.getLoginId(), postResponse.getBody().getLoginId());
-        System.out.print("Created login details:");
+        stock = postResponse.getBody();
+        assertEquals(stock.getStockId(), postResponse.getBody().getStockId());
         System.out.println(postResponse.getBody());
     }
 
     @Test
     public void b_read(){
-        String url = baseURL + "read/" + login.getLoginId();
+        System.out.println("Read");
+        String url = baseURL + "read/" + stock.getStockId();
         System.out.println(url);
-        ResponseEntity<Login> responseEntity = restTemplate.getForEntity(url, Login.class);
-        assertEquals(login.getLoginId(), responseEntity.getBody().getLoginId());
-        System.out.print("reading using loginId:" + login.getLoginId() +"\n" );
+        ResponseEntity<Stock> responseEntity = restTemplate.getForEntity(url, Stock.class);
+        assertEquals(stock.getStockId(), responseEntity.getBody().getStockId());
         System.out.println(responseEntity.getBody());
     }
 
     @Test
     public void c_update(){
-        Login updated = new Login.Builder().copy(login).setEmailAddress("joselledina@gmail.com").setPassword(204785).build();
+        System.out.println("Update");
+        Stock updated = new Stock.Builder().copy(stock).setQuantity(200).setDate("june 19 2020").build();
         String url = baseURL + "update";
         System.out.println(url);
-        ResponseEntity<Login> postResponse = restTemplate.postForEntity(url, updated, Login.class);
+        ResponseEntity<Stock> postResponse = restTemplate.postForEntity(url, updated, Stock.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
-        assertEquals(login.getLoginId(), postResponse.getBody().getLoginId());
-        System.out.print("Updated created login details:" + "\n");
+        assertEquals(stock.getStockId(), postResponse.getBody().getStockId());
         System.out.println(postResponse.getBody());
 
     }
 
     @Test
     public void d_getAll() {
-
+        System.out.println("All");
         String url = baseURL + "all";
         System.out.println(url);
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null, headers);
         ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
-        System.out.print("Show all login created details:"+ "\n");
         System.out.println(responseEntity.getBody());
     }
 
     @Test
     public void e_delete(){
-        String url = baseURL + "delete/"+ login.getLoginId();
+        System.out.println("Delete");
+        String url = baseURL + "delete/"+ stock.getStockId();
         System.out.println(url);
-        ResponseEntity<Login> responseEntity = restTemplate.getForEntity(url, Login.class);
-        assertNull(login.getLoginId(), responseEntity.getBody().getLoginId());
-        System.out.print("Deleted loginId:" + login.getLoginId() + "\n");
+        ResponseEntity<Stock> responseEntity = restTemplate.getForEntity(url, Stock.class);
+        assertNull(stock.getStockId(), responseEntity.getBody().getStockId());
         restTemplate.delete(url);
-
-
     }
-
-
 }
