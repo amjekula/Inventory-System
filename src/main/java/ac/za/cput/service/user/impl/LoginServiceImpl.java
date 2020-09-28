@@ -51,9 +51,9 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public Device delete(String loginId) {
+    public void delete(String loginId) {
         repository.delete(loginId);
 
-        return null;
+
     }
 }

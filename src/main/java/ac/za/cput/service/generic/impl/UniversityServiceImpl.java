@@ -48,8 +48,8 @@ public class UniversityServiceImpl implements UniversityService {
     }
 
     @Override
-    public Device delete(String s) {
+    public void delete(String s) {
         this.repository.delete(s);
-        return null;
+
     }
 }

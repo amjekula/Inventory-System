@@ -55,9 +55,9 @@ public class OrderServiceImpl implements OrderService
     }
 
     @Override
-    public Device delete(String clerkId)
+    public void delete(String clerkId)
     {
         this.repository.delete(clerkId);
-        return null;
+
     }
 }
