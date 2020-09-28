@@ -1,9 +1,6 @@
 package ac.za.cput.controller.generic;
 
 import ac.za.cput.entity.generic.Stock;
-
-import ac.za.cput.entity.generic.University;
-
 import ac.za.cput.factory.generic.StockFactory;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -12,11 +9,13 @@ import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 /*
  *  @author: Sherwin Adams
