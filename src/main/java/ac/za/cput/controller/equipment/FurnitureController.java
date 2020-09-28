@@ -17,7 +17,7 @@ public class FurnitureController {
     @Autowired
     private FurnitureServiceImpl furnitureService;
 
-    @PostMapping("create")
+    @PostMapping("/create")
 
     public Furniture create(@RequestBody Furniture furniture) {
         Furniture furniture1 = FurnitureFactory.createFurniture(furniture.getFurnitureTypeId());
@@ -29,7 +29,7 @@ public class FurnitureController {
 
         furnitureService.delete(furnitureId);
     }
-    @GetMapping("read")
+    @GetMapping("/read")
     public Furniture read(String id) {
 
         return furnitureService.read(id);

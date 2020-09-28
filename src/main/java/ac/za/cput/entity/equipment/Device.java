@@ -1,10 +1,11 @@
 package ac.za.cput.entity.equipment;
+import java.io.Serializable;
 
-public class Device {
+public class Device implements Serializable {
     private String deviceId;
     private String deviceTypeId;
 
-
+private Device(){}
 
 
 
