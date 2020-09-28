@@ -1,5 +1,6 @@
 package ac.za.cput.controller.generic;
 
+import ac.za.cput.entity.generic.Stock;
 import ac.za.cput.entity.generic.University;
 import ac.za.cput.entity.user.Login;
 import ac.za.cput.factory.generic.UniversityFactory;
@@ -27,34 +28,26 @@ public class UniversityControllerTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
-    private String baseURL = "http://localhost:8080/university";
-    University university = UniversityFactory.createUniversity("CPUT","123 Street");
+    private String baseURL = "http://localhost:8080/university/";
+    private static University university = UniversityFactory.createUniversity("CPUT","123 Street");
 
     @Test
     public void a_create() {
-        String url = baseURL + "/create";
+        System.out.println("Create");
+        String url = baseURL + "create";
         System.out.println(url);
         ResponseEntity<University> postResponse = restTemplate.postForEntity(url, university, University.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
         university = postResponse.getBody();
         assertEquals(university.getUniversityId(), postResponse.getBody().getUniversityId());
-        System.out.println(postResponse);
         System.out.println(postResponse.getBody());
     }
 
     @Test
-    public void d_getAll() {
-        String url = baseURL + "/all";
-        HttpHeaders headers = new HttpHeaders();
-        HttpEntity<String> entity = new HttpEntity<>(null,headers);
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity,String.class);
-        System.out.println(response);
-    }
-
-    @Test
     public void b_read(){
-        String url = baseURL + "/read/" + university.getUniversityId();
+        System.out.println("Read");
+        String url = baseURL + "read/" + university.getUniversityId();
         System.out.println(url);
         ResponseEntity<University> responseEntity = restTemplate.getForEntity(url, University.class);
         assertEquals(university.getUniversityId(), responseEntity.getBody().getUniversityId());
@@ -63,21 +56,36 @@ public class UniversityControllerTest {
 
     @Test
     public void c_update(){
-        University updated = new University.Builder().copy(university).setName("UWC").setAddress("321 Seven Street").build();
-        String url = baseURL + "/update";
+        System.out.println("Update");
+        University updated = new University.Builder().copy(university).setName("UWC").setAddress("10 Link Road").build();
+        String url = baseURL + "update";
+        System.out.println(url);
         ResponseEntity<University> postResponse = restTemplate.postForEntity(url, updated, University.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
         assertEquals(university.getUniversityId(), postResponse.getBody().getUniversityId());
-        System.out.println(postResponse);
         System.out.println(postResponse.getBody());
+
+    }
+
+    @Test
+    public void d_getAll() {
+        System.out.println("All");
+        String url = baseURL + "all";
+        System.out.println(url);
+        HttpHeaders headers = new HttpHeaders();
+        HttpEntity<String> entity = new HttpEntity<>(null, headers);
+        ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+        System.out.println(responseEntity.getBody());
     }
 
     @Test
     public void e_delete(){
-        String url = baseURL + "/delete/" + university.getUniversityId();
-        System.out.println("URL: " + url);
-        ResponseEntity updateResponse = restTemplate.exchange(url, HttpMethod.DELETE, null, boolean.class);
-        assertEquals(updateResponse.getStatusCode(), HttpStatus.OK);
+        System.out.println("Delete");
+        String url = baseURL + "delete/"+ university.getUniversityId();
+        System.out.println(url);
+        ResponseEntity<University> responseEntity = restTemplate.getForEntity(url, University.class);
+        assertNull(university.getUniversityId(), responseEntity.getBody().getUniversityId());
+        restTemplate.delete(url);
     }
 }

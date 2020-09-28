@@ -1,11 +1,8 @@
-package ac.za.cput.controller.generic;
+package ac.za.cput.controller.equipment;
 
-import ac.za.cput.entity.generic.Stock;
-import ac.za.cput.factory.generic.StockFactory;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
+
+import static org.junit.Assert.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -14,66 +11,66 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import static org.junit.Assert.*;
-
-/*
- *  @author: Sherwin Adams
- *  Desc: Test of Stock controller
- */
+import ac.za.cput.entity.equipment.Furniture;
+import ac.za.cput.factory.equipment.FurnitureFactory;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class StockControllerTest {
+
+public class FurnitureControllerTest {
+
+    private static Furniture furniture = FurnitureFactory.createFurniture("1234");
 
     @Autowired
     private TestRestTemplate restTemplate;
-    private String baseURL = "http://localhost:8080/stock/";
-
-    private static Stock stock = StockFactory.createStock(10,"20 june 2020");
+    private String baseURL = "http://localhost:8080/furniture/";
 
 
     @Test
     public void a_create() {
-        System.out.println("Create");
         String url = baseURL + "create";
         System.out.println(url);
-        ResponseEntity<Stock> postResponse = restTemplate.postForEntity(url, stock, Stock.class);
+        ResponseEntity<Furniture> postResponse = restTemplate.postForEntity(url, furniture, Furniture.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
-        stock = postResponse.getBody();
-        assertEquals(stock.getStockId(), postResponse.getBody().getStockId());
+        furniture = postResponse.getBody();
+        assertEquals(furniture.getFurnitureId(), postResponse.getBody().getFurnitureId());
         System.out.println(postResponse.getBody());
     }
 
     @Test
     public void b_read(){
-        System.out.println("Read");
-        String url = baseURL + "read/" + stock.getStockId();
+        String url = baseURL + "read/" + furniture.getFurnitureId();
         System.out.println(url);
-        ResponseEntity<Stock> responseEntity = restTemplate.getForEntity(url, Stock.class);
-        assertEquals(stock.getStockId(), responseEntity.getBody().getStockId());
+        ResponseEntity<Furniture> responseEntity = restTemplate.getForEntity(url, Furniture.class);
+        assertEquals(furniture.getFurnitureId(), responseEntity.getBody().getFurnitureId());
         System.out.println(responseEntity.getBody());
     }
 
+
+
     @Test
     public void c_update(){
-        System.out.println("Update");
-        Stock updated = new Stock.Builder().copy(stock).setQuantity(200).setDate("june 19 2020").build();
+        Furniture updated = new Furniture.Builder().copy(furniture).setFurnitureId("12345").build();
         String url = baseURL + "update";
         System.out.println(url);
-        ResponseEntity<Stock> postResponse = restTemplate.postForEntity(url, updated, Stock.class);
+        ResponseEntity<Furniture> postResponse = restTemplate.postForEntity(url, updated, Furniture.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
-        assertEquals(stock.getStockId(), postResponse.getBody().getStockId());
+        assertEquals(furniture.getFurnitureId(), postResponse.getBody().getFurnitureId());
+        System.out.println(postResponse);
         System.out.println(postResponse.getBody());
 
     }
 
     @Test
     public void d_getAll() {
-        System.out.println("All");
+
         String url = baseURL + "all";
         System.out.println(url);
         HttpHeaders headers = new HttpHeaders();
@@ -82,13 +79,21 @@ public class StockControllerTest {
         System.out.println(responseEntity.getBody());
     }
 
+
+
     @Test
     public void e_delete(){
-        System.out.println("Delete");
-        String url = baseURL + "delete/"+ stock.getStockId();
+        String url = baseURL + "delete/"+ furniture.getFurnitureId();
         System.out.println(url);
-        ResponseEntity<Stock> responseEntity = restTemplate.getForEntity(url, Stock.class);
-        assertNull(stock.getStockId(), responseEntity.getBody().getStockId());
+        ResponseEntity<Furniture> responseEntity = restTemplate.getForEntity(url, Furniture.class);
+        assertNull(furniture.getFurnitureId(), responseEntity.getBody().getFurnitureId());
+        System.out.println(responseEntity);
+        System.out.println(responseEntity.getBody());
         restTemplate.delete(url);
+
+
     }
+    
+    
+
 }

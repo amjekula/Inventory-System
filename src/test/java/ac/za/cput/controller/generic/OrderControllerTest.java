@@ -1,4 +1,4 @@
-package ac.za.cput.controller.user.generic;
+package ac.za.cput.controller.generic;
 
 import ac.za.cput.entity.generic.Order;
 import ac.za.cput.factory.generic.OrderFactory;
