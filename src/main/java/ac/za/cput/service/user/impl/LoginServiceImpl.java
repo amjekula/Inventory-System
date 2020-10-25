@@ -3,11 +3,12 @@ package ac.za.cput.service.user.impl;
 import ac.za.cput.entity.equipment.Device;
 import ac.za.cput.entity.user.Login;
 import ac.za.cput.repository.user.LoginRepository;
-import ac.za.cput.repository.user.impl.LoginRepositoryImpl;
 import ac.za.cput.service.user.LoginService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 /*
  *@author @joselleDina
  * Description: Interface for Login Service
@@ -17,42 +18,38 @@ import java.util.Set;
 @Service
 public class LoginServiceImpl implements LoginService {
 
-    private static LoginService service = null;
-    private  LoginRepository repository;
-    private LoginServiceImpl(){
-        this.repository = LoginRepositoryImpl.getLoginRepository();
-    }
 
-    public static LoginService getService(){
-        if(service == null){
-            service = new LoginServiceImpl();
-        }
-        return service;
-    }
+    @Autowired
+    private  LoginRepository repository;
+
 
     @Override
     public Set<Login> getAll() {
-        return repository.getAll();
+        return repository.findAll().stream().collect(Collectors.toSet());
     }
 
     @Override
     public Login create(Login login) {
-        return repository.create(login);
+        return repository.save(login);
     }
 
     @Override
     public Login read(String loginId) {
-        return repository.read(loginId);
+        return repository.getOne(loginId);
     }
 
     @Override
     public Login update(Login login) {
-        return repository.update(login);
+
+        if(this.repository.existsById(login.getLoginId())) {
+            return repository.save(login);
+        }
+        return null;
     }
 
     @Override
     public void delete(String loginId) {
-        repository.delete(loginId);
+        repository.deleteById(loginId);
 
 
     }
