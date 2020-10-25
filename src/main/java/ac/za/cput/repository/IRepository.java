@@ -4,7 +4,7 @@ package ac.za.cput.repository;
  * Description: IRepository used by all
  * Date: 25 August 2020
  */
-
+@Deprecated
 public interface IRepository<T, ID> {
 
      T create(T t);

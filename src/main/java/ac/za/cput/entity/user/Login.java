@@ -5,14 +5,20 @@ package ac.za.cput.entity.user;
  * Date: 28 June 2020
  */
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Objects;
 
+@Entity
 public class Login implements Serializable {
+    @Id
     private String loginId;
     private  String emailAddress;
     private int password;
 
-    private Login(){}
+
+    protected Login(){}
     private Login(Builder builder){
         this.loginId= builder.loginId;
         this.emailAddress= builder.emailAddress;
@@ -20,6 +26,20 @@ public class Login implements Serializable {
 
 
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Login login = (Login) o;
+        return loginId.equals(login.loginId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(loginId);
+    }
+
     public static class Builder{
         private String loginId;
         private String emailAddress;
