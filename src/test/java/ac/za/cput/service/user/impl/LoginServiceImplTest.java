@@ -6,6 +6,7 @@ import ac.za.cput.service.user.LoginService;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
 /*
@@ -17,7 +18,8 @@ import java.util.Set;
 import static org.junit.Assert.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class LoginServiceImplTest {
-    private static LoginService loginService = LoginServiceImpl.getService();
+    @Autowired
+    private static LoginService loginService;
     private static Login loginBuilder = LoginFactory.createLogin("joselle@gmail.com", 45862);
 
     @Test
