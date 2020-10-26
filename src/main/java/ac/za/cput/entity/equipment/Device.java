@@ -1,11 +1,16 @@
 package ac.za.cput.entity.equipment;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
 
+@Entity
 public class Device implements Serializable {
+   @Id
     private String deviceId;
+
     private String deviceTypeId;
 
-private Device(){}
+protected Device(){}
 
 
 
