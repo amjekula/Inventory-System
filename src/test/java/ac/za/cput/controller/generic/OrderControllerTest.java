@@ -2,10 +2,6 @@ package ac.za.cput.controller.generic;
 
 import ac.za.cput.entity.generic.Order;
 import ac.za.cput.factory.generic.OrderFactory;
-import ac.za.cput.repository.generic.OrderRepository;
-import ac.za.cput.repository.generic.impl.OrderRepositoryImpl;
-import ac.za.cput.service.generic.OrderService;
-import ac.za.cput.service.generic.impl.OrderServiceImpl;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,6 +14,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
+
 
 import static org.junit.Assert.*;
 
