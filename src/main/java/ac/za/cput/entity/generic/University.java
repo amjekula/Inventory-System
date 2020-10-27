@@ -5,14 +5,20 @@ package ac.za.cput.entity.generic;
  *  Desc: Entity for University
  */
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Objects;
 
+@Entity
 public class University implements Serializable {
+
+    @Id
     private String universityId;
     private String name;
     private String address;
 
-    private University(){}
+    protected University(){}
 
     private University(Builder builder) {
         this.universityId = builder.universityId;
@@ -71,5 +77,18 @@ public class University implements Serializable {
                 ", name='" + name + '\'' +
                 ", address=" + address +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        University that = (University) o;
+        return universityId.equals(that.universityId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(universityId);
     }
 }
