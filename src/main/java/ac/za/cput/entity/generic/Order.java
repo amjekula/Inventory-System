@@ -1,19 +1,22 @@
 package ac.za.cput.entity.generic;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Objects;
 
+@Entity
 public class Order implements Serializable
 {
+    @Id
     private String orderNum;
     private String clerkId;
     private String stockId;
     private String description;
     private String date;
 
-    private Order()
-    {
-    }
 
+    protected Order(){}
     private Order(Builder builder)
     {
         this.orderNum = builder.orderNum;
@@ -21,6 +24,22 @@ public class Order implements Serializable
         this.stockId = builder.stockId;
         this.description = builder.description;
         this.date = builder.date;
+
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return clerkId.equals(order.clerkId);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(clerkId);
     }
 
     public static class Builder
