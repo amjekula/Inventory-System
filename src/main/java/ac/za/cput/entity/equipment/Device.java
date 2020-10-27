@@ -1,15 +1,15 @@
 package ac.za.cput.entity.equipment;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
+@IdClass(DeviceId.class)
 public class Device implements Serializable {
    @Id
-    private String deviceId;
-
-    private String deviceTypeId;
+    private String deviceId,deviceTypeId;
 
 protected Device(){}
 
