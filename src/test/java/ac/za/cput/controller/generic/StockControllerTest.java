@@ -29,7 +29,7 @@ public class StockControllerTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
-    private String baseURL = "http://localhost:3306/stock/";
+    private String baseURL = "http://localhost:8080/stock/";
 
     private static Stock stock = StockFactory.createStock(10,"20 june 2020");
 
