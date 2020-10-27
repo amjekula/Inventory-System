@@ -1,16 +1,30 @@
 package ac.za.cput.entity.user;
 
+import ac.za.cput.entity.generic.University;
+
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
+import java.util.Set;
 
 /*
  *@author @amjekula
  * Description: Entity for Control Clerk
  * Date: 28 June 2020
  */
-public class ControlClerk implements Serializable {
-    private String clerkId, universityId, surname, firstName, phoneNum, emailAddress;
 
-    private ControlClerk(){}
+@Entity
+public class ControlClerk implements Serializable {
+
+    @Id
+    private String clerkId;
+    private String universityId, surname, firstName, phoneNum, emailAddress, password;
+
+    //Create the foreign key
+    /*@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<University> university;*/
+
+    protected ControlClerk(){}
 
     private ControlClerk(ControlClerkBuilder controlClerkBuilder) {
         this.clerkId = controlClerkBuilder.clerkId;
@@ -19,6 +33,7 @@ public class ControlClerk implements Serializable {
         this.firstName = controlClerkBuilder.firstName;
         this.phoneNum = controlClerkBuilder.phoneNum;
         this.emailAddress = controlClerkBuilder.emailAddress;
+        this.password = controlClerkBuilder.password;
     }
 
     public String getClerkId() {
@@ -45,6 +60,10 @@ public class ControlClerk implements Serializable {
         return emailAddress;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     @Override
     public String toString() {
         return "ControlClerk{" +
@@ -54,11 +73,12 @@ public class ControlClerk implements Serializable {
                 ", firstName='" + firstName + '\'' +
                 ", phoneNum='" + phoneNum + '\'' +
                 ", emailAddress='" + emailAddress + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 
     public static class ControlClerkBuilder{
-        private String clerkId, universityId, surname, firstName, phoneNum, emailAddress;
+        private String clerkId, universityId, surname, firstName, phoneNum, emailAddress, password;
 
         public ControlClerkBuilder setClerkId(String clerkId) {
             this.clerkId = clerkId;
@@ -90,6 +110,11 @@ public class ControlClerk implements Serializable {
             return this;
         }
 
+        public ControlClerkBuilder setPassword(String password) {
+            this.password = password;
+            return this;
+        }
+
         public ControlClerkBuilder copy(ControlClerk controlClerk){
             this.clerkId = controlClerk.clerkId;
             this.universityId = controlClerk.universityId;
@@ -97,11 +122,25 @@ public class ControlClerk implements Serializable {
             this.firstName = controlClerk.firstName;
             this.phoneNum = controlClerk.phoneNum;
             this.emailAddress = controlClerk.emailAddress;
+            this.password = controlClerk.password;
             return this;
         }
 
         public ControlClerk build(){
             return new ControlClerk(this);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ControlClerk that = (ControlClerk) o;
+        return clerkId.equals(that.clerkId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(clerkId);
     }
 }

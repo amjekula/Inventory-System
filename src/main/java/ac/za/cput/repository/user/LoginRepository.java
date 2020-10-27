@@ -1,7 +1,6 @@
 package ac.za.cput.repository.user;
 
 import ac.za.cput.entity.user.Login;
-import ac.za.cput.repository.IRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +12,7 @@ import java.util.Set;
  */
 @Repository
 public interface LoginRepository extends JpaRepository<Login, String> {
-//Set<Login> getAll();
+
 
 
 }

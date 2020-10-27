@@ -1,10 +1,13 @@
+/*
 package ac.za.cput.repository.user.impl;
 
+*/
 /*
  *@author @amjekula
  * Description: Test Cases for Control Clerk Repository Implementation
  * Date: 28 August 2020
- */
+ *//*
+
 
 import ac.za.cput.entity.user.ControlClerk;
 import ac.za.cput.factory.user.ControlClerkFactory;
@@ -59,4 +62,4 @@ public class ControlClerkRepositoryImplTest {
         assertEquals(1, clerkSet.size());
         System.out.println("All Users: " + clerkRepository.getAll() + "\n");
     }
-}
+}*/

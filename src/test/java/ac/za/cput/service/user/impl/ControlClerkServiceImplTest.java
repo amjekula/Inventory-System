@@ -11,6 +11,7 @@ import ac.za.cput.service.user.ControlClerkService;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
 
@@ -18,9 +19,10 @@ import static org.junit.Assert.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ControlClerkServiceImplTest {
-    private static ControlClerkService clerkService = ControlClerkServiceImpl.getService();
+    @Autowired
+    private static ControlClerkService clerkService;
     private static ControlClerk clerkBuilder = ControlClerkFactory.createControlClerk("Mjekuula", "Athi",
-            "079 2565 854", "athi@gmail.com");
+            "079 2565 854", "athi@gmail.com", "$852$0");
 
     @Test
     public void d_getAll() {

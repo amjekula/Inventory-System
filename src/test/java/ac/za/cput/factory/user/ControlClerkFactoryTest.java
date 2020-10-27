@@ -17,7 +17,7 @@ public class ControlClerkFactoryTest {
     @Test
     public void testCreateControlClerk(){
         controlClerk = ControlClerkFactory.createControlClerk("Mjekula ", "Athenkosi",
-                "0792250655", " ");
+                "0792250655", " ", "46874");
         assertNotNull(controlClerk);
 
         System.out.println("Test Case 1:\t" + controlClerk + "\n");
@@ -27,7 +27,7 @@ public class ControlClerkFactoryTest {
     @Test
     public void testCreateControlClerk2(){
         controlClerk = ControlClerkFactory.createControlClerk(" ", "Mjekula",
-                " ", "217164692@mycput.ac.za");
+                " ", "217164692@mycput.ac.za", "246810");
         assertNull(controlClerk);
 
         System.out.println("Test Case 2:\t" + controlClerk);
