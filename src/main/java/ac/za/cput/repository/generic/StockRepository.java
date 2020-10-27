@@ -2,6 +2,8 @@ package ac.za.cput.repository.generic;
 
 import ac.za.cput.entity.generic.Stock;
 import ac.za.cput.repository.IRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Set;
 
@@ -10,6 +12,6 @@ import java.util.Set;
  *  Desc: Stock repository
  */
 
-public interface StockRepository extends IRepository<Stock,String> {
-    Set<Stock> getAll();
+@Repository
+public interface StockRepository extends JpaRepository<Stock,String> {
 }

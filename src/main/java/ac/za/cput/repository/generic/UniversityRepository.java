@@ -2,6 +2,8 @@ package ac.za.cput.repository.generic;
 
 import ac.za.cput.entity.generic.University;
 import ac.za.cput.repository.IRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Set;
 
@@ -10,6 +12,6 @@ import java.util.Set;
  *  Desc: University repository
  */
 
-public interface UniversityRepository extends IRepository<University,String> {
-    Set<University> getAll();
+@Repository
+public interface UniversityRepository extends JpaRepository<University,String> {
 }
