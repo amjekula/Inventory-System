@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "`order`")
 public class Order implements Serializable
 {
     @Id
