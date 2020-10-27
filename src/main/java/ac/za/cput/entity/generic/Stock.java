@@ -5,17 +5,22 @@ package ac.za.cput.entity.generic;
  *  Desc: Entity for Stock
  */
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Objects;
 
+@Entity
 public class Stock implements Serializable
 {
+    @Id
     private String stockId;
     private String furnitureId;
     private String deviceId;
     private int quantity;
     private String date;
 
-    private Stock(){}
+    protected Stock(){}
 
     private Stock(Builder builder)
     {
@@ -105,5 +110,18 @@ public class Stock implements Serializable
                 ", quantity=" + quantity +
                 ", date=" + date +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Stock stock = (Stock) o;
+        return stockId.equals(stock.stockId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(stockId);
     }
 }
