@@ -1,10 +1,13 @@
+/*
 package ac.za.cput.repository.user.impl;
 
+*/
 /*
  *@author @amjekula
  * Description: Implementation for Control Clerk Repository
  * Date: 28 August 2020
- */
+ *//*
+
 
 import ac.za.cput.entity.user.ControlClerk;
 import ac.za.cput.factory.user.ControlClerkFactory;
@@ -72,3 +75,4 @@ public class ControlClerkRepositoryImpl implements ControlClerkRepository {
         return this.controlClerkDB;
     }
 }
+*/

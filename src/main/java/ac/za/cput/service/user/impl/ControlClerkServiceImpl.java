@@ -4,54 +4,48 @@ package ac.za.cput.service.user.impl;
  * Description: Implementation for Control Clerk Service
  * Date: 05 September 2020
  */
-import ac.za.cput.entity.equipment.Device;
 import ac.za.cput.entity.user.ControlClerk;
 import ac.za.cput.repository.user.ControlClerkRepository;
-import ac.za.cput.repository.user.impl.ControlClerkRepositoryImpl;
 import ac.za.cput.service.user.ControlClerkService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
+import java.util.stream.Collectors;
+
 @Service
 public class ControlClerkServiceImpl implements ControlClerkService {
 
-    private static ControlClerkService service = null;
+    @Autowired
     private ControlClerkRepository repository;
-
-    private ControlClerkServiceImpl(){
-        this.repository = ControlClerkRepositoryImpl.getControlClerkRepository();
-    }
-
-    public static ControlClerkService getService(){
-        if(service == null){
-            service = new ControlClerkServiceImpl();
-        }
-        return service;
-    }
 
     @Override
     public Set<ControlClerk> getAll() {
-        return this.repository.getAll();
+        return this.repository.findAll().stream().collect(Collectors.toSet());
     }
 
     @Override
     public ControlClerk create(ControlClerk controlClerk) {
-        return this.repository.create(controlClerk);
+        return this.repository.save(controlClerk);
     }
 
     @Override
     public ControlClerk read(String ClerkId) {
-        return this.repository.read(ClerkId);
+        return this.repository.findById(ClerkId).orElseGet(null);
     }
 
     @Override
     public ControlClerk update(ControlClerk controlClerk) {
-        return this.repository.update(controlClerk);
+        if(this.repository.existsById(controlClerk.getClerkId())){
+
+            return this.repository.save(controlClerk);
+        }else {
+            return null;
+        }
     }
 
     @Override
     public void delete(String clerkId) {
-        this.repository.delete(clerkId);
-
+        this.repository.deleteById(clerkId);
     }
 }
