@@ -22,7 +22,6 @@ public class StockController {
     @PostMapping("/create")
     public Stock create(@RequestBody Stock stock) {
         Stock newStock = StockFactory.createStock(stock.getQuantity(),stock.getDate());
-
         return stockService.create(newStock);
     }
 
