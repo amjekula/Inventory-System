@@ -6,10 +6,10 @@ package ac.za.cput.repository.user;
  */
 
 import ac.za.cput.entity.user.ControlClerk;
-import ac.za.cput.repository.IRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.Set;
+@Repository
+public interface ControlClerkRepository extends JpaRepository<ControlClerk, String> {
 
-public interface ControlClerkRepository extends IRepository<ControlClerk, String> {
-    Set<ControlClerk> getAll();
 }

@@ -4,6 +4,7 @@ package ac.za.cput.controller.user;
  * Description: Implementation for Control Clerk Controller
  * Date: 27 September 2020
  */
+import ac.za.cput.entity.generic.University;
 import ac.za.cput.entity.user.ControlClerk;
 import ac.za.cput.factory.user.ControlClerkFactory;
 import ac.za.cput.service.user.impl.ControlClerkServiceImpl;
@@ -20,7 +21,8 @@ public class ControlClerkController {
     @PostMapping("/create")
     public ControlClerk create(@RequestBody ControlClerk controlClerk) {
         ControlClerk newControlClerk = ControlClerkFactory.createControlClerk(controlClerk.getSurname(),
-                controlClerk.getFirstName(), controlClerk.getPhoneNum(), controlClerk.getEmailAddress());
+                controlClerk.getFirstName(), controlClerk.getPhoneNum(), controlClerk.getEmailAddress(),
+                controlClerk.getPassword());
 
         return controlClerkService.create(newControlClerk);
     }
