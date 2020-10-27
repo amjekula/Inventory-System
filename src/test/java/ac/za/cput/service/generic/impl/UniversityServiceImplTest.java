@@ -6,6 +6,7 @@ import ac.za.cput.service.generic.UniversityService;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
 
@@ -20,7 +21,8 @@ import static org.junit.Assert.assertEquals;
 
 public class UniversityServiceImplTest {
 
-    private static UniversityService service = UniversityServiceImpl.getService();
+    @Autowired
+    private UniversityService service;
     private static University university = UniversityFactory.createUniversity("CPUT", "123 Street, Cape Town");
 
     @Test
