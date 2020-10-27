@@ -1,6 +1,4 @@
 package ac.za.cput.service.generic.impl;
-
-
 import ac.za.cput.entity.generic.Order;
 import ac.za.cput.factory.generic.OrderFactory;
 import ac.za.cput.service.generic.OrderService;
@@ -8,15 +6,16 @@ import ac.za.cput.service.generic.impl.OrderServiceImpl;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
 
 import static org.junit.Assert.*;
-
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class OrderServiceImplTest
 {
-    private static OrderService orderService = OrderServiceImpl.getService();
+    @Autowired
+    private static OrderService orderService;
     private static Order orderBuilder = OrderFactory.createStockOrder("test", "5/09/2020");
 
     @Test
