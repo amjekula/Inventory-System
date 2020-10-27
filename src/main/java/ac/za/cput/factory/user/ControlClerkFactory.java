@@ -14,7 +14,7 @@ import javax.swing.*;
 public class ControlClerkFactory {
 
     public static ControlClerk createControlClerk(String surname, String firstName,
-                                                  String phoneNum, String emailAddress){
+                                                  String phoneNum, String emailAddress, String password){
 
         //Getting the Primary keys
         String clerkId = GenericHelper.generateId();
@@ -29,6 +29,9 @@ public class ControlClerkFactory {
         }else if(firstName.trim().equals("")){
             System.out.println("Name Can't Be Empty");
 
+        }else if(password.trim().equals("")){
+            System.out.println("Password Can't Be Empty");
+
         }else if(phoneNum.trim().equals("") || phoneNum.trim().length() < 10 || phoneNum.trim().length() > 10
                 && emailAddress.trim().equals("")){
             System.out.println("Phone Number or Email doesn't exist");
@@ -41,6 +44,7 @@ public class ControlClerkFactory {
                     .setFirstName(firstName.trim())
                     .setPhoneNum(phoneNum.trim())
                     .setEmailAddress(emailAddress.trim())
+                    .setPassword(password.trim())
                     .build();
         }
         return controlClerk;
