@@ -3,8 +3,8 @@ package ac.za.cput.controller.equipment;
 import static org.junit.Assert.*;
 
 import ac.za.cput.entity.equipment.DeviceType;
-import ac.za.cput.entity.equipment.FurnitureType;
 import ac.za.cput.factory.equipment.DeviceTypeFactory;
+import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -44,27 +44,25 @@ public class DeviceTypeControllerTest {
     }
 
     @Test
-    public void b_read(){
-        String url = baseURL + "read/" + deviceType.getDeviceTypeId();
+    public void b_read() {
+        String url = baseURL + "read/" + "e9680701-3e8a-4504-b4c5-f202dd081a5a";
         System.out.println(url);
         ResponseEntity<DeviceType> responseEntity = restTemplate.getForEntity(url, DeviceType.class);
-        assertEquals(deviceType.getDeviceTypeId(), responseEntity.getBody().getDeviceTypeId());
         System.out.println(responseEntity.getBody());
     }
 
 
-
     @Test
-    public void c_update(){
-        DeviceType updated = new DeviceType.Builder().copy(deviceType).setDeviceDescription("Tablet").setSize(8).setColor("Brown").build();
+    public void c_update() {
+        DeviceType updated = new DeviceType.Builder().copy(deviceType).setDeviceDescription("Tablet").setColor("Brown").setSize(2).build();
         String url = baseURL + "update";
         System.out.println(url);
         ResponseEntity<DeviceType> postResponse = restTemplate.postForEntity(url, updated, DeviceType.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
         assertEquals(deviceType.getDeviceTypeId(), postResponse.getBody().getDeviceTypeId());
-        System.out.println(postResponse);
         System.out.println(postResponse.getBody());
+
 
     }
 
@@ -80,10 +78,9 @@ public class DeviceTypeControllerTest {
     }
 
 
-
     @Test
-    public void e_delete(){
-        String url = baseURL + "delete/"+ deviceType.getDeviceTypeId();
+    public void e_delete() {
+        String url = baseURL + "delete/" + deviceType.getDeviceTypeId();
         System.out.println(url);
         ResponseEntity<DeviceType> responseEntity = restTemplate.getForEntity(url, DeviceType.class);
         assertNull(deviceType.getDeviceTypeId(), responseEntity.getBody().getDeviceTypeId());
@@ -93,7 +90,5 @@ public class DeviceTypeControllerTest {
 
 
     }
-
-
 
 }

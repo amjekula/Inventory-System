@@ -19,35 +19,31 @@ public class FurnitureTypeController {
     @Autowired
     private FurnitureTypeServiceImpl furnitureTypeService;
 
+
     @PostMapping("/create")
-    public FurnitureType create(FurnitureType furnitureType){
-
-
+    public FurnitureType create( @RequestBody FurnitureType furnitureType){
         FurnitureType newFurnitureType = FurnitureTypeFactory.createFurnitureType(furnitureType.getFurnitureDescription(),furnitureType.getSize(),furnitureType.getColor());
         return furnitureTypeService.create(newFurnitureType);
     }
 
-
-    @GetMapping("/read/{id}")
-    public FurnitureType read(@PathVariable String id){
-        return furnitureTypeService.read(id);
+    @GetMapping("/all")
+    public Set<FurnitureType> getAll(){
+        return  furnitureTypeService.getAll();
     }
 
-    @PostMapping("/Update")
+    @GetMapping("/read/{furnitureTypeId}")
+    public FurnitureType read(@PathVariable String furnitureTypeId){
+        return furnitureTypeService.read(furnitureTypeId);}
+
+    @PostMapping("/update")
     public FurnitureType update(@RequestBody FurnitureType furnitureType){
         return furnitureTypeService.update(furnitureType);
     }
 
-    @GetMapping("/all")
-    public Set<FurnitureType> getAll(){
-        return furnitureTypeService.getAll();
-    }
-
-
     @DeleteMapping("/delete/{furnitureTypeId}")
-    public void delete(@PathVariable String furnitureTypeId)
-    {
-        furnitureTypeService.delete(furnitureTypeId);
-    }
+    public void delete(@PathVariable String furnitureTypeId){ furnitureTypeService.delete(furnitureTypeId);}
+
+
+
 
 }
