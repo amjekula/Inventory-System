@@ -1,14 +1,12 @@
 package ac.za.cput.service.generic.impl;
 
-import ac.za.cput.entity.equipment.Device;
 import ac.za.cput.entity.generic.Stock;
 import ac.za.cput.repository.generic.StockRepository;
+import ac.za.cput.repository.generic.impl.StockRepositoryImpl;
 import ac.za.cput.service.generic.StockService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /*
  *  @author: Sherwin Adams (216177499)
@@ -18,34 +16,40 @@ import java.util.stream.Collectors;
 @Service
 public class StockServiceImpl implements StockService {
 
-    @Autowired
+    private static StockService service = null;
     private StockRepository repository;
+
+    private StockServiceImpl() { this.repository = StockRepositoryImpl.getRepository(); }
+
+    public static StockService getService() {
+        if (service == null) service = new StockServiceImpl();
+        return service;
+    }
 
     @Override
     public Set<Stock> getAll() {
-        return this.repository.findAll().stream().collect(Collectors.toSet());
+        return this.repository.getAll();
     }
 
     @Override
     public Stock create(Stock stock) {
-        return  this.repository.save(stock);
+        return  this.repository.create(stock);
     }
 
     @Override
     public Stock read(String s) {
-        return this.repository.findById(s).orElseGet(null);
+        return this.repository.read(s);
     }
 
     @Override
     public Stock update(Stock stock) {
-        if (this.repository.existsById(stock.getStockId())) {
-            return create(stock);
-        }
-        return null;
+        return this.repository.update(stock);
     }
 
     @Override
-    public void delete(String s) {
-        this.repository.deleteById(s);
+    public boolean delete(String s) {
+        this.repository.delete(s);
+
+        return false;
     }
 }
