@@ -1,63 +1,52 @@
 package ac.za.cput.service.generic.impl;
-
-
+import ac.za.cput.entity.equipment.Device;
 import ac.za.cput.entity.generic.Order;
 import ac.za.cput.repository.generic.OrderRepository;
-import ac.za.cput.repository.generic.impl.OrderRepositoryImpl;
 import ac.za.cput.service.generic.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
+import java.util.stream.Collectors;
+
 @Service
 public class OrderServiceImpl implements OrderService
 {
-
-    private static OrderService service = null;
-    private OrderRepository repository;
-
-    private OrderServiceImpl()
-    {
-        this.repository = OrderRepositoryImpl.getOrderRepository();
-    }
-
-    public static OrderService getService()
-    {
-        if(service == null)
-        {
-            service = new OrderServiceImpl();
-        }
-        return service;
-    }
+    @Autowired
+    private  OrderRepository repository;
 
     @Override
     public Set<Order> getAll()
     {
-        return this.repository.getAll();
+        return repository.findAll().stream().collect(Collectors.toSet());
     }
 
     @Override
     public Order create(Order order)
     {
-        return this.repository.create(order);
+        return repository.save(order);
     }
 
     @Override
-    public Order read(String StockId)
+    public Order read(String clerkId)
     {
-        return this.repository.read(StockId);
+        return repository.getOne(clerkId);
     }
 
     @Override
     public Order update(Order order)
     {
-        return this.repository.update(order);
+
+        if(this.repository.existsById(order.getClerkId()))
+        {
+            return repository.save(order);
+        }
+        return null;
     }
 
     @Override
-    public boolean delete(String clerkId)
+    public void delete(String clerkId)
     {
-        this.repository.delete(clerkId);
-
-        return false;
+        repository.deleteById(clerkId);
     }
 }

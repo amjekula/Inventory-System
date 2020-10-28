@@ -1,21 +1,13 @@
 package ac.za.cput.entity.equipment;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.io.Serializable;
-import java.util.Objects;
 
-@Entity
 public class Furniture implements Serializable {
-
-    @Id
     private String furnitureId;
     private String furnitureTypeId;
 
-    protected Furniture() {
+    private Furniture() {
     }
 
     public Furniture(Builder builder){
@@ -65,16 +57,8 @@ public class Furniture implements Serializable {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Furniture furniture = (Furniture) o;
-        return furnitureId.equals(furniture.furnitureId);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(furnitureId);
-    }
+
+
+
 } // Main

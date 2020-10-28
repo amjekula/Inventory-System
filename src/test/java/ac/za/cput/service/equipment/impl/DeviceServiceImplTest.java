@@ -1,19 +1,21 @@
 package ac.za.cput.service.equipment.impl;
+
 import static org.junit.Assert.*;
+
 import ac.za.cput.entity.equipment.Device;
+import ac.za.cput.entity.equipment.Device;
+import ac.za.cput.entity.equipment.Furniture;
 import ac.za.cput.factory.equipment.DeviceFactory;
+import ac.za.cput.service.equipment.DeviceService;
 import ac.za.cput.service.equipment.DeviceService;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DeviceServiceImplTest {
-
-    @Autowired
-    private  static DeviceService service ;
+    private  static DeviceService service = DeviceServiceImpl.getService ();
     private static Device deviceBuilder = DeviceFactory.createDevice("762");
 
     @Test
