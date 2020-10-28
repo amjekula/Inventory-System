@@ -6,46 +6,52 @@ package ac.za.cput.service.user.impl;
  */
 import ac.za.cput.entity.user.ControlClerk;
 import ac.za.cput.repository.user.ControlClerkRepository;
+import ac.za.cput.repository.user.impl.ControlClerkRepositoryImpl;
 import ac.za.cput.service.user.ControlClerkService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
-import java.util.stream.Collectors;
-
 @Service
 public class ControlClerkServiceImpl implements ControlClerkService {
 
-    @Autowired
+    private static ControlClerkService service = null;
     private ControlClerkRepository repository;
+
+    private ControlClerkServiceImpl(){
+        this.repository = ControlClerkRepositoryImpl.getControlClerkRepository();
+    }
+
+    public static ControlClerkService getService(){
+        if(service == null){
+            service = new ControlClerkServiceImpl();
+        }
+        return service;
+    }
 
     @Override
     public Set<ControlClerk> getAll() {
-        return this.repository.findAll().stream().collect(Collectors.toSet());
+        return this.repository.getAll();
     }
 
     @Override
     public ControlClerk create(ControlClerk controlClerk) {
-        return this.repository.save(controlClerk);
+        return this.repository.create(controlClerk);
     }
 
     @Override
     public ControlClerk read(String ClerkId) {
-        return this.repository.findById(ClerkId).orElseGet(null);
+        return this.repository.read(ClerkId);
     }
 
     @Override
     public ControlClerk update(ControlClerk controlClerk) {
-        if(this.repository.existsById(controlClerk.getClerkId())){
-
-            return this.repository.save(controlClerk);
-        }else {
-            return null;
-        }
+        return this.repository.update(controlClerk);
     }
 
     @Override
-    public void delete(String clerkId) {
-        this.repository.deleteById(clerkId);
+    public boolean delete(String clerkId) {
+        this.repository.delete(clerkId);
+
+        return false;
     }
 }
