@@ -1,9 +1,7 @@
 package ac.za.cput.controller.equipment;
 
 import ac.za.cput.entity.equipment.FurnitureType;
-import ac.za.cput.factory.equipment.DeviceTypeFactory;
 import ac.za.cput.factory.equipment.FurnitureTypeFactory;
-import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -51,32 +49,9 @@ public class FurnitureTypeControllerTest {
         System.out.println(postResponse.getBody());
     }
 
-    @Test
-    public void b_read(){
-        String url = baseURL + "read/" + furnitureType.getFurnitureTypeId();
-        System.out.println(url);
-        ResponseEntity<FurnitureType> responseEntity = restTemplate.getForEntity(url, FurnitureType.class);
-        assertEquals(furnitureType.getFurnitureTypeId(), responseEntity.getBody().getFurnitureTypeId());
-        System.out.println(responseEntity.getBody());
-    }
-
 
     @Test
-    public void c_update(){
-        FurnitureType updated = new FurnitureType.Builder().copy(furnitureType).setFurnitureDescription("Desk").setSize(4).setColor("blue").build();
-        String url = baseURL + "update";
-        System.out.println(url);
-        ResponseEntity<FurnitureType> postResponse = restTemplate.postForEntity(url, updated, FurnitureType.class);
-        Assert.assertNotNull(postResponse);
-        Assert.assertNotNull(postResponse.getBody());
-        Assert.assertEquals(furnitureType.getFurnitureTypeId(), postResponse.getBody().getFurnitureTypeId());
-        System.out.println(postResponse);
-        System.out.println(postResponse.getBody());
-
-    }
-
-    @Test
-    public void d_getAll() {
+    public void e_getAll() {
 
         String url = baseURL + "all";
         System.out.println(url);
@@ -87,17 +62,40 @@ public class FurnitureTypeControllerTest {
     }
 
     @Test
-    public void e_delete(){
-        String url = baseURL + "delete/"+ furnitureType.getFurnitureTypeId();
+    public void b_read(){
+        String url = baseURL + "read/" + "93fa9418-21a2-4f90-bd27-67597521c376";
         System.out.println(url);
         ResponseEntity<FurnitureType> responseEntity = restTemplate.getForEntity(url, FurnitureType.class);
-        assertNull(furnitureType.getFurnitureTypeId(), responseEntity.getBody().getFurnitureTypeId());
-        System.out.println(responseEntity);
         System.out.println(responseEntity.getBody());
-        restTemplate.delete(url);
 
 
     }
+
+    @Test
+    public void c_update(){
+        FurnitureType updated = new FurnitureType.Builder().copy(furnitureType).setFurnitureDescription("Table").setColor("yellow").setSize(9).build();
+        String url = baseURL + "update";
+        System.out.println(url);
+        ResponseEntity<FurnitureType> postResponse = restTemplate.postForEntity(url, updated, FurnitureType.class);
+        assertNotNull(postResponse);
+        assertNotNull(postResponse.getBody());
+        assertEquals(furnitureType.getFurnitureTypeId(), postResponse.getBody().getFurnitureTypeId());
+        System.out.println(postResponse.getBody());
+
+    }
+
+    @Test
+    public void d_delete(){
+        String url = baseURL + "delete/" + furnitureType.getFurnitureTypeId();
+        System.out.println("URL" + url);
+        restTemplate.delete(url);
+        ResponseEntity<FurnitureType> responseEntity = restTemplate.getForEntity(url, FurnitureType.class);
+        assertNull(furnitureType.getFurnitureTypeId(), responseEntity.getBody().getFurnitureTypeId());
+        restTemplate.delete(url);
+
+    }
+
+
 
 
 }
