@@ -20,8 +20,8 @@ import org.junit.runners.MethodSorters;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FurnitureControllerTest {
 
     private static Furniture furniture = FurnitureFactory.createFurniture("1234");

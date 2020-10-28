@@ -23,8 +23,7 @@ public class UniversityController {
 
     @PostMapping("/create")
     public University create(@RequestBody University university) {
-        University newUni   = UniversityFactory.createUniversity(university.getName(),university.getAddress());
-
+        University newUni = UniversityFactory.createUniversity(university.getName(), university.getAddress());
         return universityService.create(newUni);
     }
 

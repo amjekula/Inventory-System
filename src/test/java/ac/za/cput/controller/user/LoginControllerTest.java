@@ -8,6 +8,7 @@ package ac.za.cput.controller.user;
 import ac.za.cput.entity.user.Login;
 import ac.za.cput.factory.user.LoginFactory;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -48,6 +49,7 @@ public class LoginControllerTest {
     }
 
     @Test
+    @Ignore
     public void b_read(){
         String url = baseURL + "read/" + login.getLoginId();
         System.out.println(url);
@@ -58,6 +60,7 @@ public class LoginControllerTest {
     }
 
     @Test
+    @Ignore
     public void c_update(){
         Login updated = new Login.Builder().copy(login).setEmailAddress("joselledina@gmail.com").setPassword(204785).build();
         String url = baseURL + "update";
@@ -72,6 +75,7 @@ public class LoginControllerTest {
     }
 
     @Test
+    @Ignore
     public void d_getAll() {
 
         String url = baseURL + "all";
@@ -84,6 +88,7 @@ public class LoginControllerTest {
     }
 
     @Test
+    @Ignore
     public void e_delete(){
         String url = baseURL + "delete/"+ login.getLoginId();
         System.out.println(url);
