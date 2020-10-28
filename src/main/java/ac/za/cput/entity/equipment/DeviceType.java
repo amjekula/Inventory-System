@@ -1,17 +1,20 @@
 package ac.za.cput.entity.equipment;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 //JodiSmit
+@Entity
 public class DeviceType implements Serializable {
 
+   @Id
+    private String deviceTypeId;
+    private String deviceDescription;
+    private double size;
+    private String color;
 
-    private final String deviceTypeId;
-    private final String deviceDescription;
-    private final double size;
-    private final String color;
-
-
+    protected DeviceType(){}
     public DeviceType(Builder builder){
 
         this.deviceTypeId = builder.deviceTypeId;
