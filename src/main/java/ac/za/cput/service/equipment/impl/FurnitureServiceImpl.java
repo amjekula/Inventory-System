@@ -43,9 +43,8 @@ public class FurnitureServiceImpl implements FurnitureService
     }
 
     @Override
-    public boolean delete(String furnitureId) {
+    public void delete(String furnitureId) {
         this.repository.deleteById(furnitureId);
-        if (this.repository.existsById(furnitureId)) return false;
-        else return false;
+
     }
 }

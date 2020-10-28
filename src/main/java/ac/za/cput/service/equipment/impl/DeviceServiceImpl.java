@@ -46,10 +46,9 @@ return  null;
     }
 
     @Override
-    public boolean delete(String deviceId) {
+    public void delete(String deviceId) {
         this.repository.deleteById(deviceId);
-        if (this.repository.existsById(deviceId)) return false ;
-        else return false;
+
 
     }
 }
