@@ -9,6 +9,7 @@ import ac.za.cput.service.equipment.FurnitureTypeService;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
 
@@ -17,7 +18,8 @@ import static org.junit.Assert.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FurnitureTypeServiceImplTest {
 
-    private static FurnitureTypeService service = FurnitureTypeServiceImpl.getService();
+    @Autowired
+    private static FurnitureTypeService service;
     private static FurnitureType furnitureTypeBuilder = FurnitureTypeFactory.createFurnitureType("Desk",5,"brown");
 
 
