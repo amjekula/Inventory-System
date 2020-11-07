@@ -1,17 +1,21 @@
 package ac.za.cput.entity.equipment;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 //JodiSmit
+@Entity
 public class FurnitureType implements Serializable {
 
-    private final String furnitureTypeId;
-    private final String furnitureDescription;
-    private final double size;
-    private final String color;
+    @Id
+    private String furnitureTypeId;
+    private String furnitureDescription;
+    private double size;
+    private String color;
 
 
-
+  protected FurnitureType(){}
     public FurnitureType(Builder builder){
 
         this.furnitureTypeId = builder.furnitureTypeId;

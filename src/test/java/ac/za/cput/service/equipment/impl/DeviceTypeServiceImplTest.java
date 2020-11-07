@@ -6,6 +6,7 @@ import ac.za.cput.service.equipment.DeviceTypeService;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
 
@@ -13,7 +14,8 @@ import static org.junit.Assert.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DeviceTypeServiceImplTest {
 
-    private static DeviceTypeService service = DeviceTypeServiceImpl.getService();
+    @Autowired
+    private static DeviceTypeService service;
     private static DeviceType deviceTypeBuilder = DeviceTypeFactory.createDeviceType("Dell",5,"yellow");
 
 

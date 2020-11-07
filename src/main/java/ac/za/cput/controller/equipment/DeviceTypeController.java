@@ -17,26 +17,23 @@ public class DeviceTypeController {
     private DeviceTypeServiceImpl deviceTypeService;
 
 
-   @PostMapping("/create")
+    @PostMapping("/create")
     public DeviceType create(@RequestBody DeviceType deviceType){
+        DeviceType newDeviceType = DeviceTypeFactory.createDeviceType(deviceType.getDeviceDescription(),deviceType.getSize(),deviceType.getColor());
+        return deviceTypeService.create(newDeviceType);
 
-       DeviceType newDeviceType = DeviceTypeFactory.createDeviceType(deviceType.getDeviceDescription(),deviceType.getSize(),deviceType.getColor());
-      return deviceTypeService.create(newDeviceType);
+    }
 
-   }
-
-
-
-   @GetMapping("/read/{id}")
+    @GetMapping("/read/{deviceTypeId}")
     public DeviceType read(@PathVariable String deviceTypeId){
-       return deviceTypeService.read(deviceTypeId);
-   }
+        return deviceTypeService.read(deviceTypeId);
+    }
 
 
-   @PostMapping("/Update")
+    @PostMapping("/update")
     public DeviceType update(@RequestBody DeviceType deviceType){
-       return deviceTypeService.update(deviceType);
-   }
+        return deviceTypeService.update(deviceType);
+    }
 
     @GetMapping("/all")
     public Set<DeviceType> getAll(){
