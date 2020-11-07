@@ -29,6 +29,9 @@ import static org.junit.Assert.*;
 public class LoginControllerTest {
 
    private static Login login = LoginFactory.createLogin("josy@gmail.com", 25468);
+   private static String SECURITY_USERNAME="inventory";
+   private static String SECURITY_PASSWORD="adp";
+
 
 
     @Autowired
@@ -49,18 +52,16 @@ public class LoginControllerTest {
     }
 
     @Test
-    @Ignore
     public void b_read(){
         String url = baseURL + "read/" + login.getLoginId();
         System.out.println(url);
-        ResponseEntity<Login> responseEntity = restTemplate.getForEntity(url, Login.class);
+        ResponseEntity<Login> responseEntity = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD).getForEntity(url, Login.class);
         assertEquals(login.getLoginId(), responseEntity.getBody().getLoginId());
         System.out.print("reading using loginId:" + login.getLoginId() +"\n" );
         System.out.println(responseEntity.getBody());
     }
 
     @Test
-    @Ignore
     public void c_update(){
         Login updated = new Login.Builder().copy(login).setEmailAddress("joselledina@gmail.com").setPassword(204785).build();
         String url = baseURL + "update";
@@ -75,20 +76,18 @@ public class LoginControllerTest {
     }
 
     @Test
-    @Ignore
     public void d_getAll() {
 
         String url = baseURL + "all";
         System.out.println(url);
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null, headers);
-        ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+        ResponseEntity<String> responseEntity = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD).exchange(url, HttpMethod.GET, entity, String.class);
         System.out.print("Show all login created details:"+ "\n");
         System.out.println(responseEntity.getBody());
     }
 
     @Test
-    @Ignore
     public void e_delete(){
         String url = baseURL + "delete/"+ login.getLoginId();
         System.out.println(url);
