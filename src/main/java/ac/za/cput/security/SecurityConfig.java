@@ -11,17 +11,24 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    private static final String CLERK_ROLE = "CLERK";
+    private static final String ADMIN_ROLE = "ADMIN";
 
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("first").password("{noop}1234").roles("CLERK");
+        auth.inMemoryAuthentication().withUser("admin").password("{noop}1234").roles(ADMIN_ROLE, CLERK_ROLE)
+                                                                 .and()
+                                                                 .withUser("clerk")
+                                                                 .password("4567")
+                                                                 .roles(CLERK_ROLE);
+
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic().and().authorizeRequests().antMatchers(HttpMethod.POST, "**/create").hasRole("CLERK")
-                                                                                                         .antMatchers(HttpMethod.GET, "**/read/**").hasRole("CLERK")
+        http.httpBasic().and().authorizeRequests().antMatchers(HttpMethod.POST, "/inventory/**/create", "/inventory/**/update", "/inventory/**/delete/**","/inventory/**/all" ).hasRole(ADMIN_ROLE)
+                                                                                                         .antMatchers(HttpMethod.GET, "/inventory/**/read/**","/inventory/**/update").hasRole(CLERK_ROLE)
                                                                                                          .and()
                                                                                                          .csrf().disable()
                                                                                                          .formLogin().disable();
