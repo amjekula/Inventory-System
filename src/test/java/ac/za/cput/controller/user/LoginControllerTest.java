@@ -29,21 +29,23 @@ import static org.junit.Assert.*;
 public class LoginControllerTest {
 
    private static Login login = LoginFactory.createLogin("josy@gmail.com", 25468);
-   private static String SECURITY_USERNAME="first";
+   private static String SECURITY_USERNAME="admin";
    private static String SECURITY_PASSWORD="1234";
 
 
 
     @Autowired
     private TestRestTemplate restTemplate;
-    private String baseURL = "http://localhost:8080/login/";
+    private String baseURL = "http://localhost:8080/inventory/login/";
 
     @Test
     public void a_create() {
         String url = baseURL + "create";
         System.out.println(url);
+
         ResponseEntity<Login> postResponse = restTemplate
                             .withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD).postForEntity(url, login, Login.class);
+
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
         login = postResponse.getBody();
@@ -67,7 +69,8 @@ public class LoginControllerTest {
         Login updated = new Login.Builder().copy(login).setEmailAddress("joselledina@gmail.com").setPassword(204785).build();
         String url = baseURL + "update";
         System.out.println(url);
-        ResponseEntity<Login> postResponse = restTemplate.postForEntity(url, updated, Login.class);
+        ResponseEntity<Login> postResponse = restTemplate.withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .postForEntity(url, updated, Login.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
         assertEquals(login.getLoginId(), postResponse.getBody().getLoginId());
@@ -92,7 +95,8 @@ public class LoginControllerTest {
     public void e_delete(){
         String url = baseURL + "delete/"+ login.getLoginId();
         System.out.println(url);
-        ResponseEntity<Login> responseEntity = restTemplate.getForEntity(url, Login.class);
+        ResponseEntity<Login> responseEntity = restTemplate
+                                        .withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD).getForEntity(url, Login.class);
         assertNull(login.getLoginId(), responseEntity.getBody().getLoginId());
         System.out.print("Deleted loginId:" + login.getLoginId() + "\n");
         restTemplate.delete(url);

@@ -31,6 +31,9 @@ public class UniversityControllerTest {
     private String baseURL = "http://localhost:8080/university/";
     private static University university = UniversityFactory.createUniversity("CPUT","123 Street");
 
+    private static String SECURITY_USERNAME="inventory";
+    private static String SECURITY_PASSWORD="adp";
+
     @Test
     public void a_create() {
         System.out.println("Create");
@@ -49,7 +52,9 @@ public class UniversityControllerTest {
         System.out.println("Read");
         String url = baseURL + "read/" + university.getUniversityId();
         System.out.println(url);
-        ResponseEntity<University> responseEntity = restTemplate.getForEntity(url, University.class);
+        ResponseEntity<University> responseEntity = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .getForEntity(url, University.class);
         assertEquals(university.getUniversityId(), responseEntity.getBody().getUniversityId());
         System.out.println(responseEntity.getBody());
     }
@@ -75,7 +80,9 @@ public class UniversityControllerTest {
         System.out.println(url);
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null, headers);
-        ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+        ResponseEntity<String> responseEntity = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .exchange(url, HttpMethod.GET, entity, String.class);
         System.out.println(responseEntity.getBody());
     }
 
