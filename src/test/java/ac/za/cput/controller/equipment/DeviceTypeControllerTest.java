@@ -25,6 +25,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class DeviceTypeControllerTest {
 
     private static DeviceType deviceType = DeviceTypeFactory.createDeviceType("Printer", 5, "black");
+    private static String SECURITY_USERNAME="first";
+    private static String SECURITY_PASSWORD="1234";
+
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -35,7 +38,8 @@ public class DeviceTypeControllerTest {
     public void a_create() {
         String url = baseURL + "create";
         System.out.println(url);
-        ResponseEntity<DeviceType> postResponse = restTemplate.postForEntity(url, deviceType, DeviceType.class);
+        ResponseEntity<DeviceType> postResponse = restTemplate.withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .postForEntity(url, deviceType, DeviceType.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
         deviceType = postResponse.getBody();
@@ -45,9 +49,10 @@ public class DeviceTypeControllerTest {
 
     @Test
     public void b_read() {
-        String url = baseURL + "read/" + "e9680701-3e8a-4504-b4c5-f202dd081a5a";
+        String url = baseURL + "read/" + deviceType.getDeviceTypeId();
         System.out.println(url);
-        ResponseEntity<DeviceType> responseEntity = restTemplate.getForEntity(url, DeviceType.class);
+        ResponseEntity<DeviceType> responseEntity = restTemplate.withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .getForEntity(url, DeviceType.class);
         System.out.println(responseEntity.getBody());
     }
 
@@ -57,7 +62,8 @@ public class DeviceTypeControllerTest {
         DeviceType updated = new DeviceType.Builder().copy(deviceType).setDeviceDescription("Tablet").setColor("Brown").setSize(2).build();
         String url = baseURL + "update";
         System.out.println(url);
-        ResponseEntity<DeviceType> postResponse = restTemplate.postForEntity(url, updated, DeviceType.class);
+        ResponseEntity<DeviceType> postResponse = restTemplate.withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .postForEntity(url, updated, DeviceType.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
         assertEquals(deviceType.getDeviceTypeId(), postResponse.getBody().getDeviceTypeId());
@@ -73,7 +79,8 @@ public class DeviceTypeControllerTest {
         System.out.println(url);
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null, headers);
-        ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+        ResponseEntity<String> responseEntity = restTemplate.withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .exchange(url, HttpMethod.GET, entity, String.class);
         System.out.println(responseEntity.getBody());
     }
 

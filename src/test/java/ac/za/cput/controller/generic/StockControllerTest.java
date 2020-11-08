@@ -34,6 +34,8 @@ public class StockControllerTest {
 
     private static Stock stock = StockFactory.createStock(10,"20 june 2020");
 
+    private static String SECURITY_USERNAME="inventory";
+    private static String SECURITY_PASSWORD="adp";
 
     @Test
     public void a_create() {
@@ -53,7 +55,9 @@ public class StockControllerTest {
         System.out.println("Read");
         String url = baseURL + "read/" + stock.getStockId();
         System.out.println(url);
-        ResponseEntity<Stock> responseEntity = restTemplate.getForEntity(url, Stock.class);
+        ResponseEntity<Stock> responseEntity = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .getForEntity(url, Stock.class);
         assertEquals(stock.getStockId(), responseEntity.getBody().getStockId());
         System.out.println(responseEntity.getBody());
     }
@@ -79,7 +83,9 @@ public class StockControllerTest {
         System.out.println(url);
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null, headers);
-        ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+        ResponseEntity<String> responseEntity = restTemplate
+                .withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .exchange(url, HttpMethod.GET, entity, String.class);
         System.out.println(responseEntity.getBody());
     }
 
