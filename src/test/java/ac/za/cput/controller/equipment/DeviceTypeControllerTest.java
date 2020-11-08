@@ -25,13 +25,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class DeviceTypeControllerTest {
 
     private static DeviceType deviceType = DeviceTypeFactory.createDeviceType("Printer", 5, "black");
-    private static String SECURITY_USERNAME="first";
+    private static String SECURITY_USERNAME="admin";
     private static String SECURITY_PASSWORD="1234";
 
 
     @Autowired
     private TestRestTemplate restTemplate;
-    private String baseURL = "http://localhost:8080/deviceType/";
+    private String baseURL = "http://localhost:8080/inventory/deviceType/";
 
 
     @Test
@@ -89,7 +89,8 @@ public class DeviceTypeControllerTest {
     public void e_delete() {
         String url = baseURL + "delete/" + deviceType.getDeviceTypeId();
         System.out.println(url);
-        ResponseEntity<DeviceType> responseEntity = restTemplate.getForEntity(url, DeviceType.class);
+        ResponseEntity<DeviceType> responseEntity = restTemplate.withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .getForEntity(url, DeviceType.class);
         assertNull(deviceType.getDeviceTypeId(), responseEntity.getBody().getDeviceTypeId());
         System.out.println(responseEntity);
         System.out.println(responseEntity.getBody());
