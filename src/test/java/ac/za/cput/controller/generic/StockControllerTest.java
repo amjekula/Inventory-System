@@ -34,8 +34,8 @@ public class StockControllerTest {
 
     private static Stock stock = StockFactory.createStock(10,"20 june 2020");
 
-    private static String SECURITY_USERNAME="inventory";
-    private static String SECURITY_PASSWORD="adp";
+    private static String SECURITY_USERNAME="admin";
+    private static String SECURITY_PASSWORD="1234";
 
     @Test
     public void a_create() {
