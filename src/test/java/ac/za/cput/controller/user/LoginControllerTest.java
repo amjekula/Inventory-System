@@ -42,7 +42,8 @@ public class LoginControllerTest {
     public void a_create() {
         String url = baseURL + "create";
         System.out.println(url);
-        ResponseEntity<Login> postResponse = restTemplate.postForEntity(url, login, Login.class);
+        ResponseEntity<Login> postResponse = restTemplate.withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .postForEntity(url, login, Login.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
         login = postResponse.getBody();
@@ -66,7 +67,8 @@ public class LoginControllerTest {
         Login updated = new Login.Builder().copy(login).setEmailAddress("joselledina@gmail.com").setPassword(204785).build();
         String url = baseURL + "update";
         System.out.println(url);
-        ResponseEntity<Login> postResponse = restTemplate.postForEntity(url, updated, Login.class);
+        ResponseEntity<Login> postResponse = restTemplate.withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .postForEntity(url, updated, Login.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
         assertEquals(login.getLoginId(), postResponse.getBody().getLoginId());
