@@ -35,7 +35,7 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public Login read(String loginId) {
-        return repository.getOne(loginId);
+        return repository.findById(loginId).orElseGet(null);
     }
 
     @Override
