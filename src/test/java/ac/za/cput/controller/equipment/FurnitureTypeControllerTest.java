@@ -1,5 +1,5 @@
 package ac.za.cput.controller.equipment;
-
+//JodiSmit
 import ac.za.cput.entity.equipment.FurnitureType;
 import ac.za.cput.factory.equipment.FurnitureTypeFactory;
 import org.junit.FixMethodOrder;
@@ -30,13 +30,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class FurnitureTypeControllerTest {
 
     private static FurnitureType furnitureType = FurnitureTypeFactory.createFurnitureType("CupBoard", 5, "black");
-    private static String SECURITY_USERNAME="first";
+    private static String SECURITY_USERNAME="admin";
     private static String SECURITY_PASSWORD="1234";
 
 
     @Autowired
     private TestRestTemplate restTemplate;
-    private String baseURL = "http://localhost:8080/furnitureType/";
+    private String baseURL = "http://localhost:8080/inventory/furnitureType/";
 
 
 
@@ -96,7 +96,8 @@ public class FurnitureTypeControllerTest {
         String url = baseURL + "delete/" + furnitureType.getFurnitureTypeId();
         System.out.println("URL" + url);
         restTemplate.delete(url);
-        ResponseEntity<FurnitureType> responseEntity = restTemplate.getForEntity(url, FurnitureType.class);
+        ResponseEntity<FurnitureType> responseEntity = restTemplate.withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .getForEntity(url, FurnitureType.class);
         assertNull(furnitureType.getFurnitureTypeId(), responseEntity.getBody().getFurnitureTypeId());
         restTemplate.delete(url);
 
