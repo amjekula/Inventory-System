@@ -29,8 +29,8 @@ import static org.junit.Assert.*;
 public class LoginControllerTest {
 
    private static Login login = LoginFactory.createLogin("josy@gmail.com", 25468);
-   private static String SECURITY_USERNAME="inventory";
-   private static String SECURITY_PASSWORD="adp";
+   private static String SECURITY_USERNAME="first";
+   private static String SECURITY_PASSWORD="1234";
 
 
 
@@ -42,7 +42,8 @@ public class LoginControllerTest {
     public void a_create() {
         String url = baseURL + "create";
         System.out.println(url);
-        ResponseEntity<Login> postResponse = restTemplate.postForEntity(url, login, Login.class);
+        ResponseEntity<Login> postResponse = restTemplate
+                            .withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD).postForEntity(url, login, Login.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
         login = postResponse.getBody();

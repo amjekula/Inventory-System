@@ -11,17 +11,19 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    private static final String CLERK_ROLE = "CLERK";
+//    private static final String ADMIN_ROLE = "ADMIN";
 
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("first").password("{noop}1234").roles("CLERK");
+        auth.inMemoryAuthentication().withUser("first").password("{noop}1234").roles(CLERK_ROLE);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic().and().authorizeRequests().antMatchers(HttpMethod.POST, "**/create").hasRole("CLERK")
-                                                                                                         .antMatchers(HttpMethod.GET, "**/read/**").hasRole("CLERK")
+        http.httpBasic().and().authorizeRequests().antMatchers(HttpMethod.POST, "**/read").hasRole(CLERK_ROLE)
+                                                                                                         .antMatchers(HttpMethod.GET, "**/read/**").hasRole(CLERK_ROLE)
                                                                                                          .and()
                                                                                                          .csrf().disable()
                                                                                                          .formLogin().disable();
