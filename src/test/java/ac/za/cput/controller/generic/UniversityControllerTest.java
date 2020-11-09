@@ -31,8 +31,8 @@ public class UniversityControllerTest {
     private String baseURL = "http://localhost:8080/university/";
     private static University university = UniversityFactory.createUniversity("CPUT","123 Street");
 
-    private static String SECURITY_USERNAME="inventory";
-    private static String SECURITY_PASSWORD="adp";
+    private static String SECURITY_USERNAME="admin";
+    private static String SECURITY_PASSWORD="1234";
 
     @Test
     public void a_create() {
