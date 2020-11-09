@@ -22,6 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic().and().authorizeRequests().antMatchers(HttpMethod.POST, "**/create").hasRole("CLERK")
                                                                                                          .antMatchers(HttpMethod.GET, "**/read/**").hasRole("CLERK")
+            .antMatchers(HttpMethod.GET, "**/furniture/**").hasRole("CLERK")
                                                                                                          .and()
                                                                                                          .csrf().disable()
                                                                                                          .formLogin().disable();
