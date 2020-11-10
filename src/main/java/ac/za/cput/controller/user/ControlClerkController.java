@@ -4,7 +4,6 @@ package ac.za.cput.controller.user;
  * Description: Implementation for Control Clerk Controller
  * Date: 27 September 2020
  */
-import ac.za.cput.entity.generic.University;
 import ac.za.cput.entity.user.ControlClerk;
 import ac.za.cput.factory.user.ControlClerkFactory;
 import ac.za.cput.service.user.impl.ControlClerkServiceImpl;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 @RestController
-@RequestMapping("/controlclerk")
+@RequestMapping("/inventory/controlclerk")
 public class ControlClerkController {
     @Autowired
     private ControlClerkServiceImpl controlClerkService;

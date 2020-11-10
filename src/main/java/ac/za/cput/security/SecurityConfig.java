@@ -20,15 +20,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication().withUser("admin").password("{noop}1234").roles(ADMIN_ROLE, CLERK_ROLE)
                                                                  .and()
                                                                  .withUser("clerk")
-                                                                 .password("4567")
+                                                                 .password("{noop}4567")
                                                                  .roles(CLERK_ROLE);
 
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic().and().authorizeRequests().antMatchers(HttpMethod.POST, "/inventory/**/create", "/inventory/**/update", "/inventory/**/delete/**","/inventory/**/all" ).hasRole(ADMIN_ROLE)
-                                                                                                         .antMatchers(HttpMethod.GET, "/inventory/**/read/**","/inventory/**/update").hasRole(CLERK_ROLE)
+        http.httpBasic().and().authorizeRequests().antMatchers(HttpMethod.POST, "/inventory/**/create","/inventory/**/delete/**" ).hasRole(ADMIN_ROLE)
+                                                                                                         .antMatchers(HttpMethod.GET, "/inventory/**/read/**","/inventory/**/update","/inventory/**/all").hasRole(CLERK_ROLE)
                                                                                                          .and()
                                                                                                          .csrf().disable()
                                                                                                          .formLogin().disable();
