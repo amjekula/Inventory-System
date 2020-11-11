@@ -26,8 +26,9 @@ public class FurnitureControllerTest {
 
     private static Furniture furniture = FurnitureFactory.createFurniture("1234");
 
-    String securityUser = "first";
-    String passwordUser = "1234";
+    String SECURITY_USERNAME = "admin";
+    String SECURITY_PASSWORD = "1234";
+
     @Autowired
     private TestRestTemplate restTemplate;
     private String baseURL = "http://localhost:8080/furniture/";
@@ -37,7 +38,8 @@ public class FurnitureControllerTest {
     public void a_create() {
         String url = baseURL + "create";
         System.out.println(url);
-        ResponseEntity<Furniture> postResponse = restTemplate.withBasicAuth(securityUser,passwordUser).postForEntity(url, furniture, Furniture.class);
+        ResponseEntity<Furniture> postResponse = restTemplate.withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .postForEntity(url, furniture, Furniture.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
         furniture = postResponse.getBody();
@@ -49,8 +51,9 @@ public class FurnitureControllerTest {
     public void b_read(){
         String url = baseURL + "read/" + furniture.getFurnitureId();
         System.out.println(url);
-        ResponseEntity<Furniture> responseEntity = restTemplate.withBasicAuth(securityUser,passwordUser).getForEntity(url, Furniture.class);
-        assertEquals(furniture.getFurnitureId(), responseEntity.getBody().getFurnitureId());
+        ResponseEntity<Furniture> responseEntity = restTemplate.withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .getForEntity(url, Furniture.class);
+
         System.out.println(responseEntity.getBody());
     }
 
@@ -61,7 +64,8 @@ public class FurnitureControllerTest {
         Furniture updated = new Furniture.Builder().copy(furniture).setFurnitureId("12345").build();
         String url = baseURL + "update";
         System.out.println(url);
-        ResponseEntity<Furniture> postResponse = restTemplate.withBasicAuth(securityUser,passwordUser).postForEntity(url, updated, Furniture.class);
+        ResponseEntity<Furniture> postResponse = restTemplate.withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
+                .postForEntity(url, updated, Furniture.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
         assertEquals(furniture.getFurnitureId(), postResponse.getBody().getFurnitureId());
@@ -77,7 +81,7 @@ public class FurnitureControllerTest {
         System.out.println(url);
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null, headers);
-        ResponseEntity<String> responseEntity = restTemplate.withBasicAuth(securityUser,passwordUser).exchange(url, HttpMethod.GET, entity, String.class);
+        ResponseEntity<String> responseEntity = restTemplate.withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD).exchange(url, HttpMethod.GET, entity, String.class);
         System.out.println(responseEntity.getBody());
     }
 
@@ -87,7 +91,7 @@ public class FurnitureControllerTest {
     public void e_delete(){
         String url = baseURL + "delete/"+ furniture.getFurnitureId();
         System.out.println(url);
-        ResponseEntity<Furniture> responseEntity = restTemplate.withBasicAuth(securityUser,passwordUser).getForEntity(url, Furniture.class);
+        ResponseEntity<Furniture> responseEntity = restTemplate.withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD).getForEntity(url, Furniture.class);
         assertNull(furniture.getFurnitureId(), responseEntity.getBody().getFurnitureId());
         System.out.println(responseEntity);
         System.out.println(responseEntity.getBody());
