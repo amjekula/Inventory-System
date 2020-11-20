@@ -5,10 +5,14 @@ package ac.za.cput.entity.generic;
  *  Desc: Entity for University
  */
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import ac.za.cput.entity.user.ControlClerk;
+
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class University implements Serializable {
@@ -19,6 +23,9 @@ public class University implements Serializable {
     private String address;
 
     protected University(){}
+
+    @OneToMany(mappedBy="university", cascade = CascadeType.ALL)
+    Set<ControlClerk> controlClerks = new HashSet<ControlClerk>();
 
     private University(Builder builder) {
         this.universityId = builder.universityId;
@@ -43,17 +50,17 @@ public class University implements Serializable {
         private String name;
         private String address;
 
-        public Builder setUniversityId(final String universityId) {
+        public Builder setUniversityId(String universityId) {
             this.universityId = universityId;
             return this;
         }
 
-        public Builder setName(final String name) {
+        public Builder setName(String name) {
             this.name = name;
             return this;
         }
 
-        public Builder setAddress(final String address) {
+        public Builder setAddress(String address) {
             this.address = address;
             return this;
         }

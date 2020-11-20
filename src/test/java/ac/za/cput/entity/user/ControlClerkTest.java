@@ -25,7 +25,7 @@ public class ControlClerkTest {
 
     @Test
     public void testUniversityId(){
-        assertNull(controlClerk.getUniversityId(), null);
+        assertNull(controlClerk.getUniversity().toString(), null);
     }
 
 }

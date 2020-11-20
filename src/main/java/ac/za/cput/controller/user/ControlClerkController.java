@@ -19,9 +19,9 @@ public class ControlClerkController {
 
     @PostMapping("/create")
     public ControlClerk create(@RequestBody ControlClerk controlClerk) {
-        ControlClerk newControlClerk = ControlClerkFactory.createControlClerk(controlClerk.getSurname(),
+        ControlClerk newControlClerk = ControlClerkFactory.createControlClerk(controlClerk.getUniversity(), controlClerk.getSurname(),
                 controlClerk.getFirstName(), controlClerk.getPhoneNum(), controlClerk.getEmailAddress(),
-                controlClerk.getPassword());
+                controlClerk.getPassword(), controlClerk.getAddress(), controlClerk.getProvince());
 
         return controlClerkService.create(newControlClerk);
     }

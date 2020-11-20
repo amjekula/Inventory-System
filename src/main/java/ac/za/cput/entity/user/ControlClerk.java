@@ -5,7 +5,6 @@ import ac.za.cput.entity.generic.University;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.Set;
 
 /*
  *@author @amjekula
@@ -18,30 +17,31 @@ public class ControlClerk implements Serializable {
 
     @Id
     private String clerkId;
-    private String universityId, surname, firstName, phoneNum, emailAddress, password;
+    private String  surname, firstName, phoneNum, emailAddress, password, address, province;
 
-    //Create the foreign key
-    /*@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<University> university;*/
+    @ManyToOne
+    private University university;
 
     protected ControlClerk(){}
 
     private ControlClerk(ControlClerkBuilder controlClerkBuilder) {
         this.clerkId = controlClerkBuilder.clerkId;
-        this.universityId = controlClerkBuilder.universityId;
+        this.university = controlClerkBuilder.university;
         this.surname = controlClerkBuilder.surname;
         this.firstName = controlClerkBuilder.firstName;
         this.phoneNum = controlClerkBuilder.phoneNum;
         this.emailAddress = controlClerkBuilder.emailAddress;
         this.password = controlClerkBuilder.password;
+        this.address = controlClerkBuilder.address;
+        this.province = controlClerkBuilder.province;
     }
 
     public String getClerkId() {
         return clerkId;
     }
 
-    public String getUniversityId() {
-        return universityId;
+    public University getUniversity() {
+        return university;
     }
 
     public String getSurname() {
@@ -64,29 +64,25 @@ public class ControlClerk implements Serializable {
         return password;
     }
 
-    @Override
-    public String toString() {
-        return "ControlClerk{" +
-                "clerkId='" + clerkId + '\'' +
-                ", universityId='" + universityId + '\'' +
-                ", surname='" + surname + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", phoneNum='" + phoneNum + '\'' +
-                ", emailAddress='" + emailAddress + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+    public String getAddress() {
+        return address;
+    }
+
+    public String getProvince() {
+        return province;
     }
 
     public static class ControlClerkBuilder{
-        private String clerkId, universityId, surname, firstName, phoneNum, emailAddress, password;
+        private String clerkId, surname, firstName, phoneNum, emailAddress, password, address, province;
+        private University university;
 
-        public ControlClerkBuilder setClerkId(String clerkId) {
-            this.clerkId = clerkId;
+        public ControlClerkBuilder setUniversity(University university) {
+            this.university = university;
             return this;
         }
 
-        public ControlClerkBuilder setUniversityId(String universityId) {
-            this.universityId = universityId;
+        public ControlClerkBuilder setClerkId(String clerkId) {
+            this.clerkId = clerkId;
             return this;
         }
 
@@ -115,14 +111,26 @@ public class ControlClerk implements Serializable {
             return this;
         }
 
+        public ControlClerkBuilder setAddress(String address) {
+            this.address = address;
+            return this;
+        }
+
+        public ControlClerkBuilder setProvince(String province) {
+            this.province = province;
+            return this;
+        }
+
         public ControlClerkBuilder copy(ControlClerk controlClerk){
             this.clerkId = controlClerk.clerkId;
-            this.universityId = controlClerk.universityId;
+            this.university = controlClerk.university;
             this.surname = controlClerk.surname;
             this.firstName = controlClerk.firstName;
             this.phoneNum = controlClerk.phoneNum;
             this.emailAddress = controlClerk.emailAddress;
             this.password = controlClerk.password;
+            this.address = controlClerk.address;
+            this.province = controlClerk.province;
             return this;
         }
 

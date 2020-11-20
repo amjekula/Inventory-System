@@ -6,6 +6,7 @@ package ac.za.cput.factory.user;
  * Date: 2 June 2020
  */
 
+import ac.za.cput.entity.generic.University;
 import ac.za.cput.entity.user.ControlClerk;
 import ac.za.cput.util.GenericHelper;
 
@@ -13,24 +14,23 @@ import javax.swing.*;
 
 public class ControlClerkFactory {
 
-    public static ControlClerk createControlClerk(String surname, String firstName,
-                                                  String phoneNum, String emailAddress, String password){
+    public static ControlClerk createControlClerk(University university, String surname, String firstName,
+                                                  String phoneNum, String emailAddress, String password,
+                                                  String address, String province){
 
-        //Getting the Primary keys
+        //Generating the Primary key
         String clerkId = GenericHelper.generateId();
-        String universityId = GenericHelper.generateId();
-        //String universityId = String.valueOf(new University.Builder().build().getUniversityId());
 
         ControlClerk controlClerk = null;
 
         if(surname.trim().equals("")){
-            System.out.println("Surname Can't Be Empty");
+            System.out.println("Please enter your surname");
 
         }else if(firstName.trim().equals("")){
-            System.out.println("Name Can't Be Empty");
+            System.out.println("Please enter your name");
 
         }else if(password.trim().equals("")){
-            System.out.println("Password Can't Be Empty");
+            System.out.println("Please enter your password");
 
         }else if(phoneNum.trim().equals("") || phoneNum.trim().length() < 10 || phoneNum.trim().length() > 10
                 && emailAddress.trim().equals("")){
@@ -39,12 +39,14 @@ public class ControlClerkFactory {
         }else{
             controlClerk = new ControlClerk.ControlClerkBuilder()
                     .setClerkId(clerkId)
-                    .setUniversityId(universityId)
+                    .setUniversity(university)
                     .setSurname(surname.trim())
                     .setFirstName(firstName.trim())
                     .setPhoneNum(phoneNum.trim())
                     .setEmailAddress(emailAddress.trim())
                     .setPassword(password.trim())
+                    .setAddress(address.trim())
+                    .setProvince(province.trim())
                     .build();
         }
         return controlClerk;

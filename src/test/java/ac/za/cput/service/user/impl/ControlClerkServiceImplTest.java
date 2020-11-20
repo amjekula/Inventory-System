@@ -5,7 +5,9 @@ package ac.za.cput.service.user.impl;
  * Date: 05 September 2020
  */
 
+import ac.za.cput.entity.generic.University;
 import ac.za.cput.entity.user.ControlClerk;
+import ac.za.cput.factory.generic.UniversityFactory;
 import ac.za.cput.factory.user.ControlClerkFactory;
 import ac.za.cput.service.user.ControlClerkService;
 import org.junit.FixMethodOrder;
@@ -21,8 +23,11 @@ import static org.junit.Assert.*;
 public class ControlClerkServiceImplTest {
     @Autowired
     private static ControlClerkService clerkService;
-    private static ControlClerk clerkBuilder = ControlClerkFactory.createControlClerk("Mjekuula", "Athi",
-            "079 2565 854", "athi@gmail.com", "$852$0");
+    private static University university = UniversityFactory.createUniversity("cput", "gtvt");
+
+    private static ControlClerk clerkBuilder = ControlClerkFactory.createControlClerk(university, "Mjekuula", "Athi",
+            "079 2565 854", "athi@gmail.com", "$852$0",
+            "6 Varsity Street", "CPUT");
 
     @Test
     public void d_getAll() {

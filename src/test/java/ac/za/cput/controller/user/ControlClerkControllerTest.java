@@ -4,7 +4,9 @@ package ac.za.cput.controller.user;
  * Description: Test Case for Control Clerk Controller
  * Date: 27 September 2020
  */
+import ac.za.cput.entity.generic.University;
 import ac.za.cput.entity.user.ControlClerk;
+import ac.za.cput.factory.generic.UniversityFactory;
 import ac.za.cput.factory.user.ControlClerkFactory;
 import org.junit.FixMethodOrder;
 import org.junit.Ignore;
@@ -19,6 +21,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -35,11 +40,14 @@ public class ControlClerkControllerTest {
     private static String CLERK_USERNAME="clerk";
     private static String CLERK_PASSWORD="4567";
 
+    private University university = UniversityFactory.createUniversity("University of South Africa", "12345678789");
+
     @Autowired
     private TestRestTemplate restTemplate;
     private String baseURL = "http://localhost:8080/inventory/controlclerk/";
-    private static ControlClerk controlClerk = ControlClerkFactory.createControlClerk("Mjekula",
-            "Athenkosi", "0786682285", "athi@gmail.com", "1234556");
+    private  ControlClerk controlClerk = ControlClerkFactory.createControlClerk(university, "Mjekula",
+            "Athenkosi", "0786682285", "athi@gmail.com", "1234556",
+            "6 Varsity Street", "Western Cape");
 
     @Test
     public void a_create() {
@@ -49,8 +57,9 @@ public class ControlClerkControllerTest {
                 .withBasicAuth(ADMIN_USERNAME, ADMIN_PASSWORD)
                 .postForEntity(url, controlClerk, ControlClerk.class);
 
-        System.out.println(postResponse);
+        System.out.println("Status Code: " + postResponse.getStatusCode());
         controlClerk = postResponse.getBody();
+        System.out.println("Control Clerk: " + controlClerk);
         assertEquals(controlClerk.getFirstName(), postResponse.getBody().getFirstName());
     }
 
@@ -83,6 +92,7 @@ public class ControlClerkControllerTest {
     }
 
     @Test
+    @Ignore
     public void e_delete() {
         System.out.println("Delete");
         String url = baseURL + "delete/" + controlClerk.getClerkId();
