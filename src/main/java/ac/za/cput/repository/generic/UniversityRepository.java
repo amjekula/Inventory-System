@@ -13,5 +13,5 @@ import java.util.Set;
  */
 
 @Repository
-public interface UniversityRepository extends JpaRepository<University,String> {
+public interface UniversityRepository extends JpaRepository<University, String> {
 }
