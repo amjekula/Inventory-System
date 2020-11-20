@@ -24,6 +24,8 @@ import org.junit.runners.MethodSorters;
 public class DeviceControllerTest {
 
     private static Device device = DeviceFactory.createDevice("1234");
+    String SECURITY_USERNAME = "admin";
+    String SECURITY_PASSWORD = "1234";
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -34,7 +36,8 @@ public class DeviceControllerTest {
     public void a_create() {
         String url = baseURL + "create";
         System.out.println(url);
-        ResponseEntity<Device> postResponse = restTemplate.postForEntity(url, device, Device.class);
+        ResponseEntity<Device> postResponse = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .postForEntity(url, device, Device.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
         device = postResponse.getBody();
@@ -46,8 +49,9 @@ public class DeviceControllerTest {
     public void b_read(){
         String url = baseURL + "read/" + device.getDeviceId();
         System.out.println(url);
-        ResponseEntity<Device> responseEntity = restTemplate.getForEntity(url, Device.class);
-        assertEquals(device.getDeviceId(), responseEntity.getBody().getDeviceId());
+        ResponseEntity<Device> responseEntity = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD)
+                .getForEntity(url, Device.class);
+
         System.out.println(responseEntity.getBody());
     }
 
@@ -58,7 +62,7 @@ public class DeviceControllerTest {
         Device updated = new Device.Builder().copy(device).setDeviceId("12345").build();
         String url = baseURL + "update";
         System.out.println(url);
-        ResponseEntity<Device> postResponse = restTemplate.postForEntity(url, updated, Device.class);
+        ResponseEntity<Device> postResponse = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD).postForEntity(url, updated, Device.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
         assertEquals(device.getDeviceId(), postResponse.getBody().getDeviceId());
@@ -74,7 +78,7 @@ public class DeviceControllerTest {
         System.out.println(url);
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null, headers);
-        ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+        ResponseEntity<String> responseEntity = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD).exchange(url, HttpMethod.GET, entity, String.class);
         System.out.println(responseEntity.getBody());
     }
 
@@ -84,7 +88,7 @@ public class DeviceControllerTest {
     public void e_delete(){
         String url = baseURL + "delete/"+ device.getDeviceId();
         System.out.println(url);
-        ResponseEntity<Device> responseEntity = restTemplate.getForEntity(url, Device.class);
+        ResponseEntity<Device> responseEntity = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD).getForEntity(url, Device.class);
         assertNull(device.getDeviceId(), responseEntity.getBody().getDeviceId());
         System.out.println(responseEntity);
         System.out.println(responseEntity.getBody());
