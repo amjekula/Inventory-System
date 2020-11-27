@@ -22,8 +22,9 @@ public class OrderController
     @PostMapping("/create")
     public Order create(@RequestBody Order order)
     {
-        Order newOrder = OrderFactory.createClerkOrder(order.getDescription(), order.getDate());
+        Order newOrder = OrderFactory.createClerkOrder(order.getClerkId(), order.getStockId(), order.getDescription(), order.getDate());
         return orderService.create(newOrder);
+
     }
 
     @GetMapping("/all")
@@ -32,10 +33,10 @@ public class OrderController
         return orderService.getAll();
     }
 
-    @DeleteMapping("/delete/{clerkId}")
-    public void delete(@PathVariable String clerkId)
+    @DeleteMapping("/delete/{orderNum}")
+    public void delete(@PathVariable String orderNum)
     {
-        orderService.delete(clerkId);
+        orderService.delete(orderNum);
     }
 
     @PostMapping("/update")
@@ -44,10 +45,10 @@ public class OrderController
         return orderService.update(order);
     }
 
-    @GetMapping("/read/{clerkId}")
-    public Order read(@PathVariable String clerkId)
+    @GetMapping("/read/{orderNum}")
+    public Order read(@PathVariable String orderNum)
     {
-        return orderService.read(clerkId);
+        return orderService.read(orderNum);
     }
 
 
