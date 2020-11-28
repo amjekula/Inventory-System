@@ -18,35 +18,34 @@ public class OrderServiceImpl implements OrderService
     @Override
     public Set<Order> getAll()
     {
-        return repository.findAll().stream().collect(Collectors.toSet());
+        return this.repository.findAll().stream().collect(Collectors.toSet());
     }
 
     @Override
     public Order create(Order order)
     {
-        return repository.save(order);
+        return this.repository.save(order);
     }
 
     @Override
-    public Order read(String clerkId)
+    public Order read(String s)
     {
-        return repository.getOne(clerkId);
+        return this.repository.findById(s).orElseGet(null);
     }
 
     @Override
     public Order update(Order order)
     {
-
-        if(this.repository.existsById(order.getClerkId()))
+        if (this.repository.existsById(order.getOrderNum()))
         {
-            return repository.save(order);
+            return create(order);
         }
         return null;
     }
 
     @Override
-    public void delete(String clerkId)
+    public void delete(String s)
     {
-        repository.deleteById(clerkId);
+        this.repository.deleteById(s);
     }
 }

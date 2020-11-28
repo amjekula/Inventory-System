@@ -16,29 +16,28 @@ public class OrderServiceImplTest
 {
     @Autowired
     private static OrderService orderService;
-    private static Order orderBuilder = OrderFactory.createStockOrder("test", "5/09/2020");
+    private static Order orderBuilder = OrderFactory.createClerkOrder("lance", "123", "test", "26/11/2020");
 
     @Test
     public void d_getAll()
     {
         Set<Order> orderSet = orderService.getAll();
         assertEquals(1, orderSet.size());
-        System.out.println("All Users: " + orderService.getAll() + "\n");
+        System.out.println("All Users: " + orderSet);
     }
 
     @Test
     public void a_create()
     {
         Order createOrder = orderService.create(orderBuilder);
-        assertEquals(createOrder.getDescription(), createOrder.getDescription());
+        assertEquals(createOrder.getOrderNum(), createOrder.getOrderNum());
         System.out.println("Create: " + createOrder + "\n");
     }
 
     @Test
     public void b_read()
     {
-        Order readOrder = orderService.read(orderBuilder.getDescription());
-        assertEquals(orderBuilder.getDescription(), orderBuilder.getDescription());
+        Order readOrder = orderService.read(orderBuilder.getOrderNum());
         System.out.println("Read: " + readOrder + "\n");
     }
 
@@ -47,15 +46,14 @@ public class OrderServiceImplTest
     {
         Order updateOrder = new Order.Builder().copy(orderBuilder).setDescription("test2").build();
         updateOrder = orderService.update(updateOrder);
-        assertNotEquals(orderBuilder.getDescription(), updateOrder.getDescription());
         System.out.println("Update: " + updateOrder + "\n");
     }
 
     @Test
     public void e_delete()
     {
-        orderService.delete(orderBuilder.getClerkId());
-        assertEquals(orderService.getAll().size(), 1);
+        orderService.delete(orderBuilder.getOrderNum());
+        assertEquals(0,orderService.getAll().size());
         System.out.println("Check if Object is deleted: " + orderService.getAll());
     }
 

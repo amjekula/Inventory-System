@@ -11,32 +11,19 @@ import ac.za.cput.util.GenericHelper;
 
 public class OrderFactory
 {
-    public static Order createClerkOrder(String description, String date)
+    public static Order createClerkOrder(String clerkId, String stockId, String description, String date)
     {
-        String clerkId = GenericHelper.generateId();
-        String OrderOrderId = GenericHelper.generateId();
+
+        //primary key generation
+        String orderNum = GenericHelper.generateId();
         Order order = new Order.Builder()
                 .setClerkId(clerkId)
-                .setOrderNum(OrderOrderId)
+                .setStockId(stockId)
+                .setOrderNum(orderNum)
                 .setDescription(description)
                 .setDate(date)
                 .build();
-         return order;
-
-    }
-
-
-    public static Order createStockOrder(String description, String date)
-    {
-        String clerkId = GenericHelper.generateId();
-        String stockOrderId = GenericHelper.generateId();
-        Order stockOrder = new Order.Builder()
-                .setClerkId(clerkId)
-                .setStockId(stockOrderId)
-                .setDescription(description)
-                .setDate(date)
-                .build();
-         return stockOrder;
+        return order;
 
     }
 
