@@ -24,12 +24,6 @@ public class University implements Serializable {
     private String name;
     private String address;
 
-    @OneToOne(mappedBy = "university",cascade = CascadeType.ALL)
-    private Device device;
-
-    @OneToOne(mappedBy = "university",cascade = CascadeType.ALL)
-    private Furniture furniture;
-
     protected University(){}
 
     @OneToMany(mappedBy="university", cascade = CascadeType.ALL)

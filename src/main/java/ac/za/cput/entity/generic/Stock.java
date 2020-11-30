@@ -5,8 +5,13 @@ package ac.za.cput.entity.generic;
  *  Desc: Entity for Stock
  */
 
+import ac.za.cput.entity.equipment.Device;
+import ac.za.cput.entity.equipment.Furniture;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -19,6 +24,12 @@ public class Stock implements Serializable
     private String deviceId;
     private int quantity;
     private String date;
+
+    @OneToOne(mappedBy = "stock",cascade = CascadeType.ALL)
+    private Device device;
+
+    @OneToOne(mappedBy = "stock",cascade = CascadeType.ALL)
+    private Furniture furniture;
 
     protected Stock(){}
 

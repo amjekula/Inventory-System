@@ -1,7 +1,7 @@
 package ac.za.cput.entity.equipment;
 
 
-import ac.za.cput.entity.generic.University;
+import ac.za.cput.entity.generic.Stock;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,7 +15,7 @@ public class Furniture implements Serializable {
     private String furnitureTypeId;
 
     @OneToOne
-    private University university;
+    private Stock stock;
 
     protected Furniture() {
     }
