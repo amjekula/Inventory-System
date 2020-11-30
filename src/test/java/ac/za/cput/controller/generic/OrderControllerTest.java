@@ -25,14 +25,19 @@ import static org.junit.Assert.*;
 public class OrderControllerTest
 {
 
-    private static Order order = OrderFactory.createClerkOrder("test", "25/09/2020");
-    private static String SECURITY_USERNAME="admin";
-    private static String SECURITY_PASSWORD="1234";
+    private static Order order = OrderFactory.createClerkOrder("lance", "123", "test", "26/11/2020");
+
+    private static String ADMIN_USERNAME="admin";
+    private static String ADMIN_PASSWORD="1234";
+
+
+    private static String CLERK_USERNAME="clerk";
+    private static String CLERK_PASSWORD="4567";
 
 
     @Autowired
     private TestRestTemplate restTemplate;
-    private String baseURL = "http://localhost:8080/inventory/order/";
+    private String baseURL = "http://localhost:8080/order/";
 
     @Test
     public void a_create()
@@ -41,37 +46,36 @@ public class OrderControllerTest
         System.out.println(url);
 
         ResponseEntity<Order> postResponse = restTemplate
-                .withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD).postForEntity(url, order, Order.class);
+                .withBasicAuth(ADMIN_USERNAME, ADMIN_PASSWORD).postForEntity(url, order, Order.class);
 
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
         order = postResponse.getBody();
-        assertNotEquals(order.getDescription(), postResponse.getBody().getDate());
-        System.out.println(postResponse);
+        assertEquals(order.getOrderNum(), postResponse.getBody().getOrderNum());
         System.out.println(postResponse.getBody());
+
     }
 
     @Test
     public void b_read()
     {
-        String url = baseURL + "read/" + order.getDescription();
+        String url = baseURL + "read/" + order.getOrderNum();
         System.out.println(url);
-        ResponseEntity<Order> responseEntity = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD).getForEntity(url, Order.class);
-        assertNotEquals(order.getDescription(), responseEntity.getBody().getDate());
+        ResponseEntity<Order> responseEntity = restTemplate.withBasicAuth(CLERK_USERNAME, CLERK_PASSWORD).getForEntity(url, Order.class);
+        assertEquals(order.getOrderNum(), responseEntity.getBody().getOrderNum());
         System.out.println(responseEntity.getBody());
     }
 
     @Test
-    public void c_update(){
+    public void c_update()
+    {
         Order updated = new Order.Builder().copy(order).setDescription("test2").setDate("26/09/2020").build();
         String url = baseURL + "update";
         System.out.println(url);
-        ResponseEntity<Order> postResponse = restTemplate.withBasicAuth(SECURITY_USERNAME,SECURITY_PASSWORD)
-                .postForEntity(url, updated, Order.class);
+        ResponseEntity<Order> postResponse = restTemplate.postForEntity(url, updated, Order.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
-        assertNotEquals(order.getClerkId(), postResponse.getBody().getClerkId());
-        System.out.println(postResponse);
+        assertNull(order.getOrderNum(), postResponse.getBody().getOrderNum());
         System.out.println(postResponse.getBody());
 
     }
@@ -84,19 +88,20 @@ public class OrderControllerTest
         System.out.println(url);
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>(null, headers);
-        ResponseEntity<String> responseEntity = restTemplate.withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD).exchange(url, HttpMethod.GET, entity, String.class);
+        ResponseEntity<String> responseEntity = restTemplate.withBasicAuth(CLERK_USERNAME, CLERK_PASSWORD).exchange(url, HttpMethod.GET, entity, String.class);
         System.out.println(responseEntity);
         System.out.println(responseEntity.getBody());
+
     }
 
     @Test
     public void e_delete()
     {
-        String url = baseURL + "delete/"+ order.getClerkId();
+        String url = baseURL + "delete/"+ order.getOrderNum();
         System.out.println(url);
         ResponseEntity<Order> responseEntity = restTemplate
-                .withBasicAuth(SECURITY_USERNAME, SECURITY_PASSWORD).getForEntity(url, Order.class);
-        assertNull(order.getClerkId(), responseEntity.getBody().getClerkId());
+                .withBasicAuth(ADMIN_USERNAME, ADMIN_PASSWORD).getForEntity(url, Order.class);
+        assertNull(order.getOrderNum(), responseEntity.getBody().getOrderNum());
         System.out.println(responseEntity);
         System.out.println(responseEntity.getBody());
         restTemplate.delete(url);
