@@ -75,7 +75,7 @@ public class OrderControllerTest
         ResponseEntity<Order> postResponse = restTemplate.postForEntity(url, updated, Order.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
-        assertEquals(order.getClerkId(), postResponse.getBody().getClerkId());
+        assertNull(order.getOrderNum(), postResponse.getBody().getOrderNum());
         System.out.println(postResponse.getBody());
 
     }
