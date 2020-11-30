@@ -1,4 +1,6 @@
 package ac.za.cput.entity.equipment;
+import ac.za.cput.entity.generic.Stock;
+
 import javax.management.relation.Role;
 import javax.persistence.*;
 
@@ -14,11 +16,10 @@ public class Device implements Serializable {
     private String deviceId;
     private String deviceTypeId;
 
+    @OneToOne
+    private Stock stock;
 
-
-
-
-protected Device(){}
+    protected Device(){}
 
 
 
