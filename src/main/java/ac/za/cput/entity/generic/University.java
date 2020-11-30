@@ -5,6 +5,8 @@ package ac.za.cput.entity.generic;
  *  Desc: Entity for University
  */
 
+import ac.za.cput.entity.equipment.Device;
+import ac.za.cput.entity.equipment.Furniture;
 import ac.za.cput.entity.user.ControlClerk;
 
 import javax.persistence.*;
@@ -21,6 +23,12 @@ public class University implements Serializable {
     private String universityId;
     private String name;
     private String address;
+
+    @OneToOne(mappedBy = "university",cascade = CascadeType.ALL)
+    private Device device;
+
+    @OneToOne(mappedBy = "university",cascade = CascadeType.ALL)
+    private Furniture furniture;
 
     protected University(){}
 
