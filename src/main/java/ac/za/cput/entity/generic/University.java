@@ -5,8 +5,6 @@ package ac.za.cput.entity.generic;
  *  Desc: Entity for University
  */
 
-import ac.za.cput.entity.equipment.Device;
-import ac.za.cput.entity.equipment.Furniture;
 import ac.za.cput.entity.user.ControlClerk;
 
 import javax.persistence.*;
